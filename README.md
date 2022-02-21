@@ -1,11 +1,12 @@
-<br>
-<h1 align="center"> dotfiles </h1>
+<div align="center"><img src="https://github.com/saimoomedits.png" alt="pfp"  width="200" ></div>
+
+<h1 align="center"> <i><b> ~ dotfiles ~ </i></b></h1>
 <br>
 
-<p align="center">huloo, and welcome!<br>
- these are my configuration files for window managers I use and linux in general.
-</p> 
-<br>
+<p align="center"><b>hey there, and welcome!<br>
+ these are my configuration files for window managers I use and linux in general.<br>
+ I mainly use bspwm, qtile amd awesome. As for music, I use mpd. My linux distro is Arch.
+ </b></p> 
 
 ___
 
@@ -20,10 +21,10 @@ ___
 <p> A 'math sheet/scrap paper'-like rice I made in bspwm. fully inspired by ChocolateBreads's "Trying something different" post.</p>
 
 **information**
-* **bar**     : eww
-* **wm**      : bspwm
-* **widgets** : eww
-* **dock**    : eww
+- **bar**     : eww
+- **wm**      : bspwm
+- **widgets** : eww
+- **dock**    : eww
 <br>
 
 **other stuffs i wanna say :P**
