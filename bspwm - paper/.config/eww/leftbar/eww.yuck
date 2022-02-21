@@ -27,6 +27,7 @@
       "date +\%B")
 
 (defpoll song :interval "3s"  "~/.config/eww/bar/scripts/music_info --song")
+(defpoll song_prog :interval "1s"  "~/.config/eww/bar/scripts/music_info --time")
 (defpoll song_artist :interval "3s"  "~/.config/eww/leftbar/scripts/music_info --artist")
 (defpoll song_status :interval "3s"  "~/.config/eww/leftbar/scripts/music_info --status")
 (defpoll loop_status :interval "5s"  "~/.config/eww/leftbar/scripts/music_info --loop_ic")
@@ -137,7 +138,7 @@
 
 (defwidget music_prog []
 			(box :orientation "v" :spacing 5 :space-evenly "false" :vexpand "false" :hexpand "false" :class "music_prog_bg"
-				(scale :value 50 :halign "start" :class "song_prog")))
+				(scale :value song_prog :halign "start" :class "song_prog")))
 
 
 (defwidget dirs []
