@@ -1,0 +1,40 @@
+#!/bin/bash
+
+## Files and cmd
+FILE="$HOME/.cache/eww_launch_dok.xyz"
+EWW="$HOME/.local/bin/eww/eww -c $HOME/.config/eww/ws-dock"
+
+# windows not in use
+# separ
+
+## window list
+w_ls="
+    dc
+"
+## Run eww daemon if not running already
+if [[ ! `pidof eww` ]]; then
+	${EWW} daemon
+	sleep 1
+fi
+
+# widgets not in use
+# apps
+# twitter
+# volume
+# fetch
+
+## Open widgets 
+run_eww() {
+    ${EWW} open-many $w_ls
+}
+
+## Launch or close widgets accordingly
+if [[ ! -f "$FILE" ]]; then
+	touch "$FILE"
+    echo "starting"
+	run_eww 
+else
+    echo "closing"
+    ${EWW} close dc dock
+	rm "$FILE"
+fi

@@ -1,0 +1,94 @@
+[global]
+title = Dunst
+class = Dunst
+monitor = 0
+follow = mouse
+offset = 74x66
+indicate_hidden = yes
+shrink = no
+height = 450
+width = (300, 400)
+
+
+# The format of the message.  Possible variables are:
+    #   %a  appname
+    #   %s  summary
+    #   %b  body
+    #   %i  iconname (including its path)
+    #   %I  iconname (without its path)
+    #   %p  progress value if set ([  0%] to [100%]) or nothing
+    #   %n  progress value if set without any extra characters
+    #   %%  Literal %
+    # Markup is allowed
+format = "<b>%s</b>\n%b"
+
+
+
+progress_bar = true
+progress_bar_height = 5
+progress_bar_frame_width = 2
+progress_bar_min_width = 200
+progress_bar_max_width = 400
+
+transparency = 0
+separator_height = 2
+padding = 22
+horizontal_padding = 22
+frame_width = 3
+frame_color = "#0f0f17"
+separator_color = auto
+
+font = JetBrainsMono Nerd Font 12
+
+line_height = 0
+markup = full
+alignment = center
+vertical_alignment = center
+
+idle_threshold = 120
+show_age_threshold = 60
+sort = no
+word_wrap = yes
+ignore_newline = no
+stack_duplicates = true
+hide_duplicate_count = yes
+show_indicators = no
+sticky_history = no
+history_length = 200
+always_run_script = true
+corner_radius = 6
+icon_position = left
+max_icon_size = 48
+vertical_alignment = center
+alignment = center
+
+
+mouse_left_click = close_current
+mouse_middle_click = do_action
+mouse_right_click = close_all
+
+[shortcuts]
+close = ctrl+space
+close_all = ctrl+shift+space
+history = ctrl+Escape
+context = ctrl+shift+period
+
+
+[urgency_low]
+timeout = 1
+background = "#ecf1f5"
+foreground = "#0f0f17"
+highlight = "#0f0f17"
+
+[urgency_normal]
+timeout = 4
+background = "#ecf1f5"
+foreground = "#0f0f17"
+highlight = "#0f0f17"
+
+
+[urgency_critical]
+timeout = 0
+foreground = "#ecf1f5"
+highlight = "#d78787"
+background = "#d78787"

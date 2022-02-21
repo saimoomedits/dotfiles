@@ -1,0 +1,32 @@
+#!/bin/bash
+
+    count="$(dunstctl count history)"
+
+    if [ $count -gt 0 ]; then
+        col="#0f0f17"
+        bg="#bbc5d7"
+        icon=""
+    else
+        bg="#0f0f17"
+        col="#bbc5d7"
+        echo ""
+    fi
+
+
+
+    if [ "$(dunstctl is-paused)" == "true" ]; then
+        icon=""
+        col="#d78787"
+        bg="transparent"
+    fi
+
+
+if [ $1 = "notifs" ]; then
+    echo $icon
+elif [ $1 = "notifs_col" ]; then
+    echo $col
+elif [ $1 = "notifs_bg" ]; then
+    echo $bg
+elif [ $1 = "toggle_notifs" ]; then
+    dunstctl set-paused toggle
+fi

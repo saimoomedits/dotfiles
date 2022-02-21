@@ -1,0 +1,26 @@
+#!/bin/bash
+
+    if [ "$(systemctl status NetworkManager | grep 'inactive')" ]; then
+        icon=""
+        col="#d78787"
+        bg="tranparent"
+    fi
+    
+    if [ "$(nmcli g | grep -oE 'disconnected')" ]; then
+        icon="" # disconnected
+        col="#0f0f17"
+        bg="transparent"
+    else
+        icon="" # connected
+        col="#0f0f17"
+        bg="#bfc9db"
+    fi
+
+
+if [ $1 = "wifi" ]; then
+    echo $icon
+elif [ $1 = "wifi_col"  ]; then
+    echo $col
+elif [ $1 = "wifi_bg" ]; then
+    echo $bg
+fi

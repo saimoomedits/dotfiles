@@ -1,0 +1,21 @@
+#!/bin/bash
+
+## Files and cmd
+FILE="$HOME/.config/eww/ws-dock/execs/dock-status"
+EWW="$HOME/.local/bin/eww/eww -c $HOME/.config/eww/ws-dock"
+
+run_eww() {
+    echo "open" > "$FILE"
+    ${EWW} open dock
+}
+
+# check if dock is opened or closed
+sts="$(cat $FILE)"
+
+if [ "$sts" = "open" ]; then
+	rm "$FILE"
+    ${EWW} close dock
+
+else 
+    run_eww
+fi

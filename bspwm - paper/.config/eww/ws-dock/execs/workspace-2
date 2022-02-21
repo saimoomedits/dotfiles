@@ -1,0 +1,103 @@
+#!/bin/sh
+workspaces() {
+
+ws1="1"
+ws2="2"
+ws3="3"
+ws4="4"
+ws5="5"
+ws6="6"
+
+un="0"
+
+o1=$(bspc query -D -d .occupied --names | grep "$ws1" )
+o2=$(bspc query -D -d .occupied --names | grep "$ws2" )
+o3=$(bspc query -D -d .occupied --names | grep "$ws3" )
+o4=$(bspc query -D -d .occupied --names | grep "$ws4" )
+o5=$(bspc query -D -d .occupied --names | grep "$ws5" )
+o6=$(bspc query -D -d .occupied --names | grep "$ws6" )
+
+f1=$(bspc query -D -d focused --names | grep "$ws1" )
+f2=$(bspc query -D -d focused --names | grep "$ws2" )
+f3=$(bspc query -D -d focused --names | grep "$ws3" )
+f4=$(bspc query -D -d focused --names | grep "$ws4" )
+f5=$(bspc query -D -d focused --names | grep "$ws5" )
+f6=$(bspc query -D -d focused --names | grep "$ws6" )
+
+ic_1=""
+ic_2=""
+ic_3=""
+ic_4=""
+ic_5=""
+ic_6=""
+
+ws1_col="#1e1e2e"
+ws1_bg="#1e1e2e"
+
+ws2_col="#1e1e2e"
+ws2_bg="#1e1e2e"
+
+ws3_col="#1e1e2e"
+ws3_bg="#1e1e2e"
+
+ws4_col="#1e1e2e"
+ws4_bg="#1e1e2e"
+
+ws5_col="#1e1e2e"
+ws5_bg="#1e1e2e"
+
+ws6_col="#1e1e2e"
+ws6_bg="#1e1e2e"
+
+
+if [ $o1 ]; then
+    ws1_col="#c75050"
+    ws1_bg="#1e1e2e"
+fi
+if [ $o2 ]; then
+    ws2_col="#20f543"
+    ws2_bg="#1e1e2e"
+fi
+if [ $o3 ]; then
+    ws3_col="#c7b250"
+    ws3_bg="#1e1e2e"
+fi
+if [ $o4 ]; then
+    ws4_col="#507ac7"
+    ws4_bg="#1e1e2e"
+fi
+if [ $o5 ]; then
+    ws5_col="#d7beda"
+    ws5_bg="#1e1e2e"
+fi
+if [ $o6 ]; then
+    ws6_col="#50a9c7"
+    ws6_bg="#1e1e2e"
+fi
+
+if [ $f1 ]; then
+    ws1_col="#c75050"
+    ws1_bg="#c75050"
+elif [ $f2 ]; then
+    ws2_col="#a3be8c"
+    ws2_bg="#a3be8c"
+elif [ $f3 ]; then
+    ws3_col="#c7b250"
+    ws3_bg="#c7b250"
+elif [ $f4 ]; then
+    ws4_col="#507ac7"
+    ws4_bg="#507ac7"
+elif [ $f5 ]; then
+    ws5_col="#c750bb"
+    ws5_bg="#c750bb"
+elif [ $f6 ]; then
+    ws6_col="#50a9c7"
+    ws6_bg="#50a9c7"
+fi
+
+echo "(box :orientation \"h\" :spacing 5 :space-evenly \"false\"      (button :onclick \"bspc desktop -f $ws1\"     :style \"color: $ws1_col; background-color: #ecf1f5; border:3px solid $ws1_bg;\" :class	\"ws_s\"	\"$ic_1\" ) (button :style \"color: $ws2_col; background-color: #ecf1f5; border:3px solid $ws2_bg;\" :onclick \"bspc desktop -f $ws2\"	:class \"ws_s\"	 \"$ic_2\") (button :style \"color: $ws3_col; background-color: #ecf1f5; border:3px solid $ws3_bg;\" :onclick \"bspc desktop -f $ws3\"	:class \"ws_s\" \"$ic_3\") (button :style \"color: $ws4_col; background-color: #ecf1f5; border:3px solid $ws4_bg;\" :onclick \"bspc desktop -f $ws4\"	:class \"ws_s\"	\"$ic_4\") (button :style \"color: $ws5_col; background-color: #ecf1f5; border:3px solid $ws5_bg;\" :onclick \"bspc desktop -f $ws5\"	:class \"ws_s\" \"$ic_5\")  (button :style  \"color: $ws6_col; background-color: #ecf1f5; border:3px solid $ws6_bg;\" :onclick \"bspc desktop -f $ws6\"	:class \"ws_s\" \"$ic_6\"))"
+}
+workspaces
+bspc subscribe desktop node_transfer | while read -r _ ; do
+workspaces
+done

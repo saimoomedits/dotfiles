@@ -1,0 +1,56 @@
+#! /bin/sh
+
+
+# Startups
+$HOME/.config/polybar/launch-lev.sh &
+xsetroot -cursor_name left_ptr &
+pgrep -x sxhkd > /dev/null || sxhkd &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+
+
+# focus with pointer
+bspc config focus_follows_pointer true
+
+# Monitor setup
+bspc config -m VGA-1 top_padding 0
+bspc config -m LVDS-1 top_padding 42
+
+
+
+# border colors basic
+# bspc config focused_border_color '#6E6C7E'
+# bspc config focused_border_color '#22242b'
+# bspc config normal_border_color '#0f0f17'
+
+
+bspc config focused_border_color '#0f0f17'
+bspc config normal_border_color '#e6ebf0'
+
+bspc monitor -d 1 2 3 4 5 6
+# window gap and width
+bspc config border_width         3
+bspc config window_gap          14
+
+# Defaults
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc rule -a Gimp desktop='^2' state=floating follow=on
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Galculator state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+
+
+# fix fullscreen eww bar
+bspc subscribe node_state | while read -r _ _ _ _ state flag; do
+  if [[ "$state" != fullscreen ]]; then continue; fi
+  if [[ "$flag" == on ]]; then
+    $HOME/.local/bin/eww -c $HOME/.config/eww/bar close-all
+  else
+    $HOME/.local/bin/eww -c $HOME/.config/eww/bar open bar
+  fi
+done &
