@@ -2,7 +2,8 @@
 ;; author : saimoomedits
 
 (defvar IMAGE "images/profile.png")
-(defvar greeting "Hey!")
+(defpoll packages :interval "48h"  "pacman -Qq | wc -l")
+(defpoll updates :interval "48h"  "pacman -Qu | wc -l")
 (defpoll username :interval "48h"  "whoami")
 
 (defpoll uptime :interval "50s" "uptime -p | sed -e 's/up //;s/ hours,/h/;s/ hour,/h/;s/ minutes/m/;s/ minute/m/'")
@@ -172,13 +173,13 @@
 					(box :orientation "v" :spacing 2 :space-evenly "false" :vexpand "false" :hexpand "true"
 					(box :orientation "v" :spacing 0 :space-evenly "false" :vexpand "false" :hexpand "false"
                             (label  :text "user" :class "fetch_sys_1")
-                            (label  :text "saimoom" :class "fetch_sys_2"))
+                            (label  :text username :class "fetch_sys_2"))
 					(box :orientation "v" :spacing 0 :space-evenly "false" :vexpand "false" :hexpand "false"
                             (label  :text "pkgs" :class "fetch_sys_1")
-                            (label  :text "661" :class "fetch_sys_2"))
+                            (label  :text packages :class "fetch_sys_2"))
 					(box :orientation "v" :spacing 0 :space-evenly "false" :vexpand "false" :hexpand "false"
                             (label  :text "upds" :class "fetch_sys_1")
-                            (label  :text "34" :class "fetch_sys_2"))))))
+                            (label  :text updates :class "fetch_sys_2"))))))
 
 		(defwidget audio []
 			(box :vexpand "false" :hexpand "false"
