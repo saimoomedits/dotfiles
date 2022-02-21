@@ -2,7 +2,6 @@
 
 
 # Startups
-$HOME/.config/polybar/launch-lev.sh &
 xsetroot -cursor_name left_ptr &
 pgrep -x sxhkd > /dev/null || sxhkd &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
