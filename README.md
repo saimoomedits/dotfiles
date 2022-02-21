@@ -1,5 +1,8 @@
-# dotfiles
-<p>huloo, and welcome!<br>
+<br>
+<h1 align="center"> dotfiles </h1>
+<br>
+
+<p align="center">huloo, and welcome!<br>
  these are my configuration files for window managers I use and linux in general.
 </p> 
 <br>
