@@ -2,7 +2,7 @@
 
 <h1 > Work In Progress 🧊</h2>
 <p>
-  This rice isnt completed yet. 🍚
+  This rice isnt complete yet. 🍚
   <br>
   the configurations and preview are coming soon 👍
 </p>
