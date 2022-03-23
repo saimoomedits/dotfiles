@@ -128,8 +128,11 @@
 
 **this rice was made possible by the following geniuses:**
 
-+ [JavaCafe01](https://github.com/JavaCafe01/dotfiles)
-+ [Elenapan](https://github.com/elenapan/dotfiles)
+* [JavaCafe01](https://github.com/JavaCafe01/dotfiles)
+* [Elenapan](https://github.com/elenapan/dotfiles)
 
-+ [Rubato](https://github.com/andOrlando/rubato)
-+ [Bling](https://github.com/BlingCorp/bling)
+<br>
+
+**modules**
+* [Rubato](https://github.com/andOrlando/rubato)
+* [Bling](https://github.com/BlingCorp/bling)
