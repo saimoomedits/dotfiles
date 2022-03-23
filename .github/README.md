@@ -134,7 +134,7 @@
 <br>
 
 **wallpaper**
-* [Moonlight-coffee](https://github.com/moonlight-coffeee)
+* [Moonlight-coffee](https://github.com/moonlight-coffee)
 
 **modules**
 * [Rubato](https://github.com/andOrlando/rubato)
