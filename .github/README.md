@@ -87,15 +87,16 @@ FYI, I am pretty new to Awesome-WM, so please go easy 😐
 <summary><strong>Arch/ Arch Based</strong></summary>
 
 1. Install packages / dependencies
-
-        ```shell
+    
+        ```
+    
         yay -S picom-ibhagwan-git awesome-git acpid git mpd ncmpcpp wmctrl \
         firefox lxappearance gucharmap thunar Alacritty neovim polkit-gnome \
         xdotool xclip scrot brightnessctl alsa-utils pulseaudio jq acpi rofi 
         ```
 
 2. Make backup of directories that will be changed (optional)
-    ```shell
+    ```
     cd 
     mkdir .backup_config
     cp -r ~/.config/* .backup_config/
@@ -105,7 +106,7 @@ FYI, I am pretty new to Awesome-WM, so please go easy 😐
     ```
 
 3. Clone this repo
-    ```shell
+    ```
     cd
     clear
     git clone https://github.com/saimoomedits/dotfiles
@@ -113,7 +114,7 @@ FYI, I am pretty new to Awesome-WM, so please go easy 😐
     ````
 
 4. Copy the dotfiles in required places
-    ```shell
+    ```
     cp -rf .config/* ~/.config/
     cp -rf .mpd ~/.mpd
     cp -rf .ncmpcpp ~/.ncmpcpp
@@ -121,7 +122,7 @@ FYI, I am pretty new to Awesome-WM, so please go easy 😐
     cp -rf .themes/* ~/.themes/
     ```
 5. make some files executeable
-    ```shell
+    ```
     cd ~/.config/awesome/misc
     sudo chmod -R +x *
     ```
