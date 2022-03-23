@@ -22,10 +22,12 @@
     <br>
     You can find everything used in this setup in this repo<br>
     if you have any questions/fix. feel free to open an issue/pull-request<br>
+     <br>
+        <b>Fyi, I am pretty new to awesome, so pls no hate</b>
     <br>
     <h2><b>Enjoy!</b></h2>
         
-        <h2>Fyi, I am pretty new to awesome, so pls no hate</h2>
+    
 </p>
 
 <br>
