@@ -1,0 +1,27 @@
+# Alcritty colors
+
+colors:
+  primary:
+    background: '#e0e0e0'
+    foreground: '#121212'
+  cursor:
+    text:   CellForeground
+    cursor: '#616161'
+  bright:
+    black:   '#121212'
+    red:     '#ff5252'
+    green:   '#00c853'
+    yellow:  '#ffd740'
+    blue:    '#448aff'
+    magenta: '#7c4dff'
+    cyan:    '#18ffff'
+    white:   '#bdbdbd'
+  normal:
+    black:   '#121212'
+    red:     '#ff5252'
+    green:   '#00c853'
+    yellow:  '#ffd740'
+    blue:    '#448aff'
+    magenta: '#7c4dff'
+    cyan:    '#18ffff'
+    white:   '#000000'

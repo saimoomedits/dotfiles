@@ -1,0 +1,82 @@
+## Color
+import:
+- ~/.config/alacritty/colors-material.yml
+
+## env vars
+env:
+  TERM: xterm-256color
+
+## window settings
+window:
+  opacity: 1.0
+  padding:
+    x: 40
+    y: 30
+
+
+# Class (window name)
+class:
+  instance: Alacritty
+  general: Alacritty
+
+# Scrolling
+scrolling:
+  history: 10000
+  multiplier: 3
+
+# Visual
+visual_bell:
+  animation: EaseOutExpo
+  duration: 0.5
+  color: "#e4c9af"
+
+# Selection?
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  save_to_clipboard: true
+
+# writing thing (cursor) 
+cursor:
+  style: 'Underline'
+
+# def Shell
+shell:
+  program: /usr/bin/zsh
+
+## Font stuff
+font:
+  normal:
+    family: CaskaydiaCove Nerd Font
+    style: Regular
+
+  bold:
+    family: CaskaydiaCove Nerd Font
+    style: Bold
+
+  italic:
+    family: CaskaydiaCove Nerd Font
+    style: Italic
+
+  bold_italic:
+    family: CaskaydiaCove Nerd Font
+    style: Bold Italic
+
+  size: 10
+
+  offset:
+    x: 2
+    y: 0
+
+  glyph_offset:
+    x: 2
+    y: 0
+
+# Mouse
+mouse:
+  double_click: { threshold: 300 }
+  triple_click: { threshold: 300 }
+  hide_when_typing: true
+
+# Global Config
+live_config_reload: true
+draw_bold_text_with_bright_colors: true
