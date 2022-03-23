@@ -13,22 +13,53 @@
     <img src="assets/preview.gif" width=450 align="right">
 </div>
 
-<p>
-    <h3><b><- Awesome-WM rice 🍚 -></b></h3><br>
-    Hey there, welcome to my dotfiles! you can find config files for awesome, alacritty, etc here<br>
-    I use the Material theme as a theme and color scheme for this setup!<br>
-    went for a "android-like" look here while also keeping it simple!<br>
-    I have recently switched to Awesome-WM and I gotta say This WM is Amazing!<br>
-    <br>
-    You can find everything used in this setup in this repo<br>
-    if you have any questions/fix. feel free to open an issue/pull-request<br>
-     <br>
-        <b>Fyi, I am pretty new to awesome, so pls no hate</b>
-    <br>
-    <h2><b>Enjoy!</b></h2>
-        
+<br>
+
+**Hello!** welcome to my dotfiles. This is a repo for my linux configs
+
+I use [Awesome-WM](https://awesomewm.org/) which is the most customizable Wm I've ever seen!
+
+As for theme, Its [Material Design](https://material.io). Yes that android one. its really cool!
+
+most things you will need are in the `.config/awesome` folder.
+
+<br>
+
+FYI, I am pretty new to Awesome-WM, so please go easy 😐
+
+<br>
+
+
+
+
+
+
+
+
+
+# User Info
+
+**Details**
+
+| Task              | Name                   |
+| ----------------- | ---------------------- |
+| Window manager    | Awesome                |
+| Terminal          | Alacritty              |
+| Music player      | Mpd / ncmpcpp          |
+| gtk theme         | Materia-{Dark/Light}   |
+| Bar               | Wibar (not really)     |
+| Compositor        | picom-ibhagwan-git     | 
+
+<br>
+
+* you can easily change both light and dark theme by editing thier files in `~/.config/awesome/theme/`
+    + **dark.lua** - dark theme
+    + **light.lua** - light theme
+
+* the gtk theme can be installed either from the *AUR* or from [here manually](https://github.com/nana-4/materia-theme)
+
     
-</p>
+
 
 <br>
 
