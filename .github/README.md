@@ -7,14 +7,14 @@
 
     
 
-# Welcome!!
+# Welcome!! 👋
 
 <div align="right">
     <img src="assets/preview.gif" width=450 align="right">
 </div>
 
 <p>
-    <h3><b><- Awesome-WM rice -></b></h3><br>
+    <h3><b><- Awesome-WM rice 🍚 -></b></h3><br>
     Hey there, welcome to my dotfiles! you can find config files for awesome, alacritty, etc here<br>
     I use the Material theme as a theme and color scheme for this setup!<br>
     went for a "android-like" look here while also keeping it simple!<br>
@@ -24,12 +24,14 @@
     if you have any questions/fix. feel free to open an issue/pull-request<br>
     <br>
     <h2><b>Enjoy!</b></h2>
+        
+        <h2>Fyi, I am pretty new to awesome, so pls no hate</h2>
 </p>
 
 <br>
 
 
-# Shots
+# Shots 📷
 
 <details close>
 <summary><strong>Light mode</strong></summary>
@@ -45,7 +47,7 @@
 
 <br>
 
-# Setup
+# Setup 🤖
 
 
 <details open>
@@ -102,7 +104,7 @@
 
 <br>
 
-# basic Keybinds
+# basic Keybinds ⌨️
 
 | Task              | Keybind               |
 | ----------------- | --------------------- |
@@ -120,7 +122,7 @@
 
 <br>
 
-# Credits
+# Credits 🙏
 
 **this rice was made possible by the following geniuses:**
 
