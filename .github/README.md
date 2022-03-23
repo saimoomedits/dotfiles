@@ -130,3 +130,6 @@
 
 + [JavaCafe01](https://github.com/JavaCafe01/dotfiles)
 + [Elenapan](https://github.com/elenapan/dotfiles)
+
++ [Rubato](https://github.com/andOrlando/rubato)
++ [Bling](https://github.com/BlingCorp/bling)
