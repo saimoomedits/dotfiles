@@ -9,9 +9,17 @@
 
 # Welcome!! 👋
 
++ [Hello](https://github.com/saimoomedits/dotfiles#welcome-)
+    + [Info](https://github.com/saimoomedits/dotfiles#user-info)
+    + [Shots](https://github.com/saimoomedits/dotfiles#shots-)
+    + [Keybinds](https://github.com/saimoomedits/dotfiles#basic-keybinds-%EF%B8%8F)
++ [Credits](https://github.com/saimoomedits/dotfiles#credits-)
+
+
 <div align="right">
     <img src="assets/preview.gif" width=450 align="right">
 </div>
+
 
 <br>
 
@@ -43,7 +51,7 @@ FYI, I am pretty new to Awesome-WM, so please go easy 😐
 
 | Task              | Name                   |
 | ----------------- | ---------------------- |
-| Window manager    | Awesome                |
+| Window manager    | Awesome-git            |
 | Terminal          | Alacritty              |
 | Music player      | Mpd / ncmpcpp          |
 | gtk theme         | Materia-{Dark/Light}   |
@@ -57,6 +65,8 @@ FYI, I am pretty new to Awesome-WM, so please go easy 😐
     + **light.lua** - light theme
 
 * the gtk theme can be installed either from the *AUR* or from [here manually](https://github.com/nana-4/materia-theme)
+
+* This setup was indented to work with awesome-git only!
 
     
 
@@ -88,12 +98,11 @@ FYI, I am pretty new to Awesome-WM, so please go easy 😐
 
 1. Install packages / dependencies
     
-        ```
-    
-        yay -S picom-ibhagwan-git awesome-git acpid git mpd ncmpcpp wmctrl \
-        firefox lxappearance gucharmap thunar Alacritty neovim polkit-gnome \
-        xdotool xclip scrot brightnessctl alsa-utils pulseaudio jq acpi rofi 
-        ```
+    ```    
+    yay -S picom-ibhagwan-git awesome-git acpid git mpd ncmpcpp wmctrl \
+    firefox lxappearance gucharmap thunar Alacritty neovim polkit-gnome \
+    xdotool xclip scrot brightnessctl alsa-utils pulseaudio jq acpi rofi 
+    ```
 
 2. Make backup of directories that will be changed (optional)
     ```
@@ -102,7 +111,6 @@ FYI, I am pretty new to Awesome-WM, so please go easy 😐
     cp -r ~/.config/* .backup_config/
     cp -r ~/.mpd .backup_config/
     cp -r ~/.ncmpcpp .backup_config/
-
     ```
 
 3. Clone this repo
@@ -111,7 +119,7 @@ FYI, I am pretty new to Awesome-WM, so please go easy 😐
     clear
     git clone https://github.com/saimoomedits/dotfiles
     cd dotfiles
-    ````
+    ```
 
 4. Copy the dotfiles in required places
     ```
