@@ -34,11 +34,12 @@ local welcome = wibox.widget {
 
 local usname = wibox.widget {
     widget = wibox.widget.textbox,
-    markup = "<span foreground='" .. beautiful.fg_color .. "BF" .. "'>Saimoom</span>",
+    markup = "<span foreground='" .. beautiful.fg_color .. "BF" .. "'>" .. os.getenv("USER") ..  "</span>",
     font = beautiful.font_var .. "12",
     align = "left",
     valign = "center"
 }
+
 
 local uptime = wibox.widget {
     widget = wibox.widget.textbox,

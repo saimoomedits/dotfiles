@@ -1,4 +1,4 @@
-@import "/home/saimoom/.config/awesome/misc/scripts/Rofi/themes/colors.rasi"
+@import "colors.rasi"
 
 // vertical rofi theme for Awesome
 

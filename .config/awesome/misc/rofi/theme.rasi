@@ -19,8 +19,7 @@ configuration {
     display-combi: 					"";
 }
 
-// import colors (change "saimoom" to your username)
-@import "/home/saimoom/.config/awesome/misc/rofi/colors.rasi"
+@import "colors.rasi"
 
 // bg color
 * {

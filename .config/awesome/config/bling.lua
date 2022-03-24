@@ -39,7 +39,7 @@ bling.widget.tag_preview.enable {
     honor_padding = true,
     honor_workarea = false,
     background_widget = wibox.widget {
-        image = gears.color.recolor_image("/home/saimoom/wallpapers/plain.png", beautiful.bg_color),
+        image = beautiful.wallpaper,
         horizontal_fit_policy = "fit",
         vertical_fit_policy = "fit",
         widget = wibox.widget.imagebox
