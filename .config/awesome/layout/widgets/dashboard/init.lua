@@ -15,7 +15,7 @@ dash = wibox({
     type = "dnd",
     height = screen_height,
     screen = 1,
-    width = 400,
+    width = dpi(400),
     margins = 20,
     ontop = true,
     visible = false
@@ -54,7 +54,7 @@ dash_show = function()
 end
 
 dash_hide = function()
-    slide:set(-400)
+    slide:set(dpi(-400))
     bar_move_false()
     dash_status = true
 end
