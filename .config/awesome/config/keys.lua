@@ -44,7 +44,7 @@ awful.keyboard.append_global_keybindings({
     awful.key({ modkey }, "e", function () awful.spawn("rofi -show drun -theme " .. os.getenv("HOME") .. "/.config/awesome/misc/rofi/theme.rasi") end,
                {description = "show rofi", group = "launcher"}),
     awful.key({ modkey }, "z", function () dash_toggle() end,
-               {description = "show dahsboard", group = "launcher"}),
+               {description = "show dashboard", group = "launcher"}),
 
             -- Volume
     awful.key({}, "XF86AudioRaiseVolume",
