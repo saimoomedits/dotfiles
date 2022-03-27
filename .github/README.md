@@ -179,3 +179,9 @@ FYI, I am pretty new to Awesome-WM, so please go easy 😐
 **modules**
 * [Rubato](https://github.com/andOrlando/rubato)
 * [Bling](https://github.com/BlingCorp/bling)
+
+**Contributers**
+
+<a href="https://github.com/saimoomedits/dotfiles/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=saimoomedits/dotfiles" width=100/>
+</a>
