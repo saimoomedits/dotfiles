@@ -138,7 +138,7 @@ local updater = function(widget, stdout, _, _, _)
   elseif mpdstatus == "paused" then
     toggle_icon.image = gears.color.recolor_image(os.getenv("HOME") .. "/.config/awesome/images/mpd/play.png", beautiful.fg_color)
     widget.value = tonumber(mpdpercent/100)
-  else 
+  else
     toggle_icon.image = gears.color.recolor_image(os.getenv("HOME") .. "/.config/awesome/images/mpd/play.png", beautiful.fg_color)
   end
 end
@@ -275,7 +275,10 @@ end
 ruled.client.connect_signal("request::rules", function()
     ruled.client.append_rule {
         id = "music",
-        rule = {instance = "music"},
+        rule_any = {
+            class = {"music"},
+            instance = {"music"}
+        },
         callback = music_init
     }
 end)
