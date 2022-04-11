@@ -33,8 +33,6 @@ most things you will need are in the `.config/awesome` folder.
 
 <br>
 
-FYI, I am pretty new to Awesome-WM, so please go easy 😐
-
 <br>
 
 
@@ -166,7 +164,7 @@ FYI, I am pretty new to Awesome-WM, so please go easy 😐
 
 # Credits 🙏
 
-**this rice was made possible by the following geniuses:**
+**thanks:**
 
 * [JavaCafe01](https://github.com/JavaCafe01/dotfiles)
 * [Elenapan](https://github.com/elenapan/dotfiles)
