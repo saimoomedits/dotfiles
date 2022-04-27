@@ -125,7 +125,6 @@ most things you will need are in the `.config/awesome` folder.
     cp -rf .mpd ~/.mpd
     cp -rf .ncmpcpp ~/.ncmpcpp
     cp -rf .fonts/* ~/.fonts/
-    cp -rf .themes/* ~/.themes/
     ```
 5. make some files executeable
     ```
