@@ -1,184 +1,252 @@
-<div align="center">
-    <img src="assets/Header.png" width=300>
-</div>
-
-
+<br>
+    <div align="center">
+        <img src=".github/assets/header.png" width=500>
+    </div>
 <br>
 
-    
-
-# Welcome!! 👋
-
-+ [Hello](https://github.com/saimoomedits/dotfiles#welcome-)
-    + [Info](https://github.com/saimoomedits/dotfiles#user-info)
-    + [Shots](https://github.com/saimoomedits/dotfiles#shots-)
-    + [Keybinds](https://github.com/saimoomedits/dotfiles#basic-keybinds-%EF%B8%8F)
-+ [Credits](https://github.com/saimoomedits/dotfiles#credits-)
-
-
-<div align="right">
-    <img src="assets/preview.gif" width=450 align="right">
-</div>
-
-
-<br>
-
-**Hello!** welcome to my dotfiles. This is a repo for my linux configs
-
-I use [Awesome-WM](https://awesomewm.org/) which is the most customizable Wm I've ever seen!
-
-As for theme, Its [Material Design](https://material.io). Yes that android one. its really cool!
-
-most things you will need are in the `.config/awesome` folder.
-
-<br>
+<p align="center">
+    hello there, welcome to the materialized dotfiles!<br>
+    this an <a href="awesomewm.org">awesomewm</a> rice/setup inspired by the infamous <a href="m3.material.com">material you</a>.<br>
+you can take anything you like from this repository. but.. please credit me too! 😄 <br>
+</p>
 
 <br>
 
 
+# info 📖
 
+**setup details**
 
-
-
-
-
-
-# User Info
-
-**Details**
-
-| Task              | Name                   |
+| task              | name                   |
 | ----------------- | ---------------------- |
-| Window manager    | Awesome-git            |
-| Terminal          | Alacritty              |
-| Music player      | Mpd / ncmpcpp          |
-| gtk theme         | Materia-{Dark/Light}   |
-| Bar               | Wibar (not really)     |
-| Compositor        | picom-ibhagwan-git     | 
+| WM  | [awesome-git](https://https://github.com/awesomeWM/awesome)                              |
+| terminal          | [alacritty](https://github.com/alacritty/alacritty)                                      |
+| music player      | [mpd](https://www.musicpd.org/) & [ncmpcpp](https://github.com/ncmpcpp/ncmpcpp)          |
+| GTK theme         | [Materia Dark/Light](https://github.com/nana-4/materia-theme)                            |
+| bar               | [wibar](https://awesomewm.org/apidoc/popups_and_bars/awful.wibar.html)                   |
+| compositor        | [picom-ibhagwan-git](https://github.com/ibhagwan/picom)                                  | 
 
 <br>
 
-* you can easily change both light and dark theme by editing thier files in `~/.config/awesome/theme/`
-    + **dark.lua** - dark theme
-    + **light.lua** - light theme
+**more info** 🕵️
 
-* the gtk theme can be installed either from the *AUR* or from [here manually](https://github.com/nana-4/materia-theme)
-
-* This setup was indented to work with awesome-git only!
-
-    
-
+* **how to change the theme?**
+    * edit `theme/ui_vars.lua` and change `color_scheme` to one of the following:
+        - `"blue"`
+        - `"pink"`
+        - `"green"`
+        - `"grey"`
 
 <br>
 
-
-# Shots 📷
-
-<details close>
-<summary><strong>Light mode</strong></summary>
-    <img src="assets/light.png" width=700 align="center">
-
-</details>
-
-<details open>
-<summary><strong>Dark mode</strong></summary>
-    <img src="assets/dark.png" width=700 align="center">
-
-</details>
+* **gaps/border/titlebar**
+    * **titlebars**
+        * you can edit `layout/decorations/init.lua` to emend/modify the global titlebar.
+    * **borders**
+        * border size can be change in `theme/ui_vars.lua`, there is a `border_size`.
+    * **gaps**
+        * Gaps can also be changed in `theme/ui_vars.lua`.
 
 <br>
 
-# Setup 🤖
-
-
-<details open>
-<summary><strong>Arch/ Arch Based</strong></summary>
-
-1. Install packages / dependencies
-    
-    ```    
-    yay -S picom-ibhagwan-git awesome-git acpid git mpd ncmpcpp wmctrl \
-    firefox lxappearance gucharmap thunar Alacritty neovim polkit-gnome \
-    xdotool xclip scrot brightnessctl alsa-utils pulseaudio jq acpi rofi 
-    ```
-
-2. Make backup of directories that will be changed (optional)
-    ```
-    cd 
-    mkdir .backup_config
-    cp -r ~/.config/* .backup_config/
-    cp -r ~/.mpd .backup_config/
-    cp -r ~/.ncmpcpp .backup_config/
-    ```
-
-3. Clone this repo
-    ```
-    cd
-    clear
-    git clone https://github.com/saimoomedits/dotfiles
-    cd dotfiles
-    ```
-
-4. Copy the dotfiles in required places
-    ```
-    cp -rf .config/* ~/.config/
-    cp -rf .mpd ~/.mpd
-    cp -rf .ncmpcpp ~/.ncmpcpp
-    cp -rf .fonts/* ~/.fonts/
-    ```
-5. make some files executeable
-    ```
-    cd ~/.config/awesome/misc
-    sudo chmod -R +x *
-    ```
-6. Done
-    <p><b>All done, Now login to awesome-WM</b></p>
+* **custom theme?**
+    * ok theme.
 
 <br>
 
+* **rounded corners**
+    * by default, windows are rounded with awesome-wm's `client.shape` property,
+    * if you want to use picom instead, do the following,
 
-
-
-</details>    
-
+        - edit `config/others.lua`
+        - scroll down to line `256` 
+        - either, comment it out or remove that line
+        - this will disable rounded windows with awesomeWM
 <br>
 
-# basic Keybinds ⌨️
+# shots gallery 📸
 
-| Task              | Keybind               |
-| ----------------- | --------------------- |
-| terminal          | super + Enter         |
-| restart awesome   | super + ctrl + r      |
-| exit awesome      | super + shft + e      |
-| toggle theme      | super + f             |
-| toggle sidebar    | super + z             |
-| switch Workspace  | super + 1-6           |
+1. <details open>
+     <summary><strong>dark themed</strong></summary>
 
-<br>
+     <br>
 
-**For all keybindings, check ```keys.lua``` file**
+    <details open>
+    <summary><strong>material blue</strong></summary>
+
+    <img src=".github/assets/shots/blue.png" width=500>
+
+     </details>
+
+     <br>
+
+    <details close>
+    <summary><strong>aesthetic grey</strong></summary>
+
+    <img src=".github/assets/shots/grey.png" width=500>
+
+     </details>
+
+ </details>
 
 
 <br>
 
-# Credits 🙏
+* <details close>
 
-**thanks:**
+    <br>
 
-* [JavaCafe01](https://github.com/JavaCafe01/dotfiles)
-* [Elenapan](https://github.com/elenapan/dotfiles)
+     <summary><strong>light themed</strong></summary>
+
+    <details open>
+    <summary><strong>cute pink</strong></summary>
+
+    <img src=".github/assets/shots/pink.png" width=500>
+
+     </details>
+
+     <br>
+
+    <details close>
+    <summary><strong>android green</strong></summary>
+
+    <img src=".github/assets/shots/green.png" width=500>
+
+     </details>
+
+ </details>
+
+# features 💡
+
+1. minimalstic rounded bar (inspired by aqua)
+   * <details close>
+        <summary><strong>information 📖</strong></summary>
+            * the bar has wifi,<br>
+            * taglist,<br>
+            * time, <br>
+            * layoutbox,<br>
+            * battery
+
+    </details>
+
+    <br>
+
+    <img src=".github/assets/bar.png" width=500>
 
 <br>
 
-**wallpaper**
-* [Moonlight-coffee](https://github.com/moonlight-coffee)
+2. android12-like control center
+   * <details close>
+        <summary><strong>information 📖</strong></summary>
+            * beautiful volume slider<br>
+            * light music widget with press animation<br>
+            * notification Center with time and app-icon<br>
+            * services(wifi, bluetooth, etc) buttons with expand animations<br>
+            * extra buttons for lockscreen, exitscreen and screenshot
 
-**modules**
-* [Rubato](https://github.com/andOrlando/rubato)
-* [Bling](https://github.com/BlingCorp/bling)
+    </details>
 
-**Contributers**
+    <br>
 
-<a href="https://github.com/saimoomedits/dotfiles/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=saimoomedits/dotfiles" width=100/>
-</a>
+    <img src=".github/assets/control-center.png" width=500>
+
+<br>
+
+3. material-you-themed notifcations
+   * <details close>
+        <summary><strong>information 📖</strong></summary>
+            * minimal text actions<br>
+            * application name<br>
+            * application icon <br>
+
+    </details>
+
+    <br>
+
+    <img src=".github/assets/notif.png" width=500>
+
+<br>
+
+4. custom ncmpcpp UI
+   * <details close>
+        <summary><strong>information 📖</strong></summary>
+            * album art<br>
+            * song title<br>
+            * song artist <br>
+            * progress bar <br>
+            * control Buttons <br>
+            * close bar <br>
+
+    </details>
+
+    <br>
+
+    <img src=".github/assets/ncmpcpp.png" width=500>
+
+<br>
+
+5. exit screen
+   * <details close>
+        <summary><strong>information 📖</strong></summary>
+            * sleep button<br>
+            * poweroff button<br>
+            * reboot button <br>
+            * logout button <br>
+            * black background blur <br>
+            * button names <br>
+
+    </details>
+
+    <br>
+
+    <img src=".github/assets/exitscreen.png" width=500>
+
+<br>
+
+6. lockscreen
+   * <details close>
+        <summary><strong>information 📖</strong></summary>
+            * lua pam integretion<br>
+            * time<br>
+            * date<br>
+            * logout button <br>
+            * black background blur <br>
+            * button names <br>
+
+    </details>
+
+    <br>
+
+    <img src=".github/assets/lockscreen.png" width=500>
+
+<br>
+
+**and much more, obviously lol**
+
+
+# setup :eyes:
+
+
+# Credits
+
+* special thanks :heart:
+    * [moonlight-coffee](https://github.com/Moonlight-Coffee)
+    * [justleoo](https://github.com/justleoo)
+
+<br>
+
+* also these 🌃 awesome 🌃 people!
+    * [Javacafe01](https://github.com/javacafe01)
+    * [manilarome](https://github.com/manilarome)
+    * [elenapan](https://github.com/elenapan)
+<br>
+
+* extras <3
+    * the awesome team - [awesomeWM](https://github.com/awesomewm/) contributers
+    * [Material you](https://material.io/blog/announcing-material-you) - Material 3 ui/ux design
+    * [rubato](https://github.com/andOrlando/rubato) - smooth animations
+    * [Bling](https://github.com/BlingCorp/bling) - make awesome even more awesome
+
+<br>
+
+* contributers
