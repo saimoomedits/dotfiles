@@ -16,10 +16,10 @@
 <br>
 
 <p align="center">
-    <a href="https://github.com/saimoomedits/dotfiles/.github/README.md#info-">Info</a> - 
-    <a href="https://github.com/saimoomedits/dotfiles/.github/README.md#shots-gallery-">Gallery</a> - 
-    <a href="https://github.com/saimoomedits/dotfiles/.github/README.md#features-">Features</a> - 
-    <a href="https://github.com/saimoomedits/dotfiles/.github/README.md#setup-eyes">Setup</a>
+    <a href="https://github.com/saimoomedits/dotfiles#info-">Info</a> - 
+    <a href="https://github.com/saimoomedits/dotfiles#shots-gallery-">Gallery</a> - 
+    <a href="https://github.com/saimoomedits/dotfiles#features-">Features</a> - 
+    <a href="https://github.com/saimoomedits/dotfiles#setup-eyes">Setup</a>
 </p>
 
 <br>
