@@ -1,0 +1,30 @@
+#  _____ _     _           
+# |  _  |_|___| |_ ___ ___ 
+# |   __| |  _| '_| -_|  _|
+# |__|  |_|___|_,_|___|_|  
+#                          
+# simple color picker script using gpick
+# Source: https://github.com/saimoomedits/dotfiles
+
+
+
+# command and temporary file
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~
+CMD=$(gpick --no-newline -pso)
+TMP=/tmp/picked_$CMD.png
+
+
+# Convert and Copy
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~
+convert -size 120x120 xc:"$CMD" "$TMP"
+printf %s "$CMD" | xclip -selection clipboard
+
+
+# send notification
+# ~~~~~~~~~~~~~~~~~
+notify-send -a "Color picker" \
+        -i "$TMP" \
+        -t 2000 \
+        "Color Picked!" "$CMD"
+
+

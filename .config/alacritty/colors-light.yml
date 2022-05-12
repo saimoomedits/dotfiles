@@ -1,8 +1,9 @@
 # Alcritty colors
+# Light Material Themed
 
 colors:
   primary:
-    background: '#e0e0e0'
+    background: '#FFF4FE'
     foreground: '#121212'
   cursor:
     text:   CellForeground

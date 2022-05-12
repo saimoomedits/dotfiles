@@ -1,0 +1,65 @@
+#!/bin/sh
+# -------
+# edited from manilarome
+
+# screenshot direcotry
+screenshot_dir=$HOME/Pictures/Screenshots/
+
+# Check save directory
+# Create it if it doesn't exist
+function check_dir() {
+	if [ ! -d "$screenshot_dir" ];
+	then
+		mkdir -p "$screenshot_dir"
+	fi
+}
+
+# Main function
+function shot() {
+
+	check_dir
+
+	file_loc="${screenshot_dir}screensht_$(date +%y-%m-%d_%H:%M:%S).png"
+	
+	maim_command="$1"
+	notif_message="$2"
+
+	# Execute maim command
+	${maim_command} "${file_loc}"
+
+	# Exit if the user cancels the screenshot
+	# So it means there's no new screenshot image file
+	if [ ! -f "${file_loc}" ];
+	then
+		exit;
+	fi
+
+	# Copy to clipboard
+	xclip -selection clipboard -t image/png -i "${screenshot_dir}"/`ls -1 -t "${screenshot_dir}" | head -1` &
+
+
+./notify/notify-send.sh -i ${file_loc} -o "open:xdg-open ${file_loc}" -o "delete:gio trash ${file_loc}" "Shoted!" "${notif_message}"
+
+}
+
+
+# Check the args passed
+if [ -z "$1" ] || ([ "$1" != 'full' ] && [ "$1" != 'area' ]);
+then
+	echo "
+	Requires an argument:
+	area 	- Area screenshot
+	full 	- Fullscreen screenshot
+	Example:
+	./screensht area
+	./screensht full
+	"
+elif [ "$1" = 'full' ];
+then
+	msg="saved and copied to clipboard!"
+	shot 'maim -u -m 5' "${msg}"
+elif [ "$1" = 'area' ];
+then
+	msg="saved and copied to clipboard!"
+	shot 'maim -u -b 2 -m 5 -s' "${msg}"
+fi

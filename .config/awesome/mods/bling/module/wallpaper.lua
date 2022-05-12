@@ -347,7 +347,7 @@ function setup(args)
             end,
         })
     end
-    if awesome.version == "v4.3" then
+    if awesome.version == "v4.3" or awesome.version == "4.3" then
         awful.screen.connect_for_each_screen(set_wallpaper)
     else
         screen.connect_signal("request::wallpaper", set_wallpaper)

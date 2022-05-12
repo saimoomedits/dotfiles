@@ -1,0 +1,67 @@
+sw_volume: 82
+audio_device_state:1:MySound
+audio_device_state:1:my_fifo
+state: play
+current: 41
+time: 120.091000
+random: 0
+repeat: 1
+single: 1
+consume: 0
+crossfade: 0
+mixrampdb: 0.000000
+mixrampdelay: -1.000000
+playlist_begin
+0:XXXTENTACION - SAD!.mp3
+1:Ed Sheeran - Shape of You.mp3
+2:Taylor Swift - Bad Blood.mp3
+3:Lil Nas X - Old Town Road.mp3
+4:Alan Walker, Ava Max - Alone, Pt. II.mp3
+5:Tech N9ne, Joey Cool, King Iso, Dwayne Johnson - Face Off.mp3
+6:Alan Walker, Conor Maynard - Believers.mp3
+7:The Tokens - The Lion Sleeps Tonight.mp3
+8:Ryan Mack - Broke.mp3
+9:Camila Cabello, Young Thug - Havana (feat. Young Thug).mp3
+10:Clarx, Harddope - Castle.mp3
+11:Dream, Alec Benjamin - Change My Clothes.mp3
+12:TheFatRat, Anjulie - Close To The Sun.mp3
+13:TheFatRat - Dancing Naked.mp3
+14:Alan Walker, AuRa, Tomine Harket - Darkside.mp3
+15:Alan Walker - Faded.mp3
+16:Axel Johansson - Do Or Die.mp3
+17:Imagine Dragons - Believer.mp3
+18:Ellie Goulding - Love Me Like You Do.mp3
+19:TheFatRat, Anjulie - Fly Away.mp3
+20:The Macarons Project - Fly Me to the Moon.mp3
+21:Dua Lipa - Levitating.mp3
+22:Ryan Mack - Guess That's Love.mp3
+23:Janji, Johnning - Heroes Tonight.mp3
+24:Justin Bieber - Hold On.mp3
+25:Henwall - I'm Coming Home.mp3
+26:K-391, Alan Walker, Julie Bergan, SEUNGRI - Ignite (feat. SEUNGRI).mp3
+27:DJ Gotta - Jeffrey Bezos.mp3
+28:Juice WRLD - Bad Energy.mp3
+29:One Direction - Drag Me Down.mp3
+30:TheFatRat, Laura Brehm - MAYDAY.mp3
+31:Axel Johansson, Tina Stachowiak - Miracles (feat. Tina Stachowiak).mp3
+32:TheFatRat - Never Be Alone.mp3
+33:Axel Johansson, Tina Stachowiak - Next To Me (feat. Tina Stachowiak).mp3
+34:Charlie Puth, Selena Gomez - We Don't Talk Anymore (feat. Selena Gomez).mp3
+35:Alan Walker, Sabrina Carpenter, Farruko - On My Way.mp3
+36:Axel Johansson - One.mp3
+37:TheFatRat, RIELL - Pride & Fear.mp3
+38:Katy Perry - Roar.mp3
+39:Justin Bieber - Sorry.mp3
+40:TheFatRat - Rise Up.mp3
+41:Shawn Mendes, Camila Cabello - Señorita.mp3
+42:The Kid LAROI, Justin Bieber - STAY (with Justin Bieber).mp3
+43:Lord Huron - The Night We Met.mp3
+44:TheFatRat, Slaydit, Anjulie - Stronger.mp3
+45:Alan Walker, Imanbek - Sweet Dreams.mp3
+46:Katy Perry - Firework.mp3
+47:Axel Johansson - The River.mp3
+48:Sia - Unstoppable.mp3
+49:SAPPHIRE - Unity (Acoustic).mp3
+50:Luis Fonsi, Daddy Yankee, Justin Bieber - Despacito - Remix.mp3
+51:Shawn Mendes - Wonder.mp3
+playlist_end

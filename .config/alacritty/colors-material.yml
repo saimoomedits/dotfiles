@@ -1,8 +1,9 @@
 # Alcritty colors
+# Dark Material Themed
 
 colors:
   primary:
-    background: '#121212'
+    background: '#101012'
     foreground: '#bfc9db'
   cursor:
     text:   CellForeground
