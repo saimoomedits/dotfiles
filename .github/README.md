@@ -31,7 +31,7 @@
 
 | task              | name                   |
 | ----------------- | ---------------------- |
-| WM                | [awesome-git](https://github.com/awesomeWM/awesome)                              |
+| WM                | [awesome-git](https://github.com/awesomeWM/awesome)                                      |
 | terminal          | [alacritty](https://github.com/alacritty/alacritty)                                      |
 | music player      | [mpd](https://www.musicpd.org/) & [ncmpcpp](https://github.com/ncmpcpp/ncmpcpp)          |
 | GTK theme         | [Materia Dark/Light](https://github.com/nana-4/materia-theme)                            |
