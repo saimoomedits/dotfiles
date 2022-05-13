@@ -6,7 +6,7 @@
 
 <p align="center">
     hello there, welcome to the materialized dotfiles!<br>
-    this an <a href="awesomewm.org">awesomewm</a> rice/setup inspired by the infamous <a href="m3.material.com">material you</a>.<br>
+    this an <a href="https://awesomewm.org">awesomewm</a> rice/setup inspired by the infamous <a href="https://m3.material.io">material you</a>.<br>
     <br>
     🫂 you can take anything you like from this repository. but.. please credit me too! 😄 <br>
     <br>
@@ -31,7 +31,7 @@
 
 | task              | name                   |
 | ----------------- | ---------------------- |
-| WM                | [awesome-git](https://https://github.com/awesomeWM/awesome)                              |
+| WM                | [awesome-git](https://github.com/awesomeWM/awesome)                              |
 | terminal          | [alacritty](https://github.com/alacritty/alacritty)                                      |
 | music player      | [mpd](https://www.musicpd.org/) & [ncmpcpp](https://github.com/ncmpcpp/ncmpcpp)          |
 | GTK theme         | [Materia Dark/Light](https://github.com/nana-4/materia-theme)                            |
