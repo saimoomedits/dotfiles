@@ -259,8 +259,8 @@
     yay -S picom-ibhagwan-git awesome-git acpid git mpd ncmpcpp wmctrl \
     firefox lxappearance gucharmap thunar Alacritty neovim polkit-gnome \
     xdotool xclip scrot brightnessctl alsa-utils pulseaudio jq acpi rofi \
-    inotify-tools zsh materia-gtk-theme mpDris2 bluez bluez-utils bluez-plugins \
-    playerctl 
+    inotify-tools zsh materia-gtk-theme mpdris2 bluez bluez-utils bluez-plugins \
+    playerctl redshift
     ```
 
 2. Make backup of directories that will be changed (optional)
@@ -297,7 +297,7 @@
     
 6. Startup services
     ```
-    sudo systemctl --user enable mpd
+    systemctl --user enable mpd
     sudo systemctl enable bluetooth.service
     ```
 
