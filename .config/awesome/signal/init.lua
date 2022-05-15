@@ -1,7 +1,0 @@
-require("signal.battery")
-require("signal.ram")
-require("signal.brigh")
-require("signal.volume")
-require("signal.cpu")
-require("signal.wifi")
-require("signal.bluetooth")
