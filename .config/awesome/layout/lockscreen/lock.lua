@@ -46,15 +46,15 @@ local icon = wibox.widget{
 local clock = wibox.widget{
     helpers.vertical_pad(120),
     {
-        font = beautiful.font_var .. "Medium 62",
-        format = helpers.colorize_text("%I:%M", beautiful.fg_color),
+        font = beautiful.font_var .. "Medium 82",
+        format = helpers.colorize_text("%I", beautiful.fg_color),
         widget = wibox.widget.textclock,
         align = "center",
         valign = "center"
     },
     {
-        font = beautiful.font_var .. "Medium 14",
-        format = "%A, %B %Y",
+        font = beautiful.font_var .. "Medium 82",
+        format = helpers.colorize_text("%M", beautiful.fg_color),
         widget = wibox.widget.textclock,
         align = "center",
         valign = "center"
@@ -88,7 +88,7 @@ local lock_screen_box = wibox({
     visible = false,
     ontop = true,
     type = "splash",
-    bg = beautiful.black_color .. "CC",
+    bg = beautiful.bg_color .. "99",
     fg = beautiful.fg_color,
     screen = screen.primary
 })
@@ -249,7 +249,7 @@ lock_screen_box:setup {
         nil,
         {
             lock_animation_widget,
-            margins = {bottom = dpi(40)},
+            margins = {bottom = dpi(70)},
             widget = wibox.container.margin
         },
         layout = wibox.layout.align.vertical,
