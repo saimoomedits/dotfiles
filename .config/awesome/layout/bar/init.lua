@@ -15,8 +15,6 @@ local dpi           = beautiful.xresources.apply_dpi
 -- misc/vars
 -- ~~~~~~~~~
 
--- screen width
-local screen_height = awful.screen.focused().geometry.height
 
 
 
@@ -24,6 +22,10 @@ local screen_height = awful.screen.focused().geometry.height
 -- connect to screen
 -- ~~~~~~~~~~~~~~~~~
 awful.screen.connect_for_each_screen(function(s)
+
+-- screen width
+local screen_height = s.geometry.height
+
 
 
 
