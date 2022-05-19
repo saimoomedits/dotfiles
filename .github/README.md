@@ -20,8 +20,8 @@
     <a href="https://github.com/saimoomedits/dotfiles#shots-gallery-">Gallery</a> - 
     <a href="https://github.com/saimoomedits/dotfiles#features-">Features</a> - 
     <a href="https://github.com/saimoomedits/dotfiles#setup-eyes">Setup</a>
-    <a href="https://github.com/saimoomedits/dotfiles#Keybinds">Setup</a>
-    <a href="https://github.com/saimoomedits/dotfiles#Modules">Setup</a>
+    <a href="https://github.com/saimoomedits/dotfiles#Keybinds">Keys</a>
+    <a href="https://github.com/saimoomedits/dotfiles#Modules">Mods</a>
 </p>
 
 <br>
