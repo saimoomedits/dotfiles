@@ -263,6 +263,13 @@
     * you can use it in your config (hopefully)
     * but there are still lots of things to improve
 
+# Todos
+
+- [ ] Make dock's icon-handler identify global icon-theme
+- [ ] Improve Ncmpcpp decorations
+- [ ] Improve Notifications
+- [ ] Polish Awesthetic-gtk-theme
+   
 
 # Credits
 
