@@ -73,6 +73,10 @@
 
 <br>
 
+
+
+<br>
+
 * **rounded corners**
     * by default, windows are rounded with awesome-wm's `client.shape` property,
     * if you want to use picom instead, do the following,
@@ -262,6 +266,51 @@
     * A tasklist dock with pinned apps
     * you can use it in your config (hopefully)
     * but there are still lots of things to improve
+    
+        * The dock can be used in any awesome rice.. (kinda)
+    the catch is that. you need a spcific icon-theme in `/usr/share/icons` for pinned apps to work properly<br>
+    but if your using the exact rice as mine, you don't have to worry about it
+
+    <br>
+
+    * You can customize the dock's colors, size, spacing, hide-timeout, etc in `theme/init.lua`
+
+    <br>
+
+    * example:
+    ```lua
+    theme.awesome_dock_size = 80
+    theme.awesome_dock_pinned = {
+        {"xterm", "terminal"},
+        {"spotify", "spotify"},
+        {"xterm"},
+        {"thunar"}
+    }
+    theme.awesome_dock_color_active = theme.accent
+    theme.awesome_dock_color_inactive = theme.fg_color .. "66"
+    theme.awesome_dock_color_minimized = theme.accent .. "33"
+    theme.awesome_dock_color_hover = theme.fg_color .. "33"
+    theme.awesome_dock_color_bg = theme.bg_color
+    theme.awesome_dock_disabled = false
+    theme.awesome_dock_spacing = 10
+    theme.awesome_dock_timeout = 1.2
+    ```
+    
+    * to add more pinned apps you can do the following in `theme.lua`:
+    ```lua
+    --[[ 
+        table example:
+        { "app command", "app class"}
+        
+        * `app command` is well. the command that launches that app
+        * `app class` is the class or name of the app for icons.
+    ]]
+    theme.awesome_dock_pinned = {
+        {"spotify", "spotify"},
+        {"xterm"},
+        {"thunar"}
+    }
+    ```
 
 # Todos
 
