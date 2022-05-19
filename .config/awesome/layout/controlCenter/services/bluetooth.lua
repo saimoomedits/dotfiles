@@ -109,21 +109,6 @@ local alright = wibox.widget{
   }
 
 
-  local function update_everything(value)
-    if value then
-        icon.markup = helpers.colorize_text(service_icon, beautiful.bg_color)
-        name.markup = helpers.colorize_text(service_name, beautiful.bg_color)
-        animation_button:set(alright.forced_width)
-        animation_button_opacity:set(1)
-    else
-        icon.markup = helpers.colorize_text(service_icon, beautiful.fg_color)
-        name.markup = helpers.colorize_text(service_name, beautiful.fg_color)
-        animation_button:set(0)
-        animation_button_opacity:set(0)
-    end
-      
-  end
-
   -- function that updates everything
   local function update_everything(value)
     if value then
