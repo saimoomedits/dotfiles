@@ -280,7 +280,7 @@
 
 * extras :sparkles:
     * the awesome team - [awesomeWM](https://github.com/awesomewm/) contributers
-    * [Material you](https://material.io/blog/announcing-material-you) - Material 3 ui/ux design
+    * [Cutefish](https://cutefish-ubuntu.github.io/) - Cutefishos
     * [rubato](https://github.com/andOrlando/rubato) - smooth animations
     * [Bling](https://github.com/BlingCorp/bling) - make awesome even more awesome
 
