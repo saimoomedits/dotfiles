@@ -1,5 +1,8 @@
 -- emits bluetooth status
 -- listen, i know this is dumb but.. yeah.
+------------------------------------------
+
+-- ("signal::bluetooth"), function(status(bool), service_status(bool))
 
 
 -- requirements

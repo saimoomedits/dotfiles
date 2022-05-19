@@ -1,5 +1,5 @@
 -- weather signal
--- ~~~~~~~~~~~~~~~~~~~~
+--~~~~~~~~~~~~~~~~~~~~
 -- taken from elenapan
 -- not in use, as of now
 

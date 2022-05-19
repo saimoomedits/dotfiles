@@ -37,7 +37,9 @@ local layouts = {
 
 for _, layout_name in ipairs(layouts) do
     local icon_raw = get_layout_icon_path(layout_name)
-    beautiful["layout_" .. layout_name] = get_icon(icon_raw)
+    if beautiful["layout_" .. layout_name] == nil then 
+        beautiful["layout_" .. layout_name] = get_icon(icon_raw)
+    end
     M[layout_name] = require(... .. "." .. layout_name)
 end
 

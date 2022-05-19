@@ -56,7 +56,7 @@ naughty.config.defaults.ontop       = true
 naughty.config.defaults.screen      = awful.screen.focused()
 naughty.config.defaults.timeout     = 3
 naughty.config.defaults.title       = "Ding!"
-naughty.config.defaults.position    = "top_middle"
+naughty.config.defaults.position    = "top_right"
 
 -- Timeouts
 naughty.config.presets.low.timeout      = 3
@@ -79,7 +79,7 @@ naughty.config.presets.low = {
 -- naughty critical preset
 naughty.config.presets.critical = {
     font = beautiful.font_var .. "12",
-    fg = beautiful.black_color,
+    fg = beautiful.red_color,
     bg = beautiful.red_color,
     timeout = 0
 }
@@ -142,8 +142,8 @@ naughty.connect_signal("request::display", function(n)
         style           = {
             underline_normal = false,
             underline_selected = true,
-            fg_normal = beautiful.ext_light_fg or beautiful.fg_color,
-            fg_selected = beautiful.ext_light_fg or beautiful.fg_color,
+            fg_normal = beautiful.fg_color,
+            fg_selected = beautiful.accent,
         },
         widget          = naughty.list.actions
     }
@@ -170,8 +170,8 @@ naughty.connect_signal("request::display", function(n)
     local title_n = wibox.widget{
         {
             {
-                markup      = helpers.colorize_text("<span weight='medium'>" .. n.title .. "</span>", (beautiful.ext_light_fg or beautiful.fg_color)),
-                font        = beautiful.font_var .. " 11",
+                markup      = n.title,
+                font        = beautiful.font_var .. "Bold 11",
                 align       = "left",
                 valign      = "center",
                 widget      = wibox.widget.textbox
@@ -189,7 +189,7 @@ naughty.connect_signal("request::display", function(n)
     local message_n = wibox.widget{
         {
             {
-                markup      = helpers.colorize_text("<span weight='normal'>" .. n.message .. "</span>", (beautiful.ext_light_fg or beautiful.fg_color) .. "BF"),
+                markup      = helpers.colorize_text("<span weight='normal'>" .. n.message .. "</span>", beautiful.fg_color .. "BF"),
                 font        = beautiful.font_var .. " 11",
                 align       = "left",
                 valign      = "center",
@@ -221,7 +221,7 @@ naughty.connect_signal("request::display", function(n)
 
     -- app name
     local app_name_n = wibox.widget{
-            markup      = helpers.colorize_text(n.app_name, (beautiful.ext_light_fg or beautiful.fg_color) .. "BF"),
+            markup      = helpers.colorize_text(n.app_name, beautiful.fg_color .. "BF"),
             font        = beautiful.font_var .. " 10",
             align       = "left",
             valign      = "center",
@@ -230,7 +230,7 @@ naughty.connect_signal("request::display", function(n)
 
     local time_n = wibox.widget{
         {
-            markup      = helpers.colorize_text("now", (beautiful.ext_light_fg or beautiful.fg_color) .. "BF"),
+            markup      = helpers.colorize_text("now", beautiful.fg_color .. "BF"),
             font        = beautiful.font_var .. " 10",
             align       = "right",
             valign      = "center",
@@ -249,7 +249,7 @@ naughty.connect_signal("request::display", function(n)
             shape = gears.shape.circle,
             forced_height = dpi(4),
             forced_width = dpi(4),
-            color = (beautiful.ext_light_fg or beautiful.fg_color) .."BF"
+            color = beautiful.fg_color .."BF"
         },
         time_n,
         layout = wibox.layout.fixed.horizontal,
@@ -261,7 +261,7 @@ naughty.connect_signal("request::display", function(n)
     naughty.layout.box {
         notification = n,
         type    = "notification",
-        bg      = beautiful.ext_light_bg or beautiful.bg_color,
+        bg      = beautiful.bg_color,
         shape   = helpers.rrect(beautiful.rounded),
         widget_template = {
             {
@@ -305,13 +305,13 @@ naughty.connect_signal("request::display", function(n)
             widget          = wibox.container.background,
             forced_width    = dpi(380),
             shape           = helpers.rrect(beautiful.rounded),
-            bg              = beautiful.ext_light_bg or beautiful.bg_color,
+            bg              = beautiful.bg_color,
         }
     }
 
 
     -- don't show notification when dnd is on or dash is visible
-    if _G.awesome_dnd_state or dash.visible then
-		naughty.destroy_all_notifications(nil, 1)
-	end
+    if _G.awesome_dnd_state or dashboard_llc.visible then
+	    naughty.destroy_all_notifications(nil, 1)
+    end
 end)

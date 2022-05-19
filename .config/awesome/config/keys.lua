@@ -9,6 +9,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 local lmachi        = require("mods.layout-machi")
 local bling         = require("mods.bling")
 local misc          = require("misc")
+require("layout.lockscreen").init()
 
 
 -- vars/misc
@@ -57,14 +58,23 @@ awful.keyboard.append_global_keybindings({
     { description = "open rofi", group = "launcher" }),
 
 	awful.key({ modkey }, "r", function()
-        awful.spawn(home_var .. "/.scripts/awesome/picker", false)
+        awful.spawn(home_var .. "/.scripts/picker", false)
 	end, 
     { description = "exec color picker", group = "launcher" }),
 
 	awful.key({ modkey }, "a", function()
-		dash_toggle()
+        if control_c.visible then
+            control_c.visible = false
+        else
+            control_c.visible = true
+        end
 	end,
     { description = "toggle dashboard", group = "launcher" }),
+
+	awful.key({ modkey }, "d", function()
+        lock_screen_show()
+	end,
+    { description = "show lockscreen", group = "launcher" }),
 
 
 
@@ -88,7 +98,7 @@ awful.keyboard.append_global_keybindings({
 
 
     awful.key({}, "Print", function() 
-        awful.util.spawn(home_var .. "/.scripts/awesome/ss area", false)
+        awful.util.spawn(home_var .. "/.scripts/ss area", false)
     end,
     {description = "screenshot", group = "control"}),
 

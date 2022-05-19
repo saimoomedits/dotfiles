@@ -14,7 +14,11 @@ local themes_path = gfs.get_themes_dir()
 local helpers     = require("helpers")
 local ui_vars     = require("theme.ui_vars")
 
-local colors = require("theme.colors." .. (ui_vars.color_scheme or "dark") )
+if string.lower(ui_vars.color_scheme) ~= ("light" or "dark") then
+    ui_vars.color_scheme = "dark"
+end
+
+local colors = require("theme.colors." .. string.lower(ui_vars.color_scheme))
 
 
 
@@ -25,9 +29,9 @@ local colors = require("theme.colors." .. (ui_vars.color_scheme or "dark") )
 local theme = {}
 
 -- base background colors
-theme.bg_color         = "#101012"
-theme.bg_2             = "#1B1B1B"
-theme.bg_3             = "#303030"
+theme.bg_color         = colors.bg_color
+theme.bg_2             = colors.bg_2
+theme.bg_3             = colors.bg_3
 
 -- foreground colors
 theme.fg_color      = colors.foreground
@@ -147,7 +151,7 @@ theme.titlebars_enabled     = true
 
 -- Layout icons
 -- ~~~~~~~~~~~~
-theme.layout_floating   = gears.color.recolor_image(theme.images.layouts.flair, theme.fg_color)
+theme.layout_floating   = gears.color.recolor_image(theme.images.layouts.floating, theme.fg_color)
 theme.layout_tile       = gears.color.recolor_image(theme.images.layouts.tile, theme.fg_color)
 theme.layout_fairh      = gears.color.recolor_image(theme.images.layouts.flair, theme.fg_color)
 theme.layout_fairv      = gears.color.recolor_image(theme.images.layouts.flair, theme.fg_color)
@@ -181,12 +185,12 @@ theme.task_preview_widget_margin            = dpi(20)
 
 -- Bling Tag Preview
 -- ~~~~~~~~~~~~~~~~~
-theme.tag_preview_client_bg                 = theme.bg_color
-theme.tag_preview_client_border_color       = theme.fg_color .. "33"
+theme.tag_preview_client_bg                 = theme.bg_2
+theme.tag_preview_client_border_color       = theme.bg_3
 theme.tag_preview_client_border_radius      = theme.rounded / 1.6
 theme.tag_preview_widget_border_radius      = theme.rounded
 theme.tag_preview_client_border_width       = 2
-theme.tag_preview_widget_bg                 = "#00000000"
+theme.tag_preview_widget_bg                 = theme.bg_color
 theme.tag_preview_widget_border_color       = theme.bg_2
 theme.tag_preview_widget_border_width       = 0
 theme.tag_preview_widget_margin             = dpi(5)
@@ -211,10 +215,11 @@ theme.snap_shape    = helpers.rrect(4)
 
 -- tasklist
 -- ~~~~~~~~
-theme.tasklist_bg_minimize      = theme.bg_2
+theme.tasklist_bg_minimize      = theme.accent_2
 theme.tasklist_font             = theme.font_var .. "11"
-theme.tasklist_bg_focus         = theme.bg_2 .. "CC"
-theme.tasklist_bg_normal        = theme.bg_2
+theme.tasklist_bg_focus         = theme.accent
+theme.tasklist_bg_normal        = theme.fg_color .. "33"
+theme.tasklist_plain_task_name = true
 
 -- hotkyes popup
 -- ~~~~~~~~~~~~~
@@ -237,6 +242,20 @@ theme.tooltip_align             = "top"
 theme.tooltip_margin            = "top"
 
 
+-- taglist
+-- ~~~~~~~
+theme.taglist_bg = theme.bg_color
+theme.taglist_bg_focus = theme.bg_3
+theme.taglist_fg_focus = theme.accent
+theme.taglist_bg_urgent = theme.red_color
+theme.taglist_fg_urgent = theme.red_2
+theme.taglist_bg_occupied = theme.bg_color
+theme.taglist_fg_occupied = theme.fg_color
+theme.taglist_bg_empty = theme.bg_color
+theme.taglist_fg_empty = theme.fg_color .. "66"
+theme.taglist_disable_icon = true
+
+
 
 -- Bling playerctl
 -- ~~~~~~~~~~~~~~~
@@ -245,6 +264,25 @@ theme.playerctl_player                      = {"mpd", "%any"}
 theme.playerctl_update_on_activity          = true
 theme.playerctl_position_update_interval    = 1
 
+
+
+-- Awesome dock
+-- ~~~~~~~~~~~~
+theme.awesome_dock_size = 80
+theme.awesome_dock_pinned = {
+    {user_likes.term},
+    {user_likes.music, "gnome-music"},
+    {"galculator"},
+    {"thunar"}
+}
+theme.awesome_dock_color_active = theme.accent
+theme.awesome_dock_color_inactive = theme.fg_color .. "66"
+theme.awesome_dock_color_minimized = theme.accent .. "33"
+theme.awesome_dock_color_hover = theme.fg_color .. "33"
+theme.awesome_dock_color_bg = theme.bg_color
+theme.awesome_dock_disabled = false
+theme.awesome_dock_spacing = 10
+theme.awesome_dock_timeout = 1.2
 
 -- init
 -- ~~~~

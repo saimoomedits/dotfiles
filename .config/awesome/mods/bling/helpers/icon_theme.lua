@@ -1,64 +1,87 @@
-local Gio = require("lgi").Gio
-local Gtk = require("lgi").Gtk
+local lgi = require("lgi")
+local Gio = lgi.Gio
+local Gtk = lgi.require("Gtk", "3.0")
 local gobject = require("gears.object")
 local gtable = require("gears.table")
-local helpers = require("helpers")
 local setmetatable = setmetatable
 local ipairs = ipairs
 
 local icon_theme = { mt = {} }
 
-function icon_theme:get_client_icon_path(client)
-    local function find_icon(class)
-        if self._private.client_icon_cache[class] ~= nil  then
-            return self._private.client_icon_cache[class]
-        end
+local name_lookup =
+{
+    ["jetbrains-studio"] = "android-studio"
+}
 
-        for _, app in ipairs(Gio.AppInfo.get_all()) do
-            local id = Gio.AppInfo.get_id(app)
-            if id:match(helpers.misc.case_insensitive_pattern(class)) then
-                self._private.client_icon_cache[class] = self:get_gicon_path(Gio.AppInfo.get_icon(app))
-                return self._private.client_icon_cache[class]
+local function get_icon_by_pid_command(self, client, apps)
+    local pid = client.pid
+    if pid ~= nil then
+        local handle = io.popen(string.format("ps -p %d -o comm=", pid))
+        local pid_command = handle:read("*a"):gsub("^%s*(.-)%s*$", "%1")
+        handle:close()
+
+        for _, app in ipairs(apps) do
+            local executable = app:get_executable()
+            if executable and executable:find(pid_command, 1, true) then
+                return self:get_gicon_path(app:get_icon())
             end
         end
-
-        return nil
     end
+end
 
-    local class = client.class
-    if class == "jetbrains-studio" then
-        class = "android-studio"
+local function get_icon_by_icon_name(self, client, apps)
+    local icon_name = client.icon_name and client.icon_name:lower() or nil
+    if icon_name ~= nil then
+        for _, app in ipairs(apps) do
+            local name = app:get_name():lower()
+            if name and name:find(icon_name, 1, true) then
+                return self:get_gicon_path(app:get_icon())
+            end
+        end
     end
+end
 
-    local icon = self:get_icon_path("gnome-window-manager")
+local function get_icon_by_class(self, client, apps)
+    if client.class ~= nil then
+        local class = name_lookup[client.class] or client.class:lower()
 
-    if class ~= nil then
-        class = class:gsub("[%-]", "%%%0")
-        icon = find_icon(class) or icon
+        -- Try to remove dashes
+        local class_1 = class:gsub("[%-]", "")
 
-        class = client.class
-        class = class:gsub("[%-]", "")
-        icon = find_icon(class) or icon
+        -- Try to replace dashes with dot
+        local class_2 = class:gsub("[%-]", ".")
 
-        class = client.class
-        class = class:gsub("[%-]", ".")
-        icon = find_icon(class) or icon
+        -- Try to match only the first word
+        local class_3 = class:match("(.-)-") or class
+        class_3 = class_3:match("(.-)%.") or class_3
+        class_3 = class_3:match("(.-)%s+") or class_3
 
-        class = client.class
-        class = class:match("(.-)-") or class
-        class = class:match("(.-)%.") or class
-        class = class:match("(.-)%s+") or class
-        class = class:gsub("[%-]", "%%%0")
-        icon = find_icon(class) or icon
+        local possible_icon_names = { class, class_3, class_2, class_1 }
+        for _, app in ipairs(apps) do
+            local id = app:get_id():lower()
+            for _, possible_icon_name in ipairs(possible_icon_names) do
+                if id and id:find(possible_icon_name, 1, true) then
+                    return self:get_gicon_path(app:get_icon())
+                end
+            end
+        end
     end
+end
 
-    return icon
+function icon_theme:get_client_icon_path(client)
+    local apps = Gio.AppInfo.get_all()
+
+    return  get_icon_by_pid_command(self, client, apps) or
+            get_icon_by_icon_name(self, client, apps) or
+            get_icon_by_class(self, client, apps) or
+            client.icon or
+            self:choose_icon({"window", "window-manager", "xfwm4-default", "window_list" })
 end
 
 function icon_theme:choose_icon(icons_names)
-    local icon_info = Gtk.IconTheme.choose_icon(self.gtk_theme, icons_names, self.icon_size, 0);
+    local icon_info = self.gtk_theme:choose_icon(icons_names, self.icon_size, 0);
     if icon_info then
-        local icon_path = Gtk.IconInfo.get_filename(icon_info)
+        local icon_path = icon_info:get_filename()
         if icon_path then
             return icon_path
         end
@@ -67,21 +90,15 @@ function icon_theme:choose_icon(icons_names)
     return ""
 end
 
-
 function icon_theme:get_gicon_path(gicon)
     if gicon == nil then
         return ""
     end
 
-    if self._private.icon_cache[gicon] ~= nil then
-        return self._private.icon_cache[gicon]
-    end
-
-    local icon_info = Gtk.IconTheme.lookup_by_gicon(self.gtk_theme, gicon, self.icon_size, 0);
+    local icon_info = self.gtk_theme:lookup_by_gicon(gicon, self.icon_size, 0);
     if icon_info then
-        local icon_path = Gtk.IconInfo.get_filename(icon_info)
+        local icon_path = icon_info:get_filename()
         if icon_path then
-            self._private.icon_cache[gicon] = icon_path
             return icon_path
         end
     end
@@ -90,15 +107,10 @@ function icon_theme:get_gicon_path(gicon)
 end
 
 function icon_theme:get_icon_path(icon_name)
-    if self._private.icon_cache[icon_name] ~= nil then
-        return self._private.icon_cache[icon_name]
-    end
-
-    local icon_info = Gtk.IconTheme.lookup_icon(self.gtk_theme, icon_name, self.icon_size, 0);
+    local icon_info = self.gtk_theme:lookup_icon(icon_name, self.icon_size, 0)
     if icon_info then
-        local icon_path = Gtk.IconInfo.get_filename(icon_info)
+        local icon_path = icon_info:get_filename()
         if icon_path then
-            self._private.icon_cache[icon_name] = icon_path
             return icon_path
         end
     end
@@ -109,10 +121,6 @@ end
 local function new(theme_name, icon_size)
     local ret = gobject{}
     gtable.crush(ret, icon_theme, true)
-
-    ret._private = {}
-    ret._private.client_icon_cache = {}
-    ret._private.icon_cache = {}
 
     ret.name = theme_name or nil
     ret.icon_size = icon_size or 48

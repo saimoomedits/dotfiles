@@ -1,10 +1,10 @@
--- images variables
--- ~~~~~~~~~~~~~~~~
+-- sussy images
+-- ~~~~~~~~~~~~
 
 
 -- misc/vars
 -- ~~~~~~~~~
-local directory = os.getenv("HOME") .. "/.config/awesome/images/M3/"
+local directory = home_var .. "/.config/awesome/images/sus/"
 local ui_vars = require("theme.ui_vars")
 
 
@@ -14,9 +14,10 @@ return {
 
     -- images
     bell = directory .. "bell.png",
-    profile = directory .. "profile.jpg",
+    profile = directory .. "profile.png",
     music_icon = directory .. "music.png",
     album_art = directory .. "album-art.png",
+    awesome = directory .. "awesome.png",
 
     -- layouts
     layouts = {
@@ -26,10 +27,6 @@ return {
         layoutMachi = directory .. "layouts/layout-machi.png"
     },
 
-    extra = {
-        theme_icon = directory .. "extra/theme.png",
-    },
-
     -- wallpapers
-    wall = directory .."walls/" .. ui_vars.color_scheme  ..".png",
+    wall = directory .."walls/" .. ui_vars.color_scheme .. ".png",
 }

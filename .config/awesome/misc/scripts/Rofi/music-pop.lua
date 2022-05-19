@@ -1,6 +1,8 @@
 -- Music Pop up
 -----------------------------------------------
 -- A rofi popup script for music! for awesomewm
+-- use the dashboard instead...
+-- please 🙏
 
 local popup = {}
 

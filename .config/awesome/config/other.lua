@@ -8,7 +8,6 @@ local awful = require("awful")
 local wibox = require("wibox")
 local gears = require("gears")
 local helpers = require("helpers")
-local gfs = gears.filesystem
 local beautiful = require("beautiful")
 local bling = require("mods.bling")
 local naughty = require("naughty")
@@ -46,12 +45,14 @@ bling.widget.tag_preview.enable {
 
 
 
+
 -- Error ding
 -- ~~~~~~~~~~
 naughty.connect_signal("request::display_error", function(message, startup)
     naughty.notification {
+        app_name = "AwesomeWM",
         urgency = "critical",
-        title   = "ayo! an error! " .. (startup and " during startup!" or "!"),
+        title   = "bruh! an error has occured " .. (startup and " during startup" or "!"),
         message = message
     }
 end)
@@ -64,17 +65,12 @@ screen.connect_signal("request::wallpaper", function(s)
     awful.wallpaper {
         screen = s,
         widget = {
-                {
-                    image = beautiful.wallpaper,
-                    widget = wibox.widget.imagebox,
-                    upscale               = true,
-                    downscale             = true,
-                    clip_shape                 = helpers.prrect(beautiful.rounded, true, true, false, false),
-                    horizontal_fit_policy = "fit",
-                    vertical_fit_policy   = "fit",
-                },
-                margins = {top = dpi(44)},
-                widget = wibox.container.margin
+            image = beautiful.wallpaper,
+            widget = wibox.widget.imagebox,
+            upscale               = true,
+            downscale             = true,
+            horizontal_fit_policy = "fit",
+            vertical_fit_policy   = "fit",
         }
     }
 end)
@@ -101,7 +97,7 @@ client.connect_signal("request::manage", function(c)
 
     -- set default window icon
     if not c.icon then
-        local i = gears.surface(gfs.get_configuration_dir() .. beautiful.images.layouts.tile)
+        local i = gears.color.recolor_image(beautiful.images.awesome, beautiful.accent)
         c.icon = i._native
     end
 

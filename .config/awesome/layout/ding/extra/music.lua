@@ -36,7 +36,8 @@ playerctl:connect_signal("metadata", function(_, title, artist, album_path, __, 
 
 
     -- destroy notif when not needed
-    if dash.visible or (client.focus and (client.focus.instance == "music" or client.focus.class == "music")) then
+    -- if dash.visible or (client.focus and (client.focus.instance == "music" or client.focus.class == "music")) then
+    if control_c.visible then
         if notif then
             notif:destroy()
         end

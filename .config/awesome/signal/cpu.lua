@@ -1,5 +1,7 @@
 -- cpu info
--- emits cpu info
+-----------
+
+-- ("signal::cpu"), function(usage(int))
 
 local awful = require("awful")
 

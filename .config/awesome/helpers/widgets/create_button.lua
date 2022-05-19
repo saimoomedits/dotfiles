@@ -82,5 +82,5 @@ return function (widget, normal_bg, press_color, margins, border_width, border_c
 
 
     return mainbox
-    
+
 end

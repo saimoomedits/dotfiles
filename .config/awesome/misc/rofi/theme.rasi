@@ -6,7 +6,7 @@
 configuration {
 	font:							"Roboto Bold 11";
     show-icons:                     true;
-	icon-theme: 					"Papirus";
+	icon-theme: 					"Crule";
     display-drun: 					"";
     drun-display-format:            "{name}";
     disable-history:                false;
@@ -14,7 +14,7 @@ configuration {
 }
 
 * {
-    background:                     #101012ff;
+    background:                     #10101266;
     background-alt:              	#00000000;
     background-bar:                 #f2f2f215;
     foreground:                     #f2f2f2EE;
@@ -31,8 +31,8 @@ window {
 	border-color:					@border;
     border-radius:                  15px 15px 0px 0px;
 	width:							100%;
-	height:							95.2%;
-    location:                       south;
+	height:							100%;
+    location:                       center;
 }
 
 // prompt

@@ -1,5 +1,5 @@
 # Alcritty colors
-# Dark Material Themed
+# Awesthetic Colorscheme for Alacritty
 
 colors:
   primary:
@@ -13,7 +13,7 @@ colors:
     red:     '#cf6679'
     green:   '#a5d6a7'
     yellow:  '#ffecb3'
-    blue:    '#90caf9'
+    blue:    '#8AB4F8'
     magenta: '#bb86fc'
     cyan:    '#03dac6'
     white:   '#858893'
@@ -22,7 +22,7 @@ colors:
     red:     '#cf6679'
     green:   '#a5d6a7'
     yellow:  '#fff59d'
-    blue:    '#90caf9'
+    blue:    '#8AB4F8'
     magenta: '#bb86fc'
     cyan:    '#03dac6'
     white:   '#ffffff'

@@ -1,0 +1,66 @@
+# Zathura configuration file
+# See man `man zathurarc'
+
+# Open document in fit-width mode by default
+set adjust-open "best-fit"
+
+# One page per row by default
+set pages-per-row 1
+
+#stop at page boundries
+set scroll-page-aware "true"
+set smooth-scroll "true"
+set scroll-full-overlap 0.01
+set scroll-step 100
+
+#zoom settings
+set zoom-min 10
+set guioptions ""
+
+# zathurarc-dark
+
+set font "Roboto Regular 15"
+set default-fg 			"#000000"
+set default-bg 			"#FFFFFF"
+
+set completion-bg		"#DDDEE2"
+set completion-fg		"#5E98F0"
+set completion-highlight-bg	"#3481F5"
+set completion-highlight-fg	"#FFFFFF"
+set completion-group-bg		"#DDDEE2"
+set completion-group-fg		"#333333"
+
+set statusbar-fg		"#000000"
+set statusbar-bg		"#EBEBEE"
+set statusbar-h-padding		10
+set statusbar-v-padding		10
+
+set notification-bg		"#FFFFFF"
+set notification-fg		"#000000"
+set notification-error-bg	"#F2B8B5"
+set notification-error-fg	"#F9DEDC"
+set notification-warning-bg	"#F85E4D"
+set notification-warning-fg	"#ffffff"
+set selection-notification	"true"
+
+set inputbar-bg			"#DDDEE2"
+set inputbar-fg 		"#3481F5"
+
+set recolor			"true"
+set recolor-lightcolor		"#FFFFFF"
+set recolor-darkcolor		"#000000"
+
+set index-fg			"#000000"
+set index-bg			"#DDDEE2"
+set index-active-fg		"#000000"
+set index-active-bg		"#DDDEE2"
+
+set render-loading-bg		"#0f0f17"
+set render-loading-fg		"#a1bdce"
+
+set highlight-color		"#a1bdce"
+set highlight-active-color	"#DDB6F2"
+
+
+set render-loading "false"
+set scroll-step 50

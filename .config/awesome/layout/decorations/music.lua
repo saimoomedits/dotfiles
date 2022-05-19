@@ -87,6 +87,7 @@ local create_toggle_button = button_creator(toggle_button, beautiful.accent, bea
 local pbar = wibox.widget {
     widget = wibox.widget.progressbar,
     bar_shape = gears.shape.rounded_bar,
+    shape = gears.shape.rounded_bar,
     forced_height = dpi(6),
     color = beautiful.accent,
     background_color = beautiful.accent .. "4D",
@@ -200,7 +201,7 @@ end)
 local music_init = function (c)
 
     -- Hide default titlebar
-    awful.titlebar.hide(c)
+    -- awful.titlebar.hide(c)
 
 
 
@@ -211,12 +212,6 @@ local music_init = function (c)
     ))
 
 
-    -- movement
-    local buttons = {
-        awful.button({ }, 1, function()
-            c:activate { context = "titlebar", action = "mouse_move"  }
-        end),
-    }
 
         -- bottom
         awful.titlebar(c, { position = "left", size = dpi(300), bg = beautiful.ext_light_bg_2 or beautiful.bg_2 }):setup {
@@ -274,7 +269,6 @@ local music_init = function (c)
             },
             layout = wibox.layout.align.vertical,
             expand = "none",
-            buttons = buttons
         }
 
 

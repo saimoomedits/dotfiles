@@ -2,18 +2,18 @@
 -- ~~~~~~~
 -- ui variables that help theme/init.lua define its properties
 -- line 10-16, will probably be overwritten by scripts
--- its better not to add/remove lines above line 17
+-- its better not to add/remove lines above line 16
 
 
 return {
 
 font                = "Roboto",
 titlebar_position   = "bottom",
-gaps                = 8,
-border_width        = 0.1,
-round_corners       = 18,
+gaps                = 10,
+border_width        = 0,
+round_corners       = 15,
 bar_size            = 54,
-color_scheme        = "blue"
+color_scheme        = "dark",
 
 }
 

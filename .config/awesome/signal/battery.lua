@@ -1,4 +1,9 @@
 -- Emits battery info
+---------------------
+-- (signal::battery), function( percentage(int) ) end
+-- (signal::charger()), function (plugged(bool) ) end
+
+
 
 local awful = require("awful")
 

@@ -1,12 +1,12 @@
 <br>
     <div align="center">
-        <img src="assets/header.png" width=500>
+        <img src="assets/header.png" width=200>
     </div>
 <br>
 
 <p align="center">
-    hello there, welcome to the materialized dotfiles!<br>
-    this an <a href="https://awesomewm.org">awesomewm</a> rice/setup inspired by the infamous <a href="https://m3.material.io">material you</a>.<br>
+    hello there, welcome to my Awesomewm dotfiles!<br>
+    this an <a href="https://awesomewm.org">awesomewm</a> rice/setup that I use as a daily driver.<br>
     <br>
     🫂 you can take anything you like from this repository. but.. please credit me too! 😄 <br>
     <br>
@@ -20,6 +20,8 @@
     <a href="https://github.com/saimoomedits/dotfiles#shots-gallery-">Gallery</a> - 
     <a href="https://github.com/saimoomedits/dotfiles#features-">Features</a> - 
     <a href="https://github.com/saimoomedits/dotfiles#setup-eyes">Setup</a>
+    <a href="https://github.com/saimoomedits/dotfiles#Keybinds">Setup</a>
+    <a href="https://github.com/saimoomedits/dotfiles#Modules">Setup</a>
 </p>
 
 <br>
@@ -34,7 +36,8 @@
 | WM                | [awesome-git](https://github.com/awesomeWM/awesome)                                      |
 | terminal          | [alacritty](https://github.com/alacritty/alacritty)                                      |
 | music player      | [mpd](https://www.musicpd.org/) & [ncmpcpp](https://github.com/ncmpcpp/ncmpcpp)          |
-| GTK theme         | [Materia Dark/Light](https://github.com/nana-4/materia-theme)                            |
+| Light GTK theme   | [Cutefish-light](https://cutefish-ubuntu.github.io/)                            |
+| Dark Gtk theme    | Awesthetic-gtk
 | bar               | [wibar](https://awesomewm.org/apidoc/popups_and_bars/awful.wibar.html)                   |
 | compositor        | [picom-ibhagwan-git](https://github.com/ibhagwan/picom)                                  | 
 
@@ -42,12 +45,6 @@
 
 **more info** 🕵️
 
-* **how to change the theme?**
-    * edit `theme/ui_vars.lua` and change `color_scheme` to one of the following:
-        - `"blue"`
-        - `"pink"`
-        - `"green"`
-        - `"grey"`
 
 <br>
 
@@ -71,7 +68,8 @@
 <br>
 
 * **custom theme?**
-    * ok theme.
+    * for dark, edit `theme/colors/dark.lua`
+    * for light, edit `theme/colors/light.lua`
 
 <br>
 
@@ -91,96 +89,40 @@
      <summary><strong>dark themed</strong></summary>
 
      <br>
-
-    <details open>
-    <summary><strong>material blue</strong></summary>
-
-    <img src="assets/shots/blue.png" width=500>
-
-     </details>
-
-     <br>
-
-    <details close>
-    <summary><strong>aesthetic grey</strong></summary>
-
-    <img src="assets/shots/grey.png" width=500>
-
-     </details>
-
- </details>
+     <img src="assets/shots/dark.png" width=500>
 
 
 <br>
 
-* <details close>
 
-    <br>
-
+2. <details close>
      <summary><strong>light themed</strong></summary>
-
-    <details open>
-    <summary><strong>cute pink</strong></summary>
-
-    <img src="assets/shots/pink.png" width=500>
-
-     </details>
 
      <br>
 
-    <details close>
-    <summary><strong>android green</strong></summary>
-
-    <img src="assets/shots/green.png" width=500>
-
-     </details>
+    <img src="assets/shots/light.png" width=500>
 
  </details>
 
 # features 💡
 
-1. minimalstic rounded bar (inspired by aqua)
-   * <details close>
-        <summary><strong>information 📖</strong></summary>
-            * the bar has wifi,<br>
-            * taglist,<br>
-            * time, <br>
-            * layoutbox,<br>
-            * battery
-
-    </details>
+1. minimalstic vertical bar
 
     <br>
 
-    <img src="assets/bar.png" width=500>
+    <img src="assets/bar.png" height=500>
 
 <br>
 
-2. android12-like control center
-   * <details close>
-        <summary><strong>information 📖</strong></summary>
-            * beautiful volume slider<br>
-            * light music widget with press animation<br>
-            * notification Center with time and app-icon<br>
-            * services(wifi, bluetooth, etc) buttons with expand animations<br>
-            * extra buttons for lockscreen, exitscreen and screenshot
-
-    </details>
+2. expandable control center
 
     <br>
 
-    <img src="assets/control-center.png" width=500>
+    <img src="assets/control-center.gif" height=500>
 
 <br>
 
-3. material-you-themed notifcations
-   * <details close>
-        <summary><strong>information 📖</strong></summary>
-            * minimal text actions<br>
-            * application name<br>
-            * application icon <br>
-
-    </details>
+3. Minimal notifcations with text actions
 
     <br>
 
@@ -189,16 +131,6 @@
 <br>
 
 4. custom ncmpcpp UI
-   * <details close>
-        <summary><strong>information 📖</strong></summary>
-            * album art<br>
-            * song title<br>
-            * song artist <br>
-            * progress bar <br>
-            * control Buttons <br>
-            * close bar <br>
-
-    </details>
 
     <br>
 
@@ -207,16 +139,6 @@
 <br>
 
 5. exit screen
-   * <details close>
-        <summary><strong>information 📖</strong></summary>
-            * sleep button<br>
-            * poweroff button<br>
-            * reboot button <br>
-            * logout button <br>
-            * black background blur <br>
-            * button names <br>
-
-    </details>
 
     <br>
 
@@ -225,20 +147,18 @@
 <br>
 
 6. lockscreen
-   * <details close>
-        <summary><strong>information 📖</strong></summary>
-            * lua pam integretion<br>
-            * time<br>
-            * date<br>
-            * logout button <br>
-            * black background blur <br>
-            * button names <br>
-
-    </details>
 
     <br>
 
     <img src="assets/lockscreen.png" width=500>
+
+<br>
+
+6. Minimal tasklist dock with pinned apps
+
+    <br>
+
+    <img src="assets/dock.png" width=300>
 
 <br>
 
@@ -256,11 +176,11 @@
 1. Install packages / dependencies
     
     ```    
-    yay -S picom-ibhagwan-git awesome-git acpid git mpd ncmpcpp wmctrl \
+    yay -S picom-git awesome-git acpid git mpd ncmpcpp wmctrl \
     firefox lxappearance gucharmap thunar alacritty neovim polkit-gnome \
     xdotool xclip scrot brightnessctl alsa-utils pulseaudio jq acpi rofi \
     inotify-tools zsh materia-gtk-theme mpdris2 bluez bluez-utils bluez-plugins \
-    playerctl redshift
+    playerctl redshift cutefish-cursor-themes-git cutefish-icons
     ```
 
 2. Make backup of directories that will be changed (optional)
@@ -270,6 +190,7 @@
     cp -r ~/.config/* .backup_config/
     cp -r ~/.mpd .backup_config/
     cp -r ~/.ncmpcpp .backup_config/
+    cp -r ~/.themes .backup_config/
     ```
 
 3. Clone this repo
@@ -288,6 +209,7 @@
     cp -rf extras/fonts ~/.fonts
     cp -rf extras/scripts ~/.scripts
     cp -rf extras/oh-my-zsh ~/.oh-my-zsh
+    cp -rf extras/themes ~/.themes/
     ```
 5. make some files executeable
     ```
@@ -298,7 +220,7 @@
 6. Startup services
     ```
     systemctl --user enable mpd
-    sudo systemctl enable bluetooth.service
+    sudo systemctl enable bluetooth
     ```
 
 7. Done
@@ -312,6 +234,34 @@
 </details>    
 
 <br>
+
+
+# Keybinds
+
+* press `super(windows key) + f1` :smile:
+* the dock can be opened by hovering bottom of the screen
+* the dashboard/notifcenter can be opened by hovering to the right for 0.24 seconds
+
+
+# Modules
+
+1. **[Rubato](https://github.com/andOrlando/rubato)**
+    * Created by [andOrlando](https://github.com/andOrnaldo)
+    * Basically, Allows you to animate a number value in AwesomeWM
+
+2. **[Bling](https://github.com/BlingCorp/bling)**
+    * Created by the BlingCorp community
+    * Adds a lot more cool modules to AwesomeWM
+
+3. **[Layout-machi](https://github.com/xinhaoyuan/layout-machi)**
+    * Created by xinhaoyuan
+    * Manual layout with interactive editor
+
+4. **Awesome-Dock**
+    * Created by me. the idiot
+    * A tasklist dock with pinned apps
+    * you can use it in your config (hopefully)
+    * but there are still lots of things to improve
 
 
 # Credits

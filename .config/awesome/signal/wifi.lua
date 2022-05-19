@@ -1,5 +1,8 @@
--- emits wifi status
+-- emits wifi status (with nmcli)
 -- well, it works for me. so yeah
+---------------------------------
+
+-- ("signal::wifi"), function(net_status(bool))
 
 
 -- rquirements

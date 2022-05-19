@@ -25,18 +25,47 @@ local lock_screen_fail_symbol = ""
 -- ~~~~~~~~~~~~~~~~~~
 
 
--- profile overlay
-local pfp_overlay = wibox.widget{
+local profile_image = wibox.widget {
+    {
+        image = beautiful.images.profile,
+        upscale = true,
+        forced_width = dpi(160),
+        forced_height = dpi(160),
+        clip_shape = gears.shape.circle,
+        widget = wibox.widget.imagebox,
+        halign = "center",
+    },
     widget = wibox.container.background,
-    bg = "#00000000",
-    shape = gears.shape.circle
+    border_width = dpi(2),
+    shape = gears.shape.circle,
+    border_color = beautiful.fg_color
 }
+
+
+local username = wibox.widget{
+    widget = wibox.widget.textbox,
+    markup = user_likes.username,
+    font = beautiful.font_var .. "15",
+    align = "center",
+    valign = "center"
+}
+
+
+local myself = wibox.widget{
+    profile_image,
+    username,
+    spacing = dpi(15),
+    layout = wibox.layout.fixed.vertical
+}
+
+-- dummy text
+local some_textbox = wibox.widget.textbox()
 
 -- lock icon
 local icon = wibox.widget{
     widget = wibox.widget.textbox,
     markup = lock_screen_symbol,
-    font = beautiful.icon_var .. "24",
+    font = beautiful.icon_var .. "14",
     align = "center",
     valign = "center"
 }
@@ -44,17 +73,17 @@ local icon = wibox.widget{
 
 -- clock
 local clock = wibox.widget{
-    helpers.vertical_pad(120),
+    helpers.vertical_pad(dpi(40)),
     {
-        font = beautiful.font_var .. "Medium 82",
-        format = helpers.colorize_text("%I", beautiful.fg_color),
+        font = beautiful.font_var .. "Medium 42",
+        format = helpers.colorize_text("%I:%M", beautiful.fg_color),
         widget = wibox.widget.textclock,
         align = "center",
         valign = "center"
     },
     {
-        font = beautiful.font_var .. "Medium 82",
-        format = helpers.colorize_text("%M", beautiful.fg_color),
+        font = beautiful.font_var .. "Regular 18",
+        format = helpers.colorize_text("%A, %B", beautiful.fg_color),
         widget = wibox.widget.textclock,
         align = "center",
         valign = "center"
@@ -64,24 +93,44 @@ local clock = wibox.widget{
 }
 
 
--- wrong password text
-local wrong_password = wibox.widget{
+
+
+
+
+-- password prompt
+local promptbox = wibox.widget{
     widget = wibox.widget.textbox,
-    markup = "<span foreground='" .. beautiful.red_color .. "'>Password Incorrect!</span>",
-    font = beautiful.font_var .. "Light 14",
-    align = "center",
-    valign = "center",
-    visible = false,
+    markup = "",
+    font = beautiful.icon_var .. "13",
+    align = "center"
 }
 
-
-
-
-
-
--- dummy text
-local some_textbox = wibox.widget.textbox()
-
+local promptboxfinal = wibox.widget{
+    {
+        {
+            {
+                promptbox,
+                margins = {left = dpi(10)},
+                widget = wibox.container.margin
+            },
+            nil,
+            {
+                icon,
+                margins = {right = dpi(10)},
+                widget = wibox.container.margin
+            },
+            layout = wibox.layout.align.horizontal,
+            expand = "none"
+        },
+        widget = wibox.container.margin,
+        margins = dpi(10)
+    },
+    widget = wibox.container.background,
+    bg = beautiful.fg_color .. "1A",
+    forced_width = dpi(300),
+    forced_height = dpi(40),
+    shape = gears.shape.rounded_bar
+}
 
 -- Create the lock screen wibox
 local lock_screen_box = wibox({
@@ -112,79 +161,27 @@ local function set_visibility(v)
     end
 end
 
--- Lock animation
-local lock_animation_widget_rotate = wibox.container.rotate()
-
-local arc = function()
-    return function(cr, width, height)
-        gears.shape.arc(cr, width, height, dpi(5), 0, math.pi/2, true, true)
-    end
-end
-
-local lock_animation_arc = wibox.widget {
-    shape = arc(),
-    bg = "#00000000",
-    forced_width = dpi(80),
-    forced_height = dpi(80),
-    widget = wibox.container.background
-}
-
-
-
--- main widget
-local lock_animation_widget = {
-    layout = wibox.layout.stack,
-    {
-        lock_animation_arc,
-        widget = lock_animation_widget_rotate,
-    },
-    icon
-}
 
 
 -- Lock helper functions
 local characters_entered = 0
 
+
 -- reset function
 local function reset()
     characters_entered = 0;
-    lock_animation_widget_rotate.direction = "north"
-    lock_animation_arc.bg = "#00000000"
+    promptbox.markup = helpers.colorize_text("", beautiful.red_3)
+    icon.markup = lock_screen_symbol
 end
 
 -- fail function
 local function fail()
     characters_entered = 0;
-    wrong_password.visible = true
-    lock_animation_widget_rotate.direction = "north"
-    pfp_overlay.bg = beautiful.red_color .. "1A"
-    icon.markup = "<span foreground='" .. beautiful.red_color .. "'>" .. lock_screen_fail_symbol .. "</span>"
-    lock_animation_arc.bg = "#00000000"
+    promptbox.markup = helpers.colorize_text("Incorrect", beautiful.red_3)
+    icon.markup = lock_screen_fail_symbol
 end
 
--- animation rotation directions
-local animation_directions = {"north", "west", "south", "east"}
 
-
--- animation function
-local function key_animation(char_inserted)
-    local color
-    local direction = animation_directions[(characters_entered % 4) + 1]
-    if char_inserted then
-        color = beautiful.accent
-    else
-        if characters_entered == 0 then
-            reset()
-        else
-            color = beautiful.red_color .. "55"
-        end
-    end
-
-    lock_animation_arc.bg = color
-    icon.markup = "<span foreground='" .. beautiful.fg_color .. "'>" .. lock_screen_symbol .. "</span>"
-    pfp_overlay.bg = "#00000000"
-    lock_animation_widget_rotate.direction = direction
-end
 
 
 -- user input
@@ -205,12 +202,12 @@ local function grab_password()
         keypressed_callback  = function(mod, key, cmd)
             if #key == 1 then
                 characters_entered = characters_entered + 1
-                key_animation(true)
+                promptbox.markup = helpers.colorize_text(string.rep("", characters_entered), beautiful.fg_color)
             elseif key == "BackSpace" then
                 if characters_entered > 0 then
                     characters_entered = characters_entered - 1
                 end
-                key_animation(false)
+                promptbox.markup = helpers.colorize_text(string.rep("", characters_entered), beautiful.fg_color)
             end
 
         end,
@@ -221,7 +218,7 @@ local function grab_password()
                 reset()
                 set_visibility(false)
             else
-                -- NAY
+                -- NAH, JIT TRIPPIN
                 fail()
                 grab_password()
             end
@@ -229,6 +226,7 @@ local function grab_password()
         textbox = some_textbox,
     }
 end
+
 
 
 -- show lockscreen func
@@ -246,11 +244,17 @@ end
 lock_screen_box:setup {
     {
         clock,
-        nil,
         {
-            lock_animation_widget,
-            margins = {bottom = dpi(70)},
-            widget = wibox.container.margin
+            myself,
+            {
+                {
+                    promptboxfinal,
+                    layout = wibox.layout.fixed.horizontal,
+                },
+                layout = wibox.container.place
+            },
+            layout = wibox.layout.fixed.vertical,
+            spacing = dpi(50)
         },
         layout = wibox.layout.align.vertical,
         expand = "none"

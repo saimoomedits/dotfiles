@@ -6,8 +6,6 @@ You might just want to copy that whole part into your theme.lua and start adjust
 
 --]]
 -- LuaFormatter off
-
-local theme = {}
 -- window swallowing
 theme.dont_swallow_classname_list = { "firefox", "Gimp" } -- list of class names that should not be swallowed
 theme.dont_swallow_filter_activated = true -- whether the filter above should be active

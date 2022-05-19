@@ -1,71 +1,86 @@
--- sidebar
--- ~~~~~~
-
+-- notifs ig
+-- ~~~~~~~~~
 
 -- requirements
 -- ~~~~~~~~~~~~
 local awful = require("awful")
 local beautiful = require("beautiful")
+local rubato = require("mods.rubato")
 local dpi = beautiful.xresources.apply_dpi
 local helpers = require("helpers")
 local wibox = require("wibox")
-local rubato = require("mods.rubato")
 
 
-
--- dashboard
+-- Dashboard
 -- ~~~~~~~~~
-dash = wibox({
-    type = "dnd",
-    height = dpi(700),
+
+-- a random name
+dashboard_llc = wibox({
+    type = "dock",
     shape = helpers.rrect(beautiful.rounded),
     screen = 1,
-    width = dpi(810),
-    bg = beautiful.black_color,
-    margins = 20,
+    height = dpi(900) - beautiful.useless_gap * 4,
+    width = dpi(420),
+    bg = beautiful.bg_color,
     ontop = true,
     visible = false
 })
-awful.placement.centered(dash, {honor_workarea = true, margins = beautiful.useless_gap * 2 })
+awful.placement.right(dashboard_llc, {honor_workarea = true, margins = beautiful.useless_gap * 2 })
 
 
 
--- animations
+local hover_thing = wibox({
+    type = "dnd",
+    screen = 1,
+    height = dpi(900) - beautiful.useless_gap * 4,
+    width = dpi(7),
+    opacity = 0,
+    bg = beautiful.bg_color,
+    ontop = true,
+    visible = true
+})
+
+awful.placement.right(hover_thing)
+
+
+-- Animations
 -- ~~~~~~~~~~
-local slide = rubato.timed{
-    pos = dpi(-dash.height),
+
+local hidden_pos = awful.screen.focused().geometry.width
+local visibl_pos = awful.screen.focused().geometry.width - (dashboard_llc.width + beautiful.useless_gap * 2)
+
+local slide_right = rubato.timed{
+    pos = hidden_pos,
     rate = 60,
     intro = 0.1,
     duration = 0.46,
     awestore_compat = true,
-    subscribed = function(pos) dash.y = pos end
+    subscribed = function(pos) dashboard_llc.x = pos end
 }
-
 
 local dash_status = false
 
-slide.ended:subscribe(function()
+slide_right.ended:subscribe(function()
     if dash_status then
-        dash.visible = false
+        dashboard_llc.visible = false
     end
 end)
 
 
 -- toggler
-
 local dash_show = function()
-    slide:set(dpi(44) + beautiful.useless_gap * 2)
-    dash.visible = true
+    slide_right:set(visibl_pos)
+    dashboard_llc.visible = true
     dash_status = false
 end
 
 local dash_hide = function()
-    slide:set(dpi(-dash.height))
+    slide_right:set(hidden_pos)
     dash_status = true
 end
 
 dash_toggle = function()
-    if dash.visible then
+    if dashboard_llc.visible then
         dash_hide()
     else
         dash_show()
@@ -73,43 +88,65 @@ dash_toggle = function()
 end
 
 
+local gtimer = require("gears").timer
+hover_thing:connect_signal("mouse::enter", function ()
+    gtimer {
+        timeout   = 0.24,
+        call_now  = false,
+        autostart = true,
+        single_shot = true,
+        callback  = function()
+                dash_show()
+        end
+    }
+end)
+
+hover_thing:connect_signal("mouse::leave", function ()
+    local hide = gtimer {
+        timeout   = 0.24,
+        call_now  = false,
+        autostart = true,
+        single_shot = true,
+        callback  = function()
+                dash_hide()
+        end
+    }
+
+    hide:start()
+
+    dashboard_llc:connect_signal("mouse::enter", function ()
+        hide:stop()
+    end)
+    dashboard_llc:connect_signal("mouse::leave", function ()
+        hide:again()
+    end)
+end)
+
+
+--~~~~~~~~~~~~~~~~~~~~~~~~ Eof animations
+
 
 -- widgets
 -- ~~~~~~~
-local music = require("layout.dashboard.music")
-local notifs = require("layout.dashboard.notif_center")
-local slider_volume = require("layout.dashboard.volume")
-local services = require("layout.dashboard.services")
-local extra_btns = require("layout.dashboard.extra-buttons")
+
+local cal = require("layout.dashboard.calendar")
+local notifs = require("layout.dashboard.notifs.build")
 
 
-
--- widget setup
--- ~~~~~~~~~~~~
-dash:setup {
+dashboard_llc:setup{
     {
+        layout = wibox.layout.align.vertical,
+        expand = "none",
+        spacing = dpi(20),
         {
-            {
-                {
-                    slider_volume,
-                    music,
-                    layout = wibox.layout.fixed.vertical,
-                    spacing = dpi(30)
-                },
-                services,
-                spacing = dpi(80),
-                layout = wibox.layout.fixed.vertical
-            },
             nil,
-            extra_btns,
-            layout = wibox.layout.align.vertical,
+            cal,
+            layout = wibox.layout.align.horizontal,
             expand = "none"
         },
-        notifs,
-        spacing = dpi(25),
-        layout = wibox.layout.fixed.horizontal
+        nil,
+        notifs
     },
-    margins = dpi(25),
+    margins = dpi(20),
     widget = wibox.container.margin
-
 }

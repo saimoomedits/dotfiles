@@ -1,5 +1,8 @@
 -- volume signal
--- credits to Javacafe01
+----------------
+
+-- ("signal::volume"), function(percentage(int), muted(bool))
+
 
 local awful = require("awful")
 

@@ -1,5 +1,7 @@
 -- Ram info
--- Emits Random Acess Memory info
+-----------
+
+-- ("signal::ram"), functuin(used(int), total(int))
 
 local awful = require("awful")
 

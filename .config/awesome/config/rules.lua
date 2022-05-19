@@ -146,5 +146,6 @@ ruled.client.connect_signal("request::rules", function()
             floating = true,
             width = 650,
 			height = 550,
-        }
+        },
+
 }

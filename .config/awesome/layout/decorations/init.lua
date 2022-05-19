@@ -37,7 +37,7 @@ local function create_button(shape, color, command, c)
   end)
 
   w:connect_signal('mouse::leave', function ()
-    w.bg = beautiful.ext_light_fg or beautiful.fg_color
+    w.bg = beautiful.fg_color .. "4D"
   end)
 
   -- press effect
@@ -53,9 +53,9 @@ local function create_button(shape, color, command, c)
   -- dynamic color
   local function dyna()
     if client.focus == c then
-      w.bg = beautiful.ext_light_fg or beautiful.fg_color
+      w.bg = beautiful.fg_color .. "4D"
     else
-      w.bg = beautiful.ext_light_bg_2 or beautiful.bg_3
+      w.bg = beautiful.fg_color .. "1A"
     end
   end
 
@@ -96,54 +96,44 @@ client.connect_signal("request::titlebars", function(c)
 
 
     -- the titlebar
-    awful.titlebar(c, { position = "left", size = dpi(48), font = beautiful.font_var .. "12",
-                        fg = beautiful.fg_color .. "99", bg = beautiful.ext_light_bg or beautiful.bg_color }): setup {
+    awful.titlebar(c, { position = "top", size = dpi(42), font = beautiful.font_var .. "12",
+                        fg = beautiful.fg_color .. "99", bg = beautiful.bg_2 }): setup {
 
-      layout = wibox.layout.align.vertical,
-      expand = "none",
-      {
-          wibox.widget.textbox(""),
-          widget = wibox.container.background,
-          buttons = buttons,
-          forced_height = dpi(360)
-      },
+      layout = wibox.layout.align.horizontal,
       {
         {
-          nil,
           {
-              create_button(function(cr, width, height) 
-                gears.shape.transform(gears.shape.isosceles_triangle)
-                :rotate_at(width / 2, height / 2, math.pi*2)
-                (cr, width, height)
-              end,
-                beautiful.fg_color,
-              function ()
-                c:kill()
-              end,
-              c),
+            nil,
+            {
 
-              create_button(gears.shape.circle, beautiful.fg_color, function ()
-                c.maximized = not c.maximized c:raise()
-              end, c),
+                create_button(gears.shape.circle, beautiful.fg_color, function ()
+                  c:kill()
+                end, c),
 
-              create_button(helpers.rrect(3), beautiful.fg_color, function ()
-                awful.client.floating.toggle(c)
-              end, c),
+                create_button(gears.shape.circle, beautiful.fg_color, function ()
+                  c.maximized = not c.maximized c:raise()
+                end, c),
 
-              layout  = wibox.layout.fixed.vertical,
-              spacing = dpi(35)
+                create_button(gears.shape.circle, beautiful.fg_color, function ()
+                  awful.client.floating.toggle(c)
+                end, c),
+
+                layout  = wibox.layout.fixed.horizontal,
+                spacing = dpi(18)
+            },
+                layout = wibox.layout.align.vertical,
+                expand = "none"
           },
-              layout = wibox.layout.align.horizontal,
-              expand = "none"
+          margins = {left = dpi(20)},
+          widget = wibox.container.margin
         },
         widget = wibox.container.background,
         buttons = nil,
       },
       {
-          wibox.widget.textbox(""),
-          widget = wibox.container.background,
-          buttons = buttons,
-          forced_height = dpi(360)
+        wibox.widget.textbox,
+        layout = wibox.layout.flex.horizontal,
+        buttons = buttons
       }
     }
 

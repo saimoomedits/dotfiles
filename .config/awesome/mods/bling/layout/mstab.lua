@@ -88,30 +88,17 @@ function update_tabbar(
         })
 
         -- Change visibility of the tab bar when layout, selected tag or number of clients (visible, master, slave) changes
-        local function adjust_visiblity(t)
-            s.tabbar.visible = (#t:clients() - t.master_count > 1)
-                and (t.layout.name == mylayout.name)
+        local function adjust_visibility()
+            local name = awful.layout.getname( awful.layout.get( s ) )
+            s.tabbar.visible = (name == mylayout.name)
         end
 
-        tag.connect_signal("property::selected", function(t)
-            adjust_visiblity(t)
-        end)
-        tag.connect_signal("property::layout", function(t, layout)
-            adjust_visiblity(t)
-        end)
-        tag.connect_signal("tagged", function(t, c)
-            adjust_visiblity(t)
-        end)
-        tag.connect_signal("untagged", function(t, c)
-            adjust_visiblity(t)
-        end)
-        tag.connect_signal("property::master_count", function(t)
-            adjust_visiblity(t)
-        end)
-        client.connect_signal("property::minimized", function(c)
-            local t = c.first_tag
-            adjust_visiblity(t)
-        end)
+        tag.connect_signal("property::selected", adjust_visibility)
+        tag.connect_signal("property::layout", adjust_visibility)
+        tag.connect_signal("tagged", adjust_visibility)
+        tag.connect_signal("untagged", adjust_visibility)
+        tag.connect_signal("property::master_count", adjust_visibility)
+        client.connect_signal("property::minimized", adjust_visibility)
     end
 
     -- update the tabbar size and position (to support gap size change on the fly)

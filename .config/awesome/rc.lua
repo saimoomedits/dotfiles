@@ -1,5 +1,5 @@
 --[[
-    A mtertial-you inspired awesomewm setup!
+    A random rice. i guess.
     source: https://github.com/saimoomedits/dotfiles
 ]]
 
@@ -7,13 +7,11 @@
 pcall (require, "luarocks.loader")
 
 
--- misc/vars
--- ~~~~~~~~~
-
--- home variable
+-- home variable 🏠
 home_var        = os.getenv("HOME")
 
--- user preferences
+
+-- user preferences ⚙️
 user_likes      = {
 
     -- aplications
@@ -27,24 +25,26 @@ user_likes      = {
     -- weather info
     weather_key     = "",
     city_id         = "",
-    weather_unit    = "metric"
+    weather_unit    = "metric",
+
+    -- your profile
+    username = os.getenv("USER") or "user",
+    userdesc = "@computer"
 }
 
 
--- general
--- ~~~~~~~
 
--- theme
+-- theme 🖌️
 require("theme")
 
--- configs
+-- configs ⚙️
 require("config")
 
--- startup programs
+-- miscallenous ✨
 require("misc")
 
--- signals
+-- signals 📶
 require("signal")
 
--- ui elements
+-- ui elements 💻
 require("layout")
