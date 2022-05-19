@@ -94,51 +94,6 @@ ruled.client.connect_signal("request::rules", function()
     end)
 
 
-
-
-    -- move to certain tag when spawned
-    -- -- -- -- -- -- -- -- -- -- -- --
-
-    -- windows opened in tag 2 (web browsers/internet)
-    ruled.client.append_rule {
-        rule_any    = {
-            class = {"qutebrowder", "chromium", user_likes.web}
-        },
-        properties = {
-            tag = "2",
-        },
-    }
-
-    -- windows opened in tag 5 (files)
-    ruled.client.append_rule {
-        rule_any    = {
-            class = {"Nemo", "thunar"}
-        },
-        properties = {
-            tag = "5",
-        },
-    }
-
-    -- windows opened in tag 3 (code)
-    ruled.client.append_rule {
-        rule_any    = {
-            class = {"Code", "lite-xl"}
-        },
-        properties = {
-            tag = "3",
-        },
-    }
-
-    -- windows opened in tag 4 (games)
-    ruled.client.append_rule {
-        rule_any    = {
-            class = {"Steam", "Minecraft", "Multimc", "Sauerbraten"}
-        },
-        properties = {
-            tag = "4",
-        },
-    }
-
     -- Music client
     ruled.client.append_rule {
         rule_any = {class = {"music"}, instance = {"music"}},
