@@ -39,7 +39,7 @@
 | Light GTK theme   | [Cutefish-light](https://cutefish-ubuntu.github.io/)                            |
 | Dark Gtk theme    | Awesthetic-gtk
 | bar               | [wibar](https://awesomewm.org/apidoc/popups_and_bars/awful.wibar.html)                   |
-| compositor        | [picom-ibhagwan-git](https://github.com/ibhagwan/picom)                                  | 
+| compositor        | [picom-git](https://github.com/yshui/picom)                                  | 
 
 <br>
 
