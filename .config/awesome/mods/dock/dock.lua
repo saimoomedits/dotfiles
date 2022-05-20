@@ -205,7 +205,7 @@ return function (screen, pinned, size, offset, modules_spacing, active_color, in
     maximum_width   = screen.geometry.x + screen.geometry.width - offset,
     maximum_height  = dpi(size),
     x               = screen.geometry.x + screen.geometry.width / 2,
-    y               = screen.geometry.x + screen.geometry.height - (size + offset),
+    y               = screen.geometry.y + screen.geometry.height - (size + offset),
     shape           = function(cr, width, height)
                             gears.shape.rounded_rect(cr, width, height, 10)
                       end,
@@ -253,7 +253,7 @@ return function (screen, pinned, size, offset, modules_spacing, active_color, in
   -- helper function for empty dock
   ---------------------------------------
   function when_no_apps_open(s)
-    if #s.selected_tag:clients() < 1 then
+    if #screen.selected_tag:clients() < 1 then
 
 
       if (#pinned or pinned) == 0 then
@@ -268,7 +268,7 @@ return function (screen, pinned, size, offset, modules_spacing, active_color, in
         }
       end
 
-    elseif #s.selected_tag:clients() == 1 then
+    elseif #screen.selected_tag:clients() == 1 then
 
       if (#pinned or pinned) == 0 then
         dock:setup {

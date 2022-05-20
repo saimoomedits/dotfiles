@@ -18,7 +18,7 @@ local wibox = require("wibox")
 dashboard_llc = wibox({
     type = "dock",
     shape = helpers.rrect(beautiful.rounded),
-    screen = 1,
+    screen = screen.primary,
     height = dpi(900) - beautiful.useless_gap * 4,
     width = dpi(420),
     bg = beautiful.bg_color,
@@ -31,7 +31,7 @@ awful.placement.right(dashboard_llc, {honor_workarea = true, margins = beautiful
 
 local hover_thing = wibox({
     type = "dnd",
-    screen = 1,
+    screen = screen.primary,
     height = dpi(900) - beautiful.useless_gap * 4,
     width = dpi(7),
     opacity = 0,
@@ -46,8 +46,9 @@ awful.placement.right(hover_thing)
 -- Animations
 -- ~~~~~~~~~~
 
-local hidden_pos = awful.screen.focused().geometry.width
-local visibl_pos = awful.screen.focused().geometry.width - (dashboard_llc.width + beautiful.useless_gap * 2)
+
+local hidden_pos = screen.primary.geometry.x
+local visibl_pos = screen.primary.geometry.x - (dashboard_llc.width + beautiful.useless_gap * 2)
 
 local slide_right = rubato.timed{
     pos = hidden_pos,
@@ -55,7 +56,7 @@ local slide_right = rubato.timed{
     intro = 0.1,
     duration = 0.46,
     awestore_compat = true,
-    subscribed = function(pos) dashboard_llc.x = pos end
+    subscribed = function(pos) dashboard_llc.x = screen.primary.geometry.width + pos end
 }
 
 local dash_status = false

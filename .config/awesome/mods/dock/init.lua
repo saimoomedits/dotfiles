@@ -6,6 +6,7 @@
 local dock = require(... .. ".dock" )
 local icon_handler = require(... .. ".icon_handler")
 local beautiful = require("beautiful")
+local awful = require("awful")
 
 -- usage:
 -- {"command to launch", "icon name" }
@@ -33,8 +34,5 @@ local timeout = beautiful.awesome_dock_timeout or 1
 if beautiful.awesome_dock_disabled == true then
     return
 else
-    require("awful").screen.connect_for_each_screen(function(s)
-        dock(s, pinned_apps, dock_size, offset, modules_spacing, active_color, inactive_color, minimized_color, background_color, hover_color, icon_handler, timeout)
-    end
-    )
+    dock(screen.primary, pinned_apps, dock_size, offset, modules_spacing, active_color, inactive_color, minimized_color, background_color, hover_color, icon_handler, timeout)
 end
