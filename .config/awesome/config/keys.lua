@@ -58,18 +58,14 @@ awful.keyboard.append_global_keybindings({
     { description = "open rofi", group = "launcher" }),
 
 	awful.key({ modkey }, "r", function()
-        awful.spawn(home_var .. "/.scripts/picker", false)
+        awful.spawn(home_var .. "/.scripts/awesome/picker", false)
 	end, 
     { description = "exec color picker", group = "launcher" }),
 
 	awful.key({ modkey }, "a", function()
-        if control_c.visible then
-            control_c.visible = false
-        else
-            control_c.visible = true
-        end
+        cc_toggle(screen.primary)
 	end,
-    { description = "toggle dashboard", group = "launcher" }),
+    { description = "toggle control center", group = "launcher" }),
 
 	awful.key({ modkey }, "d", function()
         lock_screen_show()
@@ -98,7 +94,7 @@ awful.keyboard.append_global_keybindings({
 
 
     awful.key({}, "Print", function() 
-        awful.util.spawn(home_var .. "/.scripts/ss area", false)
+        awful.util.spawn(home_var .. "/.scripts/awesome/ss area", false)
     end,
     {description = "screenshot", group = "control"}),
 

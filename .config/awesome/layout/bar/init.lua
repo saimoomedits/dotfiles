@@ -64,12 +64,21 @@ local screen_height = s.geometry.height
         widget = wibox.widget.textbox
     }
 
+    -- cc
+    local cc_ic = wibox.widget{
+        markup = "",
+        font = beautiful.icon_var .. "17",
+        valign = "center",
+        align = "center",
+        widget = wibox.widget.textbox
+    }
+
 
     --------------------
     -- battery widget
     local bat_icon = wibox.widget{
         markup = "<span foreground='" .. beautiful.black_color .. "'></span>",
-        font = beautiful.icon_var .. "11",
+        font = beautiful.icon_var .. "10",
         align = "center",
         valign = "center",
         widget = wibox.widget.textbox
@@ -77,11 +86,11 @@ local screen_height = s.geometry.height
 
     local battery_progress = wibox.widget{
     	color				= beautiful.green_color,
-    	background_color	= beautiful.fg_color .. "4D",
+    	background_color	= beautiful.fg_color .. "00",
         forced_width        = dpi(27),
-        border_width        = dpi(0),
+        border_width        = dpi(0.5),
         border_color        = beautiful.fg_color .. "A6",
-        paddings             = dpi(0),
+        paddings             = dpi(2),
         bar_shape           = helpers.rrect(dpi(2)),
     	shape				= helpers.rrect(dpi(4)),
         value               = 70,
@@ -92,9 +101,10 @@ local screen_height = s.geometry.height
     local battery_border_thing = wibox.widget{
             wibox.widget.textbox,
             widget = wibox.container.background,
-            bg = beautiful.green_color,
-            forced_width = dpi(9.2),
-            forced_height = dpi(9.2),
+            border_width        = dpi(0),
+            bg = beautiful.fg_color .. "A6",
+            forced_width = dpi(9.4),
+            forced_height = dpi(9.4),
             shape = function(cr, width, height)
                 gears.shape.pie(cr,width, height, 0, math.pi)
             end
@@ -116,47 +126,26 @@ local screen_height = s.geometry.height
                 layout = wibox.layout.fixed.vertical,
                 spacing = dpi(-4)
             },
-            bat_icon,
+            {
+                bat_icon,
+                margins = {top = dpi(3)},
+                widget = wibox.container.margin,
+            },
             layout = wibox.layout.stack,
         },
         widget = wibox.container.margin,
-        margins = {left = dpi(7.5),right = dpi(7.5)}
+        margins = {left = dpi(7.47),right = dpi(7.47)}
     }
     -- Eo battery
     -----------------------------------------------------
 
 
 
-    --- controlbox
-    --------------------------------
-    local controlbox = wibox.widget{
-        {
-            {
-                wifi,
-                battery,
-                layout = wibox.layout.fixed.vertical,
-                spacing = dpi(15)
-            },
-            widget = wibox.container.margin,
-            margins = {top = dpi(14), bottom = dpi(14)}
-        },
-        widget = wibox.container.background,
-        shape = helpers.rrect(beautiful.rounded - 8),
-    }
-
-    controlbox:buttons{gears.table.join(
+    cc_ic:buttons{gears.table.join(
         awful.button({ }, 1, function ()
-            if control_c.visible then
-                control_c.visible = false
-                controlbox.bg = nil
-            else
-                control_c.visible = true
-                controlbox.bg = beautiful.bg_3 .. "99"
-            end
+            cc_toggle(s)
         end)
     )}
-    -- Eo controlbox
-    --------------------------------------------------
 
 
 
@@ -180,13 +169,6 @@ local screen_height = s.geometry.height
         layout = wibox.layout.fixed.vertical,
         spacing = dpi(3)
     }
-
-
-    clock:buttons{gears.table.join(
-        awful.button({ }, 1, function ()
-            dash_toggle()
-        end)
-    )}
     -- Eo clock
     ------------------------------------------
 
@@ -195,21 +177,16 @@ local screen_height = s.geometry.height
 
     -- update widgets accordingly
     -- ~~~~~~~~~~~~~~~~~~~~~~~~~~
-    awesome.connect_signal("signal::battery", function(value) 
-        if value < 99 then
-            battery_border_thing.bg = beautiful.fg_color .. "4D"
-        else
-            battery_border_thing.bg = beautiful.green_color
-        end
+    awesome.connect_signal("signal::battery", function(value, state)
         battery_progress.value = value
-    end)
 
-    awesome.connect_signal("signal::charger", function(state)
-        if state then
+
+        if state == 1 then
             bat_icon.visible = true
         else
             bat_icon.visible = false
         end
+
     end)
 
     awesome.connect_signal("signal::wifi", function (value)
@@ -251,13 +228,18 @@ local screen_height = s.geometry.height
             },
             {
                 {
-                    controlbox,
+                    battery,
                     margins = {left = dpi(8), right = dpi(8)},
                     widget = wibox.container.margin
                 },
-                clock,
+                {
+                    cc_ic,
+                    clock,
+                    layout = wibox.layout.fixed.vertical,
+                    spacing = dpi(20)
+                },
                 layout = wibox.layout.fixed.vertical,
-                spacing = dpi(10)
+                spacing = dpi(20)
             },
             layout = wibox.layout.align.vertical,
             expand = "none"

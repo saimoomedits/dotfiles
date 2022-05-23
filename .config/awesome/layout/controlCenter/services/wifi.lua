@@ -45,7 +45,7 @@ local circle_animate = wibox.widget{
 	widget = wibox.container.background,
 	shape = helpers.rrect(beautiful.rounded),
 	bg = beautiful.accent,
-	forced_width = 0,
+	forced_width = 110,
 	forced_height = 0,
 }
 
@@ -84,18 +84,6 @@ local alright = wibox.widget{
 
 
 
-  -- button press animation
-  local animation_button = rubato.timed{
-      pos = 0,
-      rate = 60,
-      intro = 0.02,
-      duration = 0.14,
-      awestore_compat = true,
-      subscribed = function(pos)
-		circle_animate.forced_width = pos
-		circle_animate.forced_height = pos
-      end
-  }
   local animation_button_opacity = rubato.timed{
       pos = 0,
       rate = 60,
@@ -112,12 +100,10 @@ local alright = wibox.widget{
     if value then
         icon.markup = helpers.colorize_text(service_icon, beautiful.bg_color)
         name.markup = helpers.colorize_text(service_name, beautiful.bg_color)
-        animation_button:set(alright.forced_width)
         animation_button_opacity:set(1)
     else
         icon.markup = helpers.colorize_text(service_icon, beautiful.fg_color)
         name.markup = helpers.colorize_text(service_name, beautiful.fg_color)
-        animation_button:set(0)
         animation_button_opacity:set(0)
     end
       

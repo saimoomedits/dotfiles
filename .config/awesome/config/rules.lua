@@ -99,8 +99,8 @@ ruled.client.connect_signal("request::rules", function()
         rule_any = {class = {"music"}, instance = {"music"}},
         properties = {
             floating = true,
-            width = 650,
-			height = 550,
+            width = 700,
+			height = 444,
         },
 
 }

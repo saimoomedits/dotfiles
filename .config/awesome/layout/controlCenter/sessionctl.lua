@@ -49,7 +49,7 @@ power_button:buttons(gears.table.join(
 
 lock_button:buttons(gears.table.join(
     awful.button({ }, 1, function ()
-        control_c.visible = false
+        if control_c.visible then cc_toggle() end
         require("layout.lockscreen").init()
         lock_screen_show()
     end)

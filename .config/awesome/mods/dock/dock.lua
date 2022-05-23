@@ -252,7 +252,7 @@ return function (screen, pinned, size, offset, modules_spacing, active_color, in
 
   -- helper function for empty dock
   ---------------------------------------
-  function when_no_apps_open(s)
+  function when_no_apps_open()
     if #screen.selected_tag:clients() < 1 then
 
 
@@ -356,6 +356,7 @@ return function (screen, pinned, size, offset, modules_spacing, active_color, in
   client.connect_signal("manage", function ()
     when_no_apps_open(screen)
   end)
+
   client.connect_signal("unmanage", function ()
     when_no_apps_open(screen)
   end)

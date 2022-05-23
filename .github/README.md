@@ -1,7 +1,8 @@
 <br>
     <div align="center">
-        <img src="assets/header.png" width=200>
+        <img src="assets/header.png" width=400>
     </div>
+<br>
 <br>
 
 <p align="center">
@@ -82,7 +83,7 @@
     * if you want to use picom instead, do the following,
 
         - edit `config/others.lua`
-        - scroll down to line `256` 
+        - scroll down to line `252` 
         - either, comment it out or remove that line
         - this will disable rounded windows with awesomeWM
 <br>
@@ -130,7 +131,7 @@
 
     <br>
 
-    <img src="assets/notif.png" width=500>
+    <img src="assets/notif.png" width=400>
 
 <br>
 
@@ -183,7 +184,7 @@
     firefox lxappearance gucharmap thunar alacritty neovim polkit-gnome \
     xdotool xclip scrot brightnessctl alsa-utils pulseaudio jq acpi rofi \
     inotify-tools zsh materia-gtk-theme mpdris2 bluez bluez-utils bluez-plugins \
-    playerctl redshift cutefish-cursor-themes-git cutefish-icons
+    playerctl redshift cutefish-cursor-themes-git cutefish-icons upower xorg xorg-init
     ```
 
 2. Make backup of directories that will be changed (optional)
@@ -258,7 +259,6 @@
 
 * press `super(windows key) + f1` :smile:
 * the dock can be opened by hovering bottom edge of primary screen
-* the dashboard/notifcenter can be opened by hovering over the right-edge
 * the control-Center can either be opened by keybinding `super(windows key) + a` or <br>
     by click on the wifi/battery icon in bar
 
@@ -348,8 +348,8 @@
 <br>
 
 - [ ] Make dock's icon-handler identify global icon-theme
-- [ ] Improve Ncmpcpp decorations
-- [ ] Improve Notifications
+- [x] Improve Ncmpcpp decorations
+- [x] Improve Notifications
 - [ ] Polish Awesthetic-gtk-theme
    
 <br>

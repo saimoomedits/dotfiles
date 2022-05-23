@@ -150,7 +150,7 @@ local lock_screen_box_ext wibox({
     visible = false,
     ontop = true,
     type = "splash",
-    bg = beautiful.bg_color .. "99",
+    bg = beautiful.bg_color .. "E6",
     fg = beautiful.fg_color,
     screen = s
 })

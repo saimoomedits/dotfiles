@@ -10,6 +10,7 @@ local beautiful = require("beautiful")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 
+
 -- default modkey
 local modkey = "Mod4"
 

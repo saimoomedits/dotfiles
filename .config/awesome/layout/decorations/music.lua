@@ -10,7 +10,6 @@ local beautiful = require("beautiful")
 local gears = require("gears")
 local ruled = require("ruled")
 local dpi = beautiful.xresources.apply_dpi
-local rubato = require("mods.rubato")
 
 
 -- widgets
@@ -20,8 +19,8 @@ local rubato = require("mods.rubato")
 local album_art = wibox.widget{
     widget = wibox.widget.imagebox,
     clip_shape = helpers.rrect(beautiful.rounded),
-    forced_height = dpi(220),
-    forced_width = dpi(220),
+    forced_height = dpi(60),
+    forced_width = dpi(60),
     halign = "center",
     valign = "center",
     image = beautiful.images.album_art
@@ -31,18 +30,18 @@ local album_art = wibox.widget{
 local song_artist = wibox.widget{
     widget = wibox.widget.textbox,
     markup = helpers.colorize_text("Unknown", beautiful.ext_light_fg or beautiful.fg_color),
-    font = beautiful.font_var .. "13",
+    font = beautiful.font_var .. "10",
     align = "center",
-    valign = "center"
+    valign = "bottom"
 }
 
 -- song name
 local song_name = wibox.widget{
     widget = wibox.widget.textbox,
     markup = helpers.colorize_text("None", beautiful.ext_light_fg or beautiful.fg_color),
-    font = beautiful.font_var .. "Bold 13",
+    font = beautiful.font_var .. "Bold 11",
     align = "center",
-    valign = "center"
+    valign = "bottom"
 }
 
 
@@ -52,7 +51,7 @@ local song_name = wibox.widget{
 -- toggle button
 local toggle_button = wibox.widget{
     widget = wibox.widget.textbox,
-    markup = helpers.colorize_text("", beautiful.black_color),
+    markup = helpers.colorize_text("", beautiful.fg_color),
     font = beautiful.icon_var .. "22",
     align = "center",
     valign = "center"
@@ -61,7 +60,7 @@ local toggle_button = wibox.widget{
 -- next button
 local next_button = wibox.widget{
     widget = wibox.widget.textbox,
-    markup = helpers.colorize_text("", beautiful.ext_light_fg or beautiful.fg_color),
+    markup = helpers.colorize_text("", beautiful.ext_light_fg or beautiful.fg_color .. "99"),
     font = beautiful.icon_var .. "20",
     align = "center",
     valign = "center"
@@ -70,25 +69,18 @@ local next_button = wibox.widget{
 -- prev button
 local prev_button = wibox.widget{
     widget = wibox.widget.textbox,
-    markup = helpers.colorize_text("", beautiful.ext_light_fg or beautiful.fg_color),
+    markup = helpers.colorize_text("", beautiful.ext_light_fg or beautiful.fg_color .. "99"),
     font = beautiful.icon_var .. "20",
     align = "center",
     valign = "center"
 }
 
 
-local button_creator = require("helpers.widgets.create_button")
-local create_toggle_button = button_creator(toggle_button, beautiful.accent, beautiful.accent_3,
-    {top = dpi(6), bottom = dpi(6), left = dpi(40), right = dpi(40) }, 0, nil)
-
-
 
 -- progressbar
 local pbar = wibox.widget {
     widget = wibox.widget.progressbar,
-    bar_shape = gears.shape.rounded_bar,
-    shape = gears.shape.rounded_bar,
-    forced_height = dpi(6),
+    forced_height = dpi(4),
     color = beautiful.accent,
     background_color = beautiful.accent .. "4D",
     value = 50,
@@ -99,47 +91,8 @@ local pbar = wibox.widget {
 
 
 
--- window buttons --
-local close_btn = wibox.widget{
-    widget = wibox.container.background,
-    bg = beautiful.accent_3,
-    forced_height = dpi(8),
-    shape = gears.shape.rounded_bar
-}
 
 
--- close button animations
-local animation_button_opacity = rubato.timed{
-    pos = 1,
-    rate = 60,
-    intro = 0.06,
-    duration = 0.2,
-    awestore_compat = true,
-    subscribed = function(pos)
-		  close_btn.opacity = pos
-    end
-}
-
-
--- animations for hover
-close_btn:connect_signal("mouse::enter", function()
-    animation_button_opacity:set(0.7)
-end)
-
-close_btn:connect_signal("mouse::leave", function()
-    animation_button_opacity:set(1)
-end)
-
-
-
--- animations for press
-close_btn:connect_signal("button::press", function()
-        animation_button_opacity:set(0.3)
-end)
-
-close_btn:connect_signal("button::release", function()
-        animation_button_opacity:set(0.7)
-end)
 
 
 
@@ -183,9 +136,9 @@ end)
 
 playerctl:connect_signal("playback_status", function(_, playing, _)
 	if playing then
-        toggle_button.markup = helpers.colorize_text("", beautiful.black_color)
+        toggle_button.markup = helpers.colorize_text("", beautiful.fg_color)
 	else
-        toggle_button.markup = helpers.colorize_text("", beautiful.black_color)
+        toggle_button.markup = helpers.colorize_text("", beautiful.fg_color)
 	end
 end)
 
@@ -198,6 +151,46 @@ end)
 
 
 
+
+-- effects
+--~~~~~~~~
+
+prev_button:connect_signal("mouse::enter", function ()
+    prev_button.markup = helpers.colorize_text("", beautiful.accent)
+end)
+prev_button:connect_signal("mouse::leave", function ()
+    prev_button.opacity = 1
+    prev_button.markup = helpers.colorize_text("", beautiful.fg_color .. "99")
+end)
+
+prev_button:connect_signal("button::press", function ()
+    prev_button.markup = helpers.colorize_text("", beautiful.accent_2)
+end)
+prev_button:connect_signal("button::release", function ()
+    prev_button.markup = helpers.colorize_text("", beautiful.accent)
+end)
+
+
+next_button:connect_signal("mouse::enter", function ()
+    next_button.markup = helpers.colorize_text("", beautiful.accent)
+end)
+next_button:connect_signal("mouse::leave", function ()
+    next_button.markup = helpers.colorize_text("", beautiful.fg_color .. "99")
+end)
+
+next_button:connect_signal("button::press", function ()
+    next_button.markup = helpers.colorize_text("", beautiful.accent_2)
+end)
+next_button:connect_signal("button::release", function ()
+    next_button.markup = helpers.colorize_text("", beautiful.accent)
+end)
+
+
+
+
+
+
+
 local music_init = function (c)
 
     -- Hide default titlebar
@@ -205,70 +198,41 @@ local music_init = function (c)
 
 
 
-    -- close button
-    close_btn:buttons(gears.table.join(
-    awful.button({ }, 1, function () c:kill() end),
-    awful.button({ }, 3, function () awful.client.floating.toggle(c) end)
-    ))
-
-
-
         -- bottom
-        awful.titlebar(c, { position = "left", size = dpi(300), bg = beautiful.ext_light_bg_2 or beautiful.bg_2 }):setup {
+        awful.titlebar(c, { position = "bottom", size = dpi(80), bg = beautiful.ext_light_bg_2 or beautiful.bg_2 }):setup {
+            pbar,
             {
-                helpers.vertical_pad(dpi(60)),
                 {
-                    album_art,
                     {
-                        {
-                            {
-                                song_name,
-                                song_artist,
-                                spacing = dpi(5),
-                                layout = wibox.layout.fixed.vertical
-                            },
-                            {
-                                pbar,
-                                margins = {left = dpi(15), right = dpi(15)},
-                                widget = wibox.container.margin
-                            },
-                            spacing = dpi(22),
-                            layout = wibox.layout.fixed.vertical
-                        },
-                        margins = {left = dpi(15), right = dpi(10)},
-                        widget = wibox.container.margin
+                        album_art,
+                        layout = wibox.layout.fixed.horizontal
                     },
-                    spacing = dpi(30),
-                    layout = wibox.layout.fixed.vertical
-                },
-                layout = wibox.layout.fixed.vertical
-            },
-            nil,
-            {
-                {
                     {
                         nil,
                         {
-                            prev_button,
-                            create_toggle_button,
-                            next_button,
-                            layout = wibox.layout.fixed.horizontal,
-                            spacing = dpi(14)
+                            song_name,
+                            song_artist,
+                            layout = wibox.layout.fixed.vertical,
+                            spacing = dpi(2)
                         },
-                        layout = wibox.layout.align.horizontal,
-                        expand = "none"
+                        expand = "none",
+                        layout = wibox.layout.align.vertical
                     },
-                    bg = "alpha",
-                    widget = wibox.container.background,
-                    forced_width = dpi(300),
-                    forced_height = dpi(60),
+                    {
+                        prev_button,
+                        toggle_button,
+                        next_button,
+                        layout = wibox.layout.fixed.horizontal,
+                        spacing = dpi(8)
+                    },
+                    layout = wibox.layout.align.horizontal,
+                    expand = "none"
                 },
-                helpers.vertical_pad(dpi(20)),
-                layout = wibox.layout.fixed.vertical,
-                spacing = dpi(0)
+                margins = dpi(12),
+                widget = wibox.container.margin
             },
-            layout = wibox.layout.align.vertical,
-            expand = "none",
+            layout = wibox.layout.fixed.vertical,
+            spacing = dpi(0)
         }
 
 

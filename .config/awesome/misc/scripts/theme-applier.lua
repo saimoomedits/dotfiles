@@ -9,6 +9,7 @@
 -- requirements
 -- ~~~~~~~~~~~~
 local awful = require("awful")
+local readwrite = require("misc.scripts.read_writer")
 
 
 
@@ -16,22 +17,17 @@ local awful = require("awful")
 -- ~~~~~~~~~
 
 -- current theme state file
-local state_file = home_var .. "/.config/awesome/misc/.information/theme_state"
-
+local output =  readwrite.readall("theme_state")
 
 -- apply light/dark theme
 -- ~~~~~~~~~~~~~~~~~~~~~~
 if require("theme.ui_vars").color_scheme == "light" then
-    awful.spawn.easy_async_with_shell("cat " .. state_file, function (stdout)
 
-        if string.gsub(stdout, '^%s*(.-)%s*$', '%1') == "light" then
+        if output == "light" then
             return
         else
+            readwrite.write("theme_state", "light")
             awful.spawn.easy_async_with_shell([[
-
-
-            # first write changes to state file
-            echo "light\n" > ]] .. state_file .. [[
 
             # gtk theme / icon theme
             sed -i '2s/.*/gtk-theme-name=Cutefish-light/g' ~/.config/gtk-3.0/settings.ini
@@ -43,7 +39,7 @@ if require("theme.ui_vars").color_scheme == "light" then
 
 
             # rofi color
-            sed -i '17s/.*/    background:                     #FFF4FE66;/g' ~/.config/awesome/misc/rofi/theme.rasi
+            sed -i '17s/.*/    background:                     #FFF4FEBF;/g' ~/.config/awesome/misc/rofi/theme.rasi
             sed -i '19s/.*/    background-bar:                 #10101215;/g' ~/.config/awesome/misc/rofi/theme.rasi
             sed -i '20s/.*/    foreground:                     #101012EE;/g' ~/.config/awesome/misc/rofi/theme.rasi
 
@@ -59,18 +55,13 @@ if require("theme.ui_vars").color_scheme == "light" then
                 require("layout.ding.extra.short")("", "Dark mode disabled")
             end)
         end
-        end)
 else
-    awful.spawn.easy_async_with_shell("cat " .. state_file, function (stdout)
 
-        if string.gsub(stdout, '^%s*(.-)%s*$', '%1') == "dark" then
+        if output == "dark" then
             return
         else
+            readwrite.write("theme_state", "dark")
             awful.spawn.easy_async_with_shell([[
-
-
-            # first write changes to state file
-            echo "dark\n" > ]] .. state_file .. [[
 
             # gtk theme / icon theme
             sed -i '2s/.*/gtk-theme-name=Awesthetic-dark/g' ~/.config/gtk-3.0/settings.ini
@@ -81,7 +72,7 @@ else
             sed -i '3s/.*/- ~\/.config\/alacritty\/colors-material.yml/g' ~/.config/alacritty/ncmpcpp.yml
             
             # rofi color
-            sed -i '17s/.*/    background:                     #10101266;/g' ~/.config/awesome/misc/rofi/theme.rasi
+            sed -i '17s/.*/    background:                     #101012BF;/g' ~/.config/awesome/misc/rofi/theme.rasi
             sed -i '19s/.*/    background-bar:                 #f2f2f215;/g' ~/.config/awesome/misc/rofi/theme.rasi
             sed -i '20s/.*/    foreground:                     #f2f2f2EE;/g' ~/.config/awesome/misc/rofi/theme.rasi
 
@@ -97,5 +88,4 @@ else
                 require("layout.ding.extra.short")("", "Dark mode enabled")
             end)
         end
-    end)
 end

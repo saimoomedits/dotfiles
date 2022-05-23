@@ -14,7 +14,7 @@ return {
 
     -- images
     bell = directory .. "bell.png",
-    profile = directory .. "profile.png",
+    profile = directory .. "profile.jpg",
     music_icon = directory .. "music.png",
     album_art = directory .. "album-art.png",
     awesome = directory .. "awesome.png",

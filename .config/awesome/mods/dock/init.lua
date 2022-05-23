@@ -34,5 +34,12 @@ local timeout = beautiful.awesome_dock_timeout or 1
 if beautiful.awesome_dock_disabled == true then
     return
 else
-    dock(screen.primary, pinned_apps, dock_size, offset, modules_spacing, active_color, inactive_color, minimized_color, background_color, hover_color, icon_handler, timeout)
+
+    awful.screen.connect_for_each_screen(function(s)
+        for s in screen do
+            -- require("naughty").notify({title = tostring(s.index)})
+            dock(s, pinned_apps, dock_size, offset, modules_spacing, active_color, inactive_color, minimized_color, background_color, hover_color, icon_handler, timeout)
+        end
+
+    end)
 end

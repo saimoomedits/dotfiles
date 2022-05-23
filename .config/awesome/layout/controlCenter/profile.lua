@@ -23,7 +23,7 @@ local profile_image = wibox.widget {
         widget = wibox.widget.imagebox
     },
     widget = wibox.container.background,
-    border_width = dpi(2),
+    border_width = dpi(1),
     forced_width = dpi(75),
     forced_height = dpi(75),
     shape = gears.shape.circle,

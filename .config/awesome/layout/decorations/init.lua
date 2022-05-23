@@ -96,7 +96,7 @@ client.connect_signal("request::titlebars", function(c)
 
 
     -- the titlebar
-    awful.titlebar(c, { position = "top", size = dpi(42), font = beautiful.font_var .. "12",
+    awful.titlebar(c, { position = "top", size = dpi(46), font = beautiful.font_var .. "12",
                         fg = beautiful.fg_color .. "99", bg = beautiful.bg_2 }): setup {
 
       layout = wibox.layout.align.horizontal,
@@ -124,7 +124,7 @@ client.connect_signal("request::titlebars", function(c)
                 layout = wibox.layout.align.vertical,
                 expand = "none"
           },
-          margins = {left = dpi(20)},
+          margins = {left = dpi(24)},
           widget = wibox.container.margin
         },
         widget = wibox.container.background,

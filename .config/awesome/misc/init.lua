@@ -25,7 +25,7 @@ end
 
 
 local applications = {
-    "picom --experimental-backends --config $HOME/.config/awesome/misc/picom/panthom.conf &",
+    "picom --config $HOME/.config/awesome/misc/picom/panthom.conf &",
 }
 
 for _, prc in ipairs(applications) do

@@ -22,14 +22,10 @@ user_likes      = {
     music       = "alacritty --class 'music' --config-file " .. home_var .. "/.config/alacritty/ncmpcpp.yml -e ncmpcpp ",
     files       = "thunar",
 
-    -- weather info
-    weather_key     = "",
-    city_id         = "",
-    weather_unit    = "metric",
 
     -- your profile
-    username = os.getenv("USER") or "user",
-    userdesc = "@computer"
+    username = os.getenv("USER"):gsub("^%l", string.upper),
+    userdesc = "@AwesomeWM"
 }
 
 

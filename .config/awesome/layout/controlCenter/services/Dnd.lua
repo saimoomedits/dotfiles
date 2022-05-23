@@ -10,6 +10,7 @@ local gears = require("gears")
 local dpi = beautiful.xresources.apply_dpi
 local helpers = require("helpers")
 local wibox = require("wibox")
+local readwrite = require("misc.scripts.read_writer")
 local rubato = require("mods.rubato")
 
 
@@ -45,8 +46,7 @@ local circle_animate = wibox.widget{
 	widget = wibox.container.background,
 	shape = helpers.rrect(beautiful.rounded),
 	bg = beautiful.accent,
-	forced_width = 0,
-	forced_height = 0,
+	forced_width = 110,
 }
 
 -- mix those
@@ -84,18 +84,6 @@ local alright = wibox.widget{
 
 
 
-  -- button press animation
-  local animation_button = rubato.timed{
-      pos = 0,
-      rate = 60,
-      intro = 0.02,
-      duration = 0.14,
-      awestore_compat = true,
-      subscribed = function(pos)
-		circle_animate.forced_width = pos
-		circle_animate.forced_height = pos
-      end
-  }
   local animation_button_opacity = rubato.timed{
       pos = 0,
       rate = 60,
@@ -115,13 +103,11 @@ local alright = wibox.widget{
       if _G.awesome_dnd_state then
           icon.markup = helpers.colorize_text(service_icon, beautiful.bg_color)
           name.markup = helpers.colorize_text(service_name, beautiful.bg_color)
-          animation_button:set(alright.forced_width)
           animation_button_opacity:set(1)
           require("layout.ding.extra.short")("", "Notifs disabled")
       else
           icon.markup = helpers.colorize_text(service_icon, beautiful.fg_color)
           name.markup = helpers.colorize_text(service_name, beautiful.fg_color)
-          animation_button:set(0)
           animation_button_opacity:set(0)
           require("layout.ding.extra.short")("", "Notifs enabled")
       end
@@ -129,26 +115,28 @@ local alright = wibox.widget{
   end
 
 
+
   -- reload old state
-  awful.spawn.easy_async_with_shell("cat $HOME/.config/awesome/misc/.information/dnd_state", function (stdout)
-        local output = string.lower(string.gsub(stdout, '^%s*(.-)%s*$', '%1'))
+  --~~~~~~~~~~~~~~~~~
 
-        local boolconverter={
-            ["true"]  =   true,
-            ["false"] =   false
-        }
+    local output = readwrite.readall("dnd_state")
 
-        awesome_dnd_state = boolconverter[output]
-        update_things()
+    local boolconverter={
+        ["true"]  =   true,
+        ["false"] =   false
+    }
+
+    awesome_dnd_state = boolconverter[output]
+    update_things()
+    --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-  end)
 
 
   alright:buttons(gears.table.join(
               awful.button( {}, 1, function () 
                   awesome_dnd_state = not awesome_dnd_state
-                  awful.spawn.with_shell("echo \"" .. tostring(_G.awesome_dnd_state) .. "\" > $HOME/.config/awesome/misc/.information/dnd_state", false)
+                  readwrite.write("dnd_state", tostring(_G.awesome_dnd_state))
                   update_things()
               end)
       )

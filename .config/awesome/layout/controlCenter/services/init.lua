@@ -1,6 +1,7 @@
 -- services buttons
 -- ~~~~~~~~~~~~~~~~
--- each button has a expand animation when activated
+-- each button has a fade animation when activated
+
 
 
 -- requirements

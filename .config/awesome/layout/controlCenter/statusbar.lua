@@ -86,18 +86,17 @@ local battery = wibox.widget{
 }
 
 
-awesome.connect_signal("signal::battery", function(value) 
+awesome.connect_signal("signal::battery", function(value, state)
     battery_progress.value = value
     bat_txt.markup = value .. "%"
-end)
 
-awesome.connect_signal("signal::charger", function(state)
-    if state then
+    if state == 1 then
         bat_icon.visible = true
     else
         bat_icon.visible = false
     end
 end)
+
 ---------------------------------------------------------- EOF Battery
 
 
@@ -147,7 +146,11 @@ extras:buttons{gears.table.join(
 
 return wibox.widget{
     {
-        clock,
+        {
+            clock,
+            layout = wibox.layout.fixed.horizontal,
+            spacing = dpi(15)
+        },
         extras,
         battery,
         layout = wibox.layout.align.horizontal

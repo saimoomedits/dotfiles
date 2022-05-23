@@ -17,7 +17,7 @@ local helpers       = require("helpers")
 -- ~~~~~~~~~
 
 -- button size
-local button_size = dpi(120)
+local button_size = dpi(110)
 
 -- icons
 local icons = {
@@ -74,7 +74,9 @@ local cr_btn = function (text_cc, icon_cc, color, command)
         forced_height   = button_size,
         forced_width    = button_size,
         shape           = gears.shape.circle,
-        bg              = beautiful.ext_light_bg_2 or beautiful.bg_2,
+		border_color	= "#00000000",
+		border_width	= dpi(3),
+        bg              = beautiful.bg_2,
         widget          = wibox.container.background
     }
 
@@ -82,22 +84,24 @@ local cr_btn = function (text_cc, icon_cc, color, command)
 		button,
 		text,
 		layout = wibox.layout.fixed.vertical,
-		spacing = dpi(8)
+		spacing = dpi(12)
 	}
 
     button:buttons(gears.table.join( awful.button({}, 1, function() command() end)))
 
 
     button:connect_signal("mouse::enter", function()
-        i.markup = helpers.colorize_text(icon_cc, beautiful.black_color)
-        button.bg = beautiful.red_2
+        i.markup = helpers.colorize_text(icon_cc, beautiful.red_2)
+        text.markup = helpers.colorize_text(text_cc, beautiful.red_2)
+        button.border_color = beautiful.red_2
     end)
     button:connect_signal("mouse::leave", function()
-        i.markup = helpers.colorize_text(icon_cc, beautiful.ext_light_fg or beautiful.fg_color)
-        button.bg = beautiful.ext_light_bg_2 or beautiful.bg_2
+        i.markup = helpers.colorize_text(icon_cc, beautiful.fg_color)
+        text.markup = helpers.colorize_text(text_cc, beautiful.fg_color)
+        button.border_color = beautiful.bg_2
     end)
 
-    helpers.add_hover_cursor(button, "hand1")
+    helpers.add_hover_cursor(button, "hand2")
 
     return mainbox_button
     
@@ -137,6 +141,12 @@ local exit_screen_f = function(s)
 				{}, 3, function()
 					awesome.emit_signal('module::exit_screen:hide')
 				end
+			),
+
+			awful.button(
+				{}, 1, function()
+					awesome.emit_signal('module::exit_screen:hide')
+				end
 			)
 		)
 	)
@@ -148,6 +158,7 @@ local exit_screen_f = function(s)
     s.exit_screen:setup {
 		nil,
 		{
+			nil,
 			nil,
 			{
 				{
@@ -164,15 +175,15 @@ local exit_screen_f = function(s)
 							spacing = dpi(45),
 							layout = wibox.layout.fixed.horizontal
 						},
-						layout = wibox.layout.fixed.vertical,
+						layout = wibox.layout.fixed.horizontal,
 						spacing = dpi(45)
 					},
 					widget = wibox.container.margin,
 					margins = dpi(35)
 				},
 				widget = wibox.container.background,
-				bg = beautiful.ext_light_bg or beautiful.bg_color,
-				shape = helpers.rrect(beautiful.rounded)
+				bg =beautiful.bg_color,
+				shape = helpers.prrect(beautiful.rounded, true, true, false, false)
 			},
 			layout = wibox.layout.align.vertical,
 			expand = "none"

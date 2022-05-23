@@ -12,7 +12,7 @@ local rubato = require("mods.rubato")
 local dpi = beautiful.xresources.apply_dpi
 
 
-return function (widget, normal_bg, press_color, margins, border_width, border_color)
+return function (widget, normal_bg, press_color, margins, border_width, border_color, shape_spe)
 
 
     -- containers
@@ -33,7 +33,7 @@ return function (widget, normal_bg, press_color, margins, border_width, border_c
             layout = wibox.layout.stack
         },
       bg = (normal_bg) or beautiful.bg_3,
-      shape = gears.shape.rounded_bar,
+      shape = shape_spe or gears.shape.rounded_bar,
       border_width = border_width or dpi(0),
       border_color = border_color or press_color or "#00000000",
       widget = wibox.container.background,
