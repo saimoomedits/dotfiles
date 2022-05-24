@@ -38,13 +38,11 @@
   <tr>
     <td align="center">
       <sup>
-         <sub>
             <samp>
                   If you like this setup, please drop  a star.<br>
                   I really appreciate it.
                   Thanks!
             </samp>
-         </sub>
       </sup>
     </td>
   </tr>
