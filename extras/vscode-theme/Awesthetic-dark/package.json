@@ -1,0 +1,21 @@
+{
+    "name": "colorscheme",
+    "displayName": "Aesthetic-dark",
+    "description": "",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.67.0"
+    },
+    "categories": [
+        "Themes"
+    ],
+    "contributes": {
+        "themes": [
+            {
+                "label": "Awesthetic",
+                "uiTheme": "vs-dark",
+                "path": "./themes/Awesthetic-color-theme.json"
+            }
+        ]
+    }
+}

@@ -167,6 +167,14 @@
 
 <br>
 
+7. Wip vscode theme
+
+    <br>
+
+    <img src="assets/vscode.png" width=500>
+
+<br>
+
 **and much more, obviously lol**
 
 
@@ -184,7 +192,7 @@
     firefox lxappearance gucharmap thunar alacritty neovim polkit-gnome \
     xdotool xclip scrot brightnessctl alsa-utils pulseaudio jq acpi rofi \
     inotify-tools zsh materia-gtk-theme mpdris2 bluez bluez-utils bluez-plugins \
-    playerctl redshift cutefish-cursor-themes-git cutefish-icons upower xorg xorg-init
+    playerctl redshift cutefish-cursor-themes-git cutefish-icons upower xorg xorg-init tar
     ```
 
 2. Make backup of directories that will be changed (optional)
@@ -244,6 +252,14 @@
 <br>
 
 **Enjoy :smile:**
+
+<br>
+
+* **Vscode theme** :cat:
+    * copy `extras/vscode-theme/Awesthetic-dark` to `~/.vscode/extentions/`.
+    * now, in VScode, open the Color Theme picker with `File > Preferences > Color Theme`.
+    * select `Awesthetic` theme.
+
 
 <br>
 
