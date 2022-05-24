@@ -1,36 +1,87 @@
-<br>
+<h1 align="center">
     <div align="center">
-        <img src="assets/header.png" width=400>
+        <img src="assets/header.png" width=140>
     </div>
-<br>
-<br>
+</h1>
 
-<p align="center">
-    hello there, welcome to my Awesomewm dotfiles!<br>
-    this an <a href="https://awesomewm.org">awesomewm</a> rice/setup that I use as a daily driver.<br>
-    <br>
-    🫂 you can take anything you like from this repository. but.. please credit me too! 😄 <br>
-    <br>
-    :star: if you liked it, please star this repo, it really helps me ⭐
-</p>
 
-<br>
-
-<p align="center">
-    <a href="https://github.com/saimoomedits/dotfiles#info-">Info</a> - 
-    <a href="https://github.com/saimoomedits/dotfiles#shots-gallery-">Gallery</a> - 
-    <a href="https://github.com/saimoomedits/dotfiles#features-">Features</a> - 
-    <a href="https://github.com/saimoomedits/dotfiles#setup-eyes">Setup</a> -
-    <a href="https://github.com/saimoomedits/dotfiles#Keybinds">Keys</a> - 
-    <a href="https://github.com/saimoomedits/dotfiles#Modules">Mods</a>
-</p>
+<div align="center">
+    The <b>Arch Linux & AwesomeWM</b> dotfiles!<br>
+</div>
 
 <br>
 
 
-# info 📖
+<div align="center">
+    <a href="#welcome">Hello</a>
+    ·
+    <a href="#features">Features</a>
+    ·
+    <a href="#setup">Setup</a>
+    ·
+    <a href="#keybinds">Keys</a>
+    ·
+    <a href="#modules">Mods</a>
+</div>
 
-**setup details**
+<br>
+
+---
+
+<br>
+
+## <samp>Welcome</samp> <img src="https://img.shields.io/github/stars/saimoomedits/dotfiles?color=%238AB4F8&labelColor=101012&label=stars&style=for-the-badge" width=100 align="right" />
+
+<br>
+
+<table align="right">
+  <tr>
+    <td align="center">
+      <sup>
+         <sub>
+            <samp>
+                  If you like this setup, please drop  a star.<br>
+                  I really appreciate it.
+                  Thanks!
+            </samp>
+         </sub>
+      </sup>
+    </td>
+  </tr>
+
+
+
+<table>
+<tr>
+<td>
+
+Hi there, thanks for dropping by :heart:, 
+
+these are my Arch Linux and AwesomeWM configuration files.
+
+You can use this repositry as a **rice** reference, or
+
+Use them as a daily driver.
+
+
+</td>
+</tr>
+</table>
+
+<br />
+<br />
+
+<h3><b>Setup Info:<b>
+<img src="https://img.shields.io/badge/Arch_Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white" width=110 align="right" />
+<img src="https://camo.githubusercontent.com/405a9e7cb76ab04fbf7156144cfa5f893e4679c3e49e4abfc265b6680c855ad9/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f417765736f6d65776d2d3663356438372e7376673f267374796c653d666f722d7468652d6261646765266c6f676f3d4c7561266c6f676f436f6c6f723d7768697465" width=120 align="right" />
+
+<br>
+<br>
+
+
+<img src="assets/preview.png" width=410 align="right">
+
+
 
 | task              | name                   |
 | ----------------- | ---------------------- |
@@ -43,8 +94,12 @@
 | compositor        | [picom-git](https://github.com/yshui/picom)                                  | 
 
 <br>
+<br>
 
-**more info** 🕵️
+
+
+<details close>
+    <summary><strong><b>more info</b></strong></summary>
 
 
 <br>
@@ -88,30 +143,38 @@
         - this will disable rounded windows with awesomeWM
 <br>
 
-# shots gallery 📸
-
-1. <details open>
-     <summary><strong>dark themed</strong></summary>
-
-     <br>
-     <img src="assets/shots/dark.png" width=500>
+</details>
 
 
 <br>
 
+---
 
-2. <details close>
-     <summary><strong>light themed</strong></summary>
+<br>
 
-     <br>
 
-    <img src="assets/shots/light.png" width=500>
+## features
 
- </details>
+<br>
 
-# features 💡
+* Control Center
+* Vertical Bar
+* Brightness / Volume OSD
+* Lockscreen
+* Tasklist Dock
+* Light/Dark gtk and zathura theme
+* minimal exitscreen
+* control state saver
+* and many more!
 
-1. minimalstic vertical bar
+<br>
+
+<details close>
+    <summary><strong><b>Show previews</b></strong></summary>
+
+<br>
+
+* minimalstic vertical bar
 
     <br>
 
@@ -119,7 +182,7 @@
 
 <br>
 
-2. expandable control center
+* expandable control center
 
     <br>
 
@@ -127,7 +190,7 @@
 
 <br>
 
-3. Minimal notifcations with text actions
+* Minimal notifcations with text actions
 
     <br>
 
@@ -135,7 +198,7 @@
 
 <br>
 
-4. custom ncmpcpp UI
+* custom ncmpcpp UI
 
     <br>
 
@@ -143,7 +206,7 @@
 
 <br>
 
-5. exit screen
+* exit screen
 
     <br>
 
@@ -151,7 +214,7 @@
 
 <br>
 
-6. lockscreen
+* lockscreen
 
     <br>
 
@@ -159,7 +222,7 @@
 
 <br>
 
-6. Minimal tasklist dock with pinned apps
+* Minimal tasklist dock with pinned apps
 
     <br>
 
@@ -167,7 +230,7 @@
 
 <br>
 
-7. Wip vscode theme
+* Wip vscode theme
 
     <br>
 
@@ -175,16 +238,27 @@
 
 <br>
 
-**and much more, obviously lol**
+</details>
 
+<br>
 
-# setup :eyes:
+---
 
-**NOTE: The following instructions are for Arch/Arch-based system**
+<br>
+
+## setup
+
+<br>
 
 
 <details open>
 <summary><strong>Instructions</strong></summary>
+
+<br>
+
+**⚠️ NOTE: The following instructions are for Arch/Arch-based system ⚠️**
+
+<br>
 
 1. Install packages / dependencies
     ```sh
@@ -255,7 +329,7 @@
 
 <br>
 
-*   <details open>
+*   <details close>
     <summary><strong>Vscode theme</strong></summary>
 
     - copy `extras/vscode-theme/Awesthetic` to `~/.vscode/extentions/`.
@@ -265,25 +339,31 @@
     </details>
 
 
-<br>
-
-
-
 
 </details>    
 
 <br>
 
+---
 
-# Keybinds
+<br>
+
+## Keybinds
+
+<br>
 
 * press `super(windows key) + f1` :smile:
 * the dock can be opened by hovering bottom edge of primary screen
 * the control-Center can either be opened by keybinding `super(windows key) + a` or <br>
     by click on the wifi/battery icon in bar
 
+<br>
 
-# Modules
+---
+
+<br>
+
+## Modules
 
 <br>
 
@@ -367,7 +447,11 @@
     
 <br>
 
-# Todos
+---
+
+<br>
+
+## Todos
 
 <br>
 
@@ -376,6 +460,7 @@
 - [x] Improve Notifications
 - [ ] Polish Awesthetic-gtk-theme
    
+<br>
 <br>
 
 # Credits
@@ -401,6 +486,6 @@
 * contributers
 
     <a href="https://github.com/saimoomedits/dotfiles/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=saimoomedits/dotfiles" width=160/>
+    <img src="https://contrib.rocks/image?repo=saimoomedits/dotfiles" width=140/>
     </a>
 
