@@ -255,10 +255,14 @@
 
 <br>
 
-* **Vscode theme** :cat:
-    * copy `extras/vscode-theme/Awesthetic-dark` to `~/.vscode/extentions/`.
-    * now, in VScode, open the Color Theme picker with `File > Preferences > Color Theme`.
-    * select `Awesthetic` theme.
+*   <details open>
+    <summary><strong>Vscode theme</strong></summary>
+
+    - copy `extras/vscode-theme/Awesthetic` to `~/.vscode/extentions/`.
+    - now, in VScode, open the Color Theme picker with `File > Preferences > Color Theme`.
+    - select `Awesthetic` theme.
+
+    </details>
 
 
 <br>
@@ -295,7 +299,11 @@
     * Created by [xinhaoyuan](https://github.com/xinhaoyaun)
     * Manual layout with interactive editor
 
-4. **Awesome-Dock**
+4. **[Upower battery](https://github.com/Aire-One/awesome-battery_widget.git)**
+    * Created by [Aire-One](https://github.com/Aire-One)
+    * A UPowerGlib based battery widget for the AwesomeWM.
+
+5. **Awesome-Dock**
     * Created by [me](https://github.com/saimoomedits)....
     * A tasklist dock with pinned apps
     * you can use it in your config (hopefully)
