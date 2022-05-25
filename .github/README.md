@@ -250,7 +250,7 @@ Or use them as a daily driver.
     yay -S picom-git awesome-git acpid git mpd ncmpcpp wmctrl \
     firefox lxappearance gucharmap thunar alacritty neovim polkit-gnome \
     xdotool xclip scrot brightnessctl alsa-utils pulseaudio jq acpi rofi \
-    inotify-tools zsh materia-gtk-theme mpdris2 bluez bluez-utils bluez-plugins \
+    inotify-tools zsh mpdris2 bluez bluez-utils bluez-plugins acpi acpi_call \
     playerctl redshift cutefish-cursor-themes-git cutefish-icons upower xorg xorg-init tar
     ```
 
@@ -337,7 +337,7 @@ Or use them as a daily driver.
 
 <br>
 
-* press `super(windows key) + f1` :smile:
+* you can get a list of keybindings [here in the wiki](https://github.com/saimoomedits/dotfiles/wiki/Keybinds).
 * the dock can be opened by hovering bottom edge of primary screen
 * the control-Center can either be opened by keybinding `super(windows key) + a` or <br>
     by click on the `control center` icon in bar
