@@ -446,9 +446,12 @@ Use them as a daily driver.
 - [ ] Polish Awesthetic-gtk-theme
    
 <br>
+
+---
+
 <br>
 
-# Credits
+## <samp><b>Credits</b></samp>
 
 * special thanks to :heart:
     * [moonlight-coffee](https://github.com/Moonlight-Coffee)
