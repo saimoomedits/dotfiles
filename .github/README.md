@@ -13,8 +13,6 @@
 
 
 <div align="center">
-    <a href="#welcome">Hello</a>
-    ·
     <a href="#features">Features</a>
     ·
     <a href="#setup">Setup</a>
@@ -26,11 +24,9 @@
 
 <br>
 
----
-
 <br>
 
-## <samp>Welcome</samp> <img src="https://img.shields.io/github/stars/saimoomedits/dotfiles?color=%238AB4F8&labelColor=101012&label=stars&style=for-the-badge" width=100 align="right" />
+## <samp><b>Welcome</b></samp> <img src="https://img.shields.io/github/stars/saimoomedits/dotfiles?color=%238AB4F8&labelColor=101012&label=stars&style=for-the-badge" width=100 align="right" />
 
 <br>
 
@@ -55,18 +51,16 @@ Hi there, thanks for dropping by :heart:,
 
 these are my Arch Linux and AwesomeWM configuration files.
 
-You can use this repositry as a **rice** reference, or
+You can use this repositry as a **[rice](https://thatnixguy.github.io/posts/ricing/)** reference, or
 
 Use them as a daily driver.
 
 </table>
 
 <br />
-<br />
 
 ### <samp>Setup Info:</samp><img src="https://img.shields.io/badge/Arch_Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white" width=110 align="right" /><img src="https://camo.githubusercontent.com/405a9e7cb76ab04fbf7156144cfa5f893e4679c3e49e4abfc265b6680c855ad9/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f417765736f6d65776d2d3663356438372e7376673f267374796c653d666f722d7468652d6261646765266c6f676f3d4c7561266c6f676f436f6c6f723d7768697465" width=120 align="right" />
 
-<br>
 <br>
 
 
@@ -144,7 +138,7 @@ Use them as a daily driver.
 <br>
 
 
-## features
+## <samp><b>features</b></samp>
 
 <br>
 
@@ -161,7 +155,7 @@ Use them as a daily driver.
 <br>
 
 <details close>
-    <summary><strong><b>Show previews</b></strong></summary>
+    <summary><samp>Show previews</samp></summary>
 
 <br>
 
@@ -237,13 +231,13 @@ Use them as a daily driver.
 
 <br>
 
-## setup
+## <samp><b>Setup</b></samp>
 
 <br>
 
 
 <details open>
-<summary><strong>Instructions</strong></summary>
+<summary><samp>Instructions</samp></summary>
 
 <br>
 
@@ -321,7 +315,7 @@ Use them as a daily driver.
 <br>
 
 *   <details close>
-    <summary><strong>Vscode theme</strong></summary>
+    <summary><samp><b>Vscode theme</b></samp></summary>
 
     - copy `extras/vscode-theme/Awesthetic` to `~/.vscode/extentions/`.
     - now, in VScode, open the Color Theme picker with `File > Preferences > Color Theme`.
@@ -339,14 +333,14 @@ Use them as a daily driver.
 
 <br>
 
-## Keybinds
+## <samp><b>Keybinds</b></samp>
 
 <br>
 
 * press `super(windows key) + f1` :smile:
 * the dock can be opened by hovering bottom edge of primary screen
 * the control-Center can either be opened by keybinding `super(windows key) + a` or <br>
-    by click on the wifi/battery icon in bar
+    by click on the `control center` icon in bar
 
 <br>
 
@@ -354,7 +348,7 @@ Use them as a daily driver.
 
 <br>
 
-## Modules
+## <samp><b>Modules</b></samp>
 
 <br>
 
@@ -383,7 +377,7 @@ Use them as a daily driver.
     <br>
 
     <details close>
-    <summary><strong>More info</strong></summary>
+    <summary><samp>More info</samp></summary>
 
     <br>
 
@@ -442,7 +436,7 @@ Use them as a daily driver.
 
 <br>
 
-## Todos
+## <samp><b>Todos</b></samp>
 
 <br>
 
