@@ -1,0 +1,12 @@
+[submodule ".config/awesome/mods/rubato"]
+	path = .config/awesome/mods/rubato
+	url = https://github.com/andOrlando/rubato.git
+[submodule ".config/awesome/mods/bling"]
+	path = .config/awesome/mods/bling
+	url = https://github.com/BlingCorp/bling.git
+[submodule ".config/awesome/mods/layout-machi"]
+	path = .config/awesome/mods/layout-machi
+	url = https://github.com/xinhaoyuan/layout-machi.git
+[submodule ".config/awesome/mods/battery-widget"]
+	path = .config/awesome/mods/battery-widget
+	url = https://github.com/Aire-One/awesome-battery_widget.git
