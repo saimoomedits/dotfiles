@@ -20,6 +20,8 @@
     <a href="#keybinds">Keys</a>
     ·
     <a href="#modules">Mods</a>
+    ·
+    <a href="https://github.com/saimoomedits/dotfiles/wiki">Wiki</a>
 </div>
 
 <br>
