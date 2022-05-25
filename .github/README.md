@@ -268,7 +268,7 @@ Use them as a daily driver.
     ```sh
     cd
     clear
-    git clone https://github.com/saimoomedits/dotfiles
+    git clone --recurse-submodules https://github.com/saimoomedits/dotfiles.git
     cd dotfiles
     ```
 
