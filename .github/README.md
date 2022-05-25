@@ -47,22 +47,21 @@
 
 <table>
 
-Hi there, thanks for dropping by :heart:, 
+Hi there, thanks for dropping by 💙, 
 
 these are my Arch Linux and AwesomeWM configuration files.
 
-You can use this repositry as a **[rice](https://thatnixguy.github.io/posts/ricing/)** reference, or
+You can use this repository as a **[rice](https://thatnixguy.github.io/posts/ricing/)** reference.
 
-Use them as a daily driver.
+Or use them as a daily driver.
 
 </table>
 
-<br />
-
-### <samp>Setup Info:</samp><img src="https://img.shields.io/badge/Arch_Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white" width=110 align="right" /><img src="https://camo.githubusercontent.com/405a9e7cb76ab04fbf7156144cfa5f893e4679c3e49e4abfc265b6680c855ad9/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f417765736f6d65776d2d3663356438372e7376673f267374796c653d666f722d7468652d6261646765266c6f676f3d4c7561266c6f676f436f6c6f723d7768697465" width=120 align="right" />
-
 <br>
 
+### <samp>Setup Info</samp><img src="https://img.shields.io/badge/Arch_Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white" width=110 align="right" /><img src="https://camo.githubusercontent.com/405a9e7cb76ab04fbf7156144cfa5f893e4679c3e49e4abfc265b6680c855ad9/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f417765736f6d65776d2d3663356438372e7376673f267374796c653d666f722d7468652d6261646765266c6f676f3d4c7561266c6f676f436f6c6f723d7768697465" width=120 align="right" />
+
+<br>
 
 <img src="assets/preview.png" width=350 align="right">
 
@@ -70,21 +69,20 @@ Use them as a daily driver.
 
 | task              | name                   |
 | ----------------- | ---------------------- |
-| WM                | [awesome-git](https://github.com/awesomeWM/awesome)                                      |
+| wm                | [awesome-git](https://github.com/awesomeWM/awesome)                                      |
 | terminal          | [alacritty](https://github.com/alacritty/alacritty)                                      |
 | music player      | [mpd](https://www.musicpd.org/) & [ncmpcpp](https://github.com/ncmpcpp/ncmpcpp)          |
-| Light GTK theme   | [Cutefish-light](https://cutefish-ubuntu.github.io/)                            |
+| Light Gtk theme   | [Cutefish-light](https://cutefish-ubuntu.github.io/)                            |
 | Dark Gtk theme    | Awesthetic-gtk
 | bar               | [wibar](https://awesomewm.org/apidoc/popups_and_bars/awful.wibar.html)                   |
 | compositor        | [picom-git](https://github.com/yshui/picom)                                  | 
 
 <br>
-<br>
 
 
 
 <details close>
-    <summary><strong><b>more info</b></strong></summary>
+    <summary><samp><b>more info</b></samp></summary>
 
 
 <br>
@@ -148,9 +146,11 @@ Use them as a daily driver.
 * Lockscreen
 * Tasklist Dock
 * Light/Dark gtk and zathura theme
-* minimal exitscreen
-* control state saver
-* and many more!
+* Minimal exitscreen
+* Control state saver
+* Better Ncmpcpp ui
+* Battery notifier
+* And many more!
 
 <br>
 
