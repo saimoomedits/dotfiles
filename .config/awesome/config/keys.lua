@@ -58,7 +58,7 @@ awful.keyboard.append_global_keybindings({
     { description = "open rofi", group = "launcher" }),
 
 	awful.key({ modkey }, "r", function()
-        awful.spawn(home_var .. "/.scripts/awesome/picker", false)
+        awful.spawn(home_var .. "/.scripts/picker", false)
 	end, 
     { description = "exec color picker", group = "launcher" }),
 
@@ -94,7 +94,7 @@ awful.keyboard.append_global_keybindings({
 
 
     awful.key({}, "Print", function() 
-        awful.util.spawn(home_var .. "/.scripts/awesome/ss area", false)
+        awful.util.spawn(home_var .. "/.scripts/ss area", false)
     end,
     {description = "screenshot", group = "control"}),
 
@@ -120,7 +120,7 @@ awful.keyboard.append_global_keybindings({
     awful.key({modkey }, "F2", function() 
         misc.musicMenu()
     end,
-    {description = "screenshot", group = "control"}),
+    {description = "music menu", group = "control"}),
 
 })
 
