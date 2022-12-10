@@ -1,5 +1,6 @@
 -- extra configs
--- ~~~~~~~~~~~~~
+----------------
+-- Copyleft © 2022 Saimoomedits
 
 
 -- requirements
@@ -250,6 +251,34 @@ local function enable_rounding()
 end
 
 enable_rounding()
+
+
+-- scratchpad
+_G.term_scratch_pad = bling.module.scratchpad {
+    command = "alacritty --class spad",               -- How to spawn the scratchpad
+    rule = { instance = "spad" },                     -- The rule that the scratchpad will be searched by
+    sticky = true,                                    -- Whether the scratchpad should be sticky
+    autoclose = true,                                 -- Whether it should hide itself when losing focus
+    floating = true,                                  -- Whether it should be floating (MUST BE TRUE FOR ANIMATIONS)
+    geometry = {x=360, y=90, height=900, width=1200}, -- The geometry in a floating state
+    reapply = true,                                   -- Whether all those properties should be reapplied on every new opening of the scratchpad (MUST BE TRUE FOR ANIMATIONS)
+    dont_focus_before_close  = false,                 -- When set to true, the scratchpad will be closed by the toggle function regardless of whether its focused or not. When set to false, the toggle function will first bring the scratchpad into focus and only close it on a second call
+}
+
+bling.widget.task_preview.enable {
+    x = 20,                    -- The x-coord of the popup
+    y = 20,                    -- The y-coord of the popup
+    height = 200,              -- The height of the popup
+    width = 200,               -- The width of the popup
+    placement_fn = function(c) -- Place the widget using awful.placement (this overrides x & y)
+        awful.placement.bottom_left(c, {
+            margins = {
+                left = dpi(300),
+                bottom = dpi(65)
+            }
+        })
+    end
+}
 
 
 

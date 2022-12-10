@@ -1,4 +1,4 @@
--- volume signal
+-- volume signal - only works with pipewire
 ----------------
 
 -- ("signal::volume"), function(percentage(int), muted(bool))

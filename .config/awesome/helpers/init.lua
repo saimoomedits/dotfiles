@@ -529,7 +529,8 @@ end
 
 
 -- prompt
-local prompt_font = "Roboto 11"
+local images = require("images") or {}
+local prompt_font = "Iosevka 11"
 function helpers.prompt(action, textbox, prompt, callback)
     if action == "run" then
         awful.prompt.run {
@@ -537,7 +538,43 @@ function helpers.prompt(action, textbox, prompt, callback)
             textbox      = textbox,
             font = prompt_font,
             done_callback = callback,
-            exe_callback = awful.spawn,
+            exe_callback = function(input)
+                awful.spawn.easy_async_with_shell(input, function (stdout, stderr, _, exitcode)
+                    if exitcode ~= 0 then
+                        naughty.notify { 
+                            title = "run failed", 
+                            image = gears.color.recolor_image(images.searcher, beautiful.red_color),
+                            app_name = "Runner",
+                            text = stderr, 
+                            icon = nil, 
+                            urgency = "low", 
+                            timeout = 2 
+                        }
+                    else
+                        if stdout == "" then
+                            naughty.notify { 
+                                title = "run: " .. "<i>" .. input .. "</i>", 
+                                image = gears.color.recolor_image(images.searcher, beautiful.green_color),
+                                app_name = "Runner",
+                                text = "No output", 
+                                icon = nil, 
+                                urgency = "low", 
+                                timeout = 2 
+                            }
+                        else
+                            naughty.notify { 
+                                title = "run: " .. "<i>" .. input .. "</i>", 
+                                app_name = "Runner",
+                                image = gears.color.recolor_image(images.searcher, beautiful.fg_color),
+                                text = " -> '" .. string.gsub(stdout, '^%s*(.-)%s*$', '%1') .. "'", 
+                                icon = nil, 
+                                urgency = "low", 
+                                timeout = 2 
+                            }
+                        end
+                    end
+                end)
+            end,
             completion_callback = awful.completion.shell,
             history_path = awful.util.get_cache_dir() .. "/history"
         }
@@ -551,7 +588,7 @@ function helpers.prompt(action, textbox, prompt, callback)
             exe_callback = function(input)
                 if not input or #input == 0 then return end
                 awful.spawn.with_shell("noglob ".."xdg-open https://www.google.com/search?q=".."'"..input.."'")
-                naughty.notify { title = "Searching the web for", text = input, icon = nil, urgency = "low" }
+                naughty.notify { title = "Searching the web for", text = input, icon = nil, urgency = "low", timeout = 2 }
             end
         }
     end

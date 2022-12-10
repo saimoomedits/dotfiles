@@ -1,8 +1,9 @@
 -- ding - notification
--- ~~~~~~~~~~~~~~~~~~~
+----------------------
+-- Copyleft © 2022 Saimoomedits
 
 -- requirements
--- ~~~~~~~~~~~~
+---------------
 local naughty = require("naughty")
 local beautiful = require("beautiful")
 local wibox = require("wibox")
@@ -12,19 +13,20 @@ local helpers = require("helpers")
 local ruled = require("ruled")
 local menubar = require("menubar")
 local gears = require("gears")
-
+local kasper_animation = require("mods.animation")
 
 
 -- extras
--- ~~~~~~
+---------
 
 require("layout.ding.extra.music")
 require("layout.ding.extra.popup")
+require("layout.ding.extra.battery")
 
 
 
 -- configuration
--- ~~~~~~~~~~~~~
+----------------
 
 -- icon
 naughty.connect_signal("request::icon", function(n, context, hints)
@@ -36,45 +38,36 @@ naughty.connect_signal("request::icon", function(n, context, hints)
 
 end)
 
+local function get_oldest_notification()
+	for _, notification in ipairs(naughty.active) do
+		if notification and notification.timeout > 0 then
+			return notification
+		end
+	end
+
+	--- Fallback to first one.
+	return naughty.active[1]
+end
+
+
 -- naughty config
 naughty.config.defaults.ontop       = true
 naughty.config.defaults.screen      = awful.screen.focused()
 naughty.config.defaults.timeout     = 3
 naughty.config.defaults.title       = "Ding!"
-naughty.config.defaults.position    = "top_right"
+naughty.config.defaults.position    = "bottom_right"
+
+awesome.connect_signal("control_center::visible", function(val) 
+    if val then
+        naughty.config.defaults.position    = "top_right"
+    else
+        naughty.config.defaults.position    = "bottom_right"
+    end
+end)
 
 -- Timeouts
 naughty.config.presets.low.timeout      = 3
 naughty.config.presets.critical.timeout = 0
-
--- naughty normal preset
-naughty.config.presets.normal = {
-    font    = beautiful.font,
-    fg      = beautiful.fg_color,
-    bg      = beautiful.bg_color
-}
-
--- naughty low preset
-naughty.config.presets.low = {
-    font = beautiful.font_var .. "10",
-    fg = beautiful.fg_color,
-    bg = beautiful.bg_color
-}
-
--- naughty critical preset
-naughty.config.presets.critical = {
-    font = beautiful.font_var .. "12",
-    fg = beautiful.red_color,
-    bg = beautiful.red_color,
-    timeout = 0
-}
-
-
--- apply preset
-naughty.config.presets.ok   =   naughty.config.presets.normal
-naughty.config.presets.info =   naughty.config.presets.normal
-naughty.config.presets.warn =   naughty.config.presets.critical
-
 
 -- ruled notification
 ruled.notification.connect_signal("request::rules", function()
@@ -87,7 +80,7 @@ end)
 
 
 -- connect to each display
--- ~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------
 naughty.connect_signal("request::display", function(n)
 
 
@@ -107,7 +100,7 @@ naughty.connect_signal("request::display", function(n)
         },
         bg = beautiful.bg_2,
         forced_height = dpi(30),
-        shape = helpers.rrect(dpi(5)),
+        shape = helpers.rrect(beautiful.rounded - 4),
         widget = wibox.container.background
     }
 
@@ -124,19 +117,38 @@ naughty.connect_signal("request::display", function(n)
         widget = naughty.list.actions
     }
 
+
+
+    local filter_color = {
+    	type = "linear",
+    	from = { 0, 0 },
+    	to = { 0, 158},
+    	stops = { { 0, beautiful.bg_color .. "99" }, { 1, beautiful.bg_color } },
+    }
+
+    local image_filter = wibox.widget({
+    	{
+    		bg = filter_color,
+    		forced_height = dpi(150),
+    		forced_width = dpi(150),
+    		widget = wibox.container.background,
+    	},
+    	direction = "west",
+    	widget = wibox.container.rotate,
+    })
+
     -- image
     local image_n = wibox.widget {
     {
         image = n.icon,
         resize = true,
-        clip_shape = helpers.rrect(beautiful.rounded),
         halign = "center",
         valign = "center",
         widget = wibox.widget.imagebox,
     },
     strategy = "exact",
-    height = dpi(72),
-    width = dpi(72),
+    height = dpi(50),
+    width = dpi(50),
     widget = wibox.container.constraint,
     }
 
@@ -151,7 +163,7 @@ naughty.connect_signal("request::display", function(n)
                 valign      = "center",
                 widget      = wibox.widget.textbox
             },
-            forced_width    = dpi(200),
+            forced_width    = dpi(240),
             widget          = wibox.container.scroll.horizontal,
             step_function   = wibox.container.scroll.step_functions.waiting_nonlinear_back_and_forth,
             speed           = 50
@@ -171,7 +183,7 @@ naughty.connect_signal("request::display", function(n)
                 wrap        = "char",
                 widget      = wibox.widget.textbox
             },
-            forced_width    = dpi(200),
+            forced_width    = dpi(240),
             layout = wibox.layout.fixed.horizontal
         },
         margins     = {right = 15},
@@ -200,6 +212,17 @@ naughty.connect_signal("request::display", function(n)
         widget  = wibox.container.margin
     }
 
+    local close = wibox.widget {
+        markup      = helpers.colorize_text("", beautiful.red_color),
+        font        = beautiful.icon_var .. " 12",
+        align       = "ceneter",
+        valign      = "center",
+        widget      = wibox.widget.textbox
+    }
+
+    close:buttons(gears.table.join(
+    awful.button({}, 1, function() n:destroy(naughty.notification_closed_reason.dismissed_by_user) end)))
+
 
     -- extra info
     local notif_info = wibox.widget{
@@ -217,57 +240,126 @@ naughty.connect_signal("request::display", function(n)
     }
 
 
+
+	local timeout_bar = wibox.widget({
+		widget = wibox.widget.progressbar,
+		forced_height = dpi(3),
+        forced_width = dpi(1),
+		max_value = 100,
+		min_value = 0,
+		value = 0,
+		background_color = beautiful.bg_3,
+		color = beautiful.fg_color .. "4D",
+	})
+
     -- init
-    naughty.layout.box {
+    local widget = naughty.layout.box {
         notification = n,
         type    = "notification",
         bg      = beautiful.bg_color,
         shape   = helpers.rrect(beautiful.rounded),
         widget_template = {
             {
-                {
+
+                { -- top bit
+                    timeout_bar,
                     {
                         {
-                            notif_info,
                             {
-                                {
-                                    title_n,
-                                    message_n,
-                                    layout = wibox.layout.fixed.vertical,
-                                    spacing = dpi(3)
-                                },
-                                margins = {left = dpi(6)},
-                                widget = wibox.container.margin
+                                notif_info,
+                                nil,
+                                close,
+                                layout = wibox.layout.align.horizontal,
+                                expand = "none"
                             },
+                            margins = {left = dpi(15), right = dpi(15), top = dpi(10), bottom = dpi(10)},
+                            widget = wibox.container.margin
+                        },
+                        widget = wibox.container.background,
+                        bg = beautiful.bg_2,
+                    },
+                    layout = wibox.layout.fixed.vertical
+                },
+
+                { -- body
+                    {
+                        {
+                            title_n,
+                            message_n,
                             layout = wibox.layout.fixed.vertical,
-                            spacing = dpi(16)
+                            spacing = dpi(3)
                         },
                         nil,
                         image_n,
                         layout = wibox.layout.align.horizontal,
                         expand = "none"
                     },
-                    {
-                        {actions, layout = wibox.layout.fixed.vertical},
-                        margins = {top = dpi(20)},
-                        visible = n.actions and #n.actions > 0,
-                        widget = wibox.container.margin
-                    },
-                    layout = wibox.layout.fixed.vertical,
+                    margins = {left = dpi(15), top = dpi(10), right = dpi(10)},
+                    widget = wibox.container.margin
                 },
-                margins = dpi(18),
-                widget = wibox.container.margin
+
+                { -- foot
+                    actions,
+                    margins = dpi(10),
+                    widget = wibox.container.margin
+                },
+                
+                layout = wibox.layout.fixed.vertical,
+                spacing = dpi(10)
+
             },
-            widget          = wibox.container.background,
-            forced_width    = dpi(340),
-            shape           = helpers.rrect(beautiful.rounded),
-            bg              = beautiful.bg_color,
+
+            widget = wibox.container.background,
+            shape = helpers.rrect(beautiful.rounded - 2),
+            bg = beautiful.bg_color,
         }
     }
 
+    widget.buttons = {}
+
+
+
+    local anim = kasper_animation:new({
+		duration = n.timeout,
+		target = 100,
+		easing = kasper_animation.easing.linear,
+		reset_on_stop = false,
+		update = function(self, pos)
+			timeout_bar.value = pos
+		end,
+	})
+
+    anim:connect_signal("ended", function()
+		n:destroy()
+	end)
+
+	widget:connect_signal("mouse::enter", function()
+		n:set_timeout(4294967)
+		anim:stop()
+	end)
+
+	widget:connect_signal("mouse::leave", function()
+		anim:start()
+	end)
+
+
+	local notification_height = widget.height + beautiful.notification_spacing
+	local total_notifications_height = #naughty.active * notification_height
+
+	if total_notifications_height > n.screen.workarea.height then
+		get_oldest_notification():destroy(naughty.notification_closed_reason.too_many_on_screen)
+	end
+
+
+    anim:start()
+
 
     -- don't show notification when dnd is on or dash is visible
-    if _G.awesome_dnd_state then
+    if _G.awesome_dnd_state or dashbaord_d.visible then
 	    naughty.destroy_all_notifications(nil, 1)
     end
 end)
+
+
+-- eof
+------

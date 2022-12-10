@@ -54,7 +54,7 @@ playerctl:connect_signal("metadata", function(_, title, artist, album_path, __, 
     		naughty.notify({
     			app_name    = "Music",
     			title       = title or "Song",
-    			text        = "~ " .. artist,
+    			text        = "by " .. artist,
                 actions     = {
                     previous_button,
                     next_button

@@ -1,5 +1,6 @@
 -- rules
--- ~~~~~
+--------
+-- Copyleft © 2022 Saimoomedits
 
 
 -- requirements
@@ -42,7 +43,7 @@ ruled.client.connect_signal("request::rules", function()
     ruled.client.append_rule {
         id          = "floating",
         rule_any    = {
-            class   = {"Sxiv", "Zathura", "Galculator", "Xarchiver"},
+            class   = {"Sxiv", "Zathura", "Galculator", "Xarchiver", "amberol"},
             role    = { "pop-up"},
             instance    = {"spad", "discord", "music"}
         },
@@ -60,7 +61,6 @@ ruled.client.connect_signal("request::rules", function()
         },
         properties = {
             border_width = beautiful.border_width,
-            border_color = beautiful.border_normal
         }
     }
 
@@ -87,7 +87,11 @@ ruled.client.connect_signal("request::rules", function()
         name = {
             "^discord.com is sharing your screen.$",
             "file_progress"
-        }
+        },
+				class = {
+                        "spad",
+						"amberol"
+				}
     },
         properties = {titlebars_enabled = false}
     }
@@ -104,3 +108,20 @@ ruled.client.connect_signal("request::rules", function()
         },
 
 }
+
+-- hide titlebar for tiled/maxed
+screen.connect_signal("arrange", function(s)
+  local layout = s.selected_tag.layout.name
+  for _, c in pairs(s.clients) do
+    if c.maximized or c.fullscreen then 
+      awful.titlebar.hide(c)
+      c.border_width = 0
+    elseif layout == "floating" or c.floating then
+      awful.titlebar.show(c)
+      c.border_width = 0
+    else
+      awful.titlebar.hide(c)
+      c.border_width = beautiful.border_width
+    end
+  end
+end)

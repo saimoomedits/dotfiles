@@ -30,7 +30,7 @@ local pop = awful.popup {
 	height  = dpi(70),
     maximum_width = dpi(600),
 	shape   = helpers.rrect(beautiful.rounded),
-	bg      = beautiful.accent,
+	bg      = beautiful.bg_color,
     ontop = true,
 	visible = false,
     placement = function (c) awful.placement.top(c, {margins = {top = beautiful.useless_gap * 2}}) end
@@ -59,13 +59,24 @@ local w_txt = wibox.widget({
 -- setup
 pop:setup {
     {
-        w_icon,
-        w_txt,
-        layout = wibox.layout.fixed.horizontal,
-        spacing = dpi(8)
+		{
+			w_icon,
+			margins = dpi(12),
+			widget = wibox.container.margin
+		},
+		widget = wibox.container.background,
+		bg = beautiful.bg_3
     },
-    margins = {top = dpi(10), bottom = dpi(10), right = dpi(25), left = dpi(25)},
-    widget = wibox.container.margin
+    {
+		{
+			w_txt,
+			margins = dpi(12),
+			widget = wibox.container.margin
+		},
+		widget = wibox.container.background,
+		bg = beautiful.bg_color
+    },
+	layout = wibox.layout.fixed.horizontal,
 }
 
 -- tuemout
@@ -97,8 +108,8 @@ return function (icon, text)
 	if first_time then
 		first_time = false
 	else
-		w_icon.markup = helpers.colorize_text(icon, beautiful.bg_color)
-		w_txt.markup = helpers.colorize_text(text, beautiful.bg_color)
+		w_icon.markup = helpers.colorize_text(icon, beautiful.fg_color)
+		w_txt.markup = helpers.colorize_text(text, beautiful.fg_color)
 		toggle_pop()
 	end
 

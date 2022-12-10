@@ -1,5 +1,6 @@
 -- profile widget
--- ~~~~~~~~~~~~~~
+-----------------
+-- Copyleft © 2022 Saimoomedits
 
 
 -- requirements
@@ -13,21 +14,31 @@ local gears = require("gears")
 
 
 -- widgets
--- ~~~~~~~
+----------
+
+-- mask overlay
+local overlayed = wibox.widget({
+	{
+		bg = beautiful.bg_3 .. 'ef',
+		forced_height = dpi(100),
+		forced_width = dpi(100),
+		widget = wibox.container.background,
+	},
+	direction = "east",
+	widget = wibox.container.rotate,
+})
 
 -- image
 local profile_image = wibox.widget {
     {
         image = beautiful.images.profile,
-        clip_shape = gears.shape.circle,
+    	shape = helpers.rrect(beautiful.rounded),
         widget = wibox.widget.imagebox
     },
     widget = wibox.container.background,
-    border_width = dpi(1),
-    forced_width = dpi(75),
-    forced_height = dpi(75),
-    shape = gears.shape.circle,
-    border_color = beautiful.fg_color
+    forced_width = dpi(100),
+    forced_height = dpi(100),
+    shape = helpers.rrect(beautiful.rounded),
 }
 
 -- username
@@ -43,26 +54,50 @@ local username = wibox.widget{
 local desc = wibox.widget{
     widget = wibox.widget.textbox,
     markup = helpers.colorize_text(user_likes.userdesc, beautiful.fg_color .. "99"),
-    font = beautiful.font_var .. "11",
+    font = beautiful.font_var .. "10",
     align = "left",
     valign = "center"
 }
 
 
--- return
+-- finalize
+-----------
 return wibox.widget{
-    profile_image,
-    {
-        nil,
-        {
-            username,
-            desc,
-            layout = wibox.layout.fixed.vertical,
-            spacing = dpi(2)
-        },
-        layout = wibox.layout.align.vertical,
-        expand = "none"
-    },
-    layout = wibox.layout.fixed.horizontal,
-    spacing = dpi(15)
+	{
+		{
+				profile_image,
+				overlayed,
+				layout = wibox.layout.stack
+		},
+		{
+    	{
+			{
+    			widget = wibox.widget.textbox,
+    			markup = helpers.colorize_text("Howdy!", beautiful.fg_color .. "33"),
+    			font = beautiful.font_var .. "11",
+    			align = "left",
+    			valign = "center"
+			},
+			nil,
+        	{
+          	  	username,
+				desc,
+           		layout = wibox.layout.fixed.vertical,
+            	spacing = dpi(2)
+        	},
+        	layout = wibox.layout.align.vertical,
+        	expand = "none"
+		},
+		widget = wibox.container.margin,
+		margins = dpi(16)
+    	},
+		layout = wibox.layout.stack,
+	},
+	widget = wibox.container.background,
+	shape = helpers.rrect(dpi(beautiful.rounded)),
+	forced_width = dpi(160),
+	forced_height = dpi(160)
 }
+
+-- eof
+------

@@ -7,13 +7,12 @@
 
 return {
 
-font                = "Roboto",
+font                = "Iosevka",
 titlebar_position   = "bottom",
-gaps                = 10,
-border_width        = 0,
-round_corners       = 15,
+gaps                = 7,
+border_width        = 4,
+round_corners       = 6,
 bar_size            = 54,
-color_scheme        = "dark",
 
 }
 

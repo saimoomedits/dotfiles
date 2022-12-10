@@ -1,5 +1,6 @@
 -- tags  / layouts
--- ~~~~~~~~~~~~~~~
+------------------
+-- Copyleft © 2022 Saimoomedits
 
 -- requirements
 -- ~~~~~~~~~~~~
@@ -25,7 +26,7 @@ lmachi.editor.nested_layouts = {
 }
 
 -- names/numbers of layouts
-local names = { "1", "2", "3", "4" }
+local names = { "1", "2", "3", "4", "5", "6" }
 local l     = awful.layout.suit
 
 
@@ -36,7 +37,7 @@ local l     = awful.layout.suit
 tag.connect_signal("request::default_layouts", function()
 
     awful.layout.append_default_layouts({
-        l.tile, l.floating, lmachi.default_layout, equal, mstab, deck })
+        l.spiral, l.floating})
 
 end)
 

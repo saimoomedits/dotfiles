@@ -1,6 +1,7 @@
 -- helper function to create buttons
--- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -- uses rubato for smoooth animations
+-------------------------------------
+-- Copyleft © 2022 Saimoomedits
 
 
 -- requirements
@@ -18,7 +19,7 @@ return function (widget, normal_bg, press_color, margins, border_width, border_c
     -- containers
     local circle_animate = wibox.widget{
     	widget = wibox.container.background,
-    	shape = gears.shape.rounded_bar,
+    	shape = shape_spe or gears.shape.rounded_bar,
     	bg = press_color or beautiful.accent_3,
     }
 

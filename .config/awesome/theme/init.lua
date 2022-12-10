@@ -1,10 +1,10 @@
--- Dynamic Awesome Theme
--- ~~~~~~~~~~~~~~~~~~~~~
--- i mean.. not really.
+-- Awesome Awesome Awe-
+-----------------------
+-- Copyleft © 2022 Saimoomedits
 
 
 -- requirements
--- ~~~~~~~~~~~~
+---------------
 local xresources  = require("beautiful.xresources")
 local dpi         = xresources.apply_dpi
 local gears       = require("gears")
@@ -14,11 +14,7 @@ local themes_path = gfs.get_themes_dir()
 local helpers     = require("helpers")
 local ui_vars     = require("theme.ui_vars")
 
-if string.lower(ui_vars.color_scheme) ~= ("light" or "dark") then
-    ui_vars.color_scheme = "dark"
-end
-
-local colors = require("theme.colors." .. string.lower(ui_vars.color_scheme))
+local colors = require("theme.colors")
 
 
 
@@ -130,7 +126,7 @@ theme.fg_minimize   = theme.bg_2
 theme.useless_gap           = dpi(ui_vars.gaps) or 7
 theme.border_width          = dpi(ui_vars.border_width)
 theme.border_color_normal   = theme.bg_color
-theme.border_color_active   = theme.bg_color
+theme.border_color_active   = "#424242"
 
 
 
@@ -244,16 +240,17 @@ theme.tooltip_margin            = "top"
 
 -- taglist
 -- ~~~~~~~
-theme.taglist_bg = theme.bg_color
-theme.taglist_bg_focus = theme.bg_3
+theme.taglist_bg = theme.bg_color .. "00"
+theme.taglist_bg_focus = theme.fg_color
 theme.taglist_fg_focus = theme.accent
 theme.taglist_bg_urgent = theme.red_color
 theme.taglist_fg_urgent = theme.red_2
-theme.taglist_bg_occupied = theme.bg_color
+theme.taglist_bg_occupied = theme.fg_color .. "80"
 theme.taglist_fg_occupied = theme.fg_color
-theme.taglist_bg_empty = theme.bg_color
+theme.taglist_bg_empty = theme.fg_color .. "1A"
 theme.taglist_fg_empty = theme.fg_color .. "66"
 theme.taglist_disable_icon = true
+theme.taglist_shape = helpers.rrect(theme.rounded)
 
 
 

@@ -1,180 +1,144 @@
 -- Minimal control center
--- ~~~~~~~~~~~~~~~~~~~~~
+-------------------------
+-- Copyleft © 2022 Saimoomedits
 
 
 -- requirements
--- ~~~~~~~~~~~~
+---------------
 local awful = require("awful")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 local helpers = require("helpers")
 local wibox = require("wibox")
 local gears = require("gears")
-local rubato = require("mods.rubato")
 local readwrite = require("misc.scripts.read_writer")
 
 
 
---[[ few stuffs to note
-
--- sidebar height (extras disabled)
--- height = dpi(580),
-
--- sidebar new height (extras enabled)
--- height = dpi(715),
-
-]]
-
-
-
+-- add to each screen that is connected and is occupied
 awful.screen.connect_for_each_screen(function(s)
 
+    -- variables
+    ------------
+    local screen_width = s.geometry.width
+
     -- Mainbox
-    --~~~~~~~~~~~~~~~~~
+    ----------
     control_c = wibox({
         type = "dock",
         shape = helpers.rrect(beautiful.rounded),
         screen = s,
-        width = dpi(420),
+        width = dpi(410),
+        height = dpi(640),
         bg = beautiful.bg_color,
-        margins = 20,
         ontop = true,
         visible = false
     })
-    --~~~~~~~~~~~~~~~
 
 
 
     -- widgets
-    --~~~~~~~~
+    ----------
+    local battery = require("layout.controlCenter.battery")
     local profile = require("layout.controlCenter.profile")
-    local sessions = require("layout.controlCenter.sessionctl")
+    local music = require("layout.controlCenter.music")
+    local controls = require("layout.controlCenter.controls")
     local sliders = require("layout.controlCenter.sliders")
-    local song = require("layout.controlCenter.music")
-    local services = require("layout.controlCenter.services")
-    local statusline = require("layout.controlCenter.statusbar")
+    local disk = require("layout.controlCenter.hdd")
 
 
 
-    -- animations
-    --------------
-    local slide_right = rubato.timed{
-        pos = s.geometry.height,
-        rate = 60,
-        intro = 0.14,
-        duration = 0.33,
-        subscribed = function(pos) control_c.y = s.geometry.y + pos end
-    }
-
-
-    local slide_end = gears.timer({
-        single_shot = true,
-        timeout = 0.33 + 0.08,
-        callback = function()
-            control_c.visible = false
-        end,
-    })
 
 
     -- toggler script
-    --~~~~~~~~~~~~~~~
+    -----------------
+    function control_hide()
+        control_c.visible = false
+        awesome.emit_signal("control_center::visible", false)
+    end
+
+    local function control_show()
+        control_c.visible = true
+        awesome.emit_signal("control_center::visible", true)
+    end
+
     local screen_backup = 1
 
     cc_toggle = function(screen)
+
+        if dashbaord_d.visible then
+            dd_toggle()
+        end
+
+        -- control center placement
+		awful.placement.bottom_right(control_c, {honor_workarea = true, margins = beautiful.useless_gap * 2})
 
         -- set screen to default, if none were found
         if not screen then
             screen = s
         end
 
-        -- control center x position
-        control_c.x = screen.geometry.x + (dpi(48) + beautiful.useless_gap * 4)
 
         -- toggle visibility
         if control_c.visible then
 
             -- check if screen is different or the same
             if screen_backup ~= screen.index then
-                control_c.visible = true
+                control_show()
             else
-                slide_end:again()
-                slide_right.target = s.geometry.height
+				control_hide()
             end
 
         elseif not control_c.visible then
-
-            slide_right.target = s.geometry.height - (control_c.height + beautiful.useless_gap * 2)
-            control_c.visible = true
-
+            control_show()
         end
 
         -- set screen_backup to new screen
         screen_backup = screen.index
     end
     -- Eof toggler script
-    --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-
-
-    -- function to show/hide extra buttons
-    -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    function show_extra_control_stuff(input)
-        if input then
-            awesome.emit_signal("controlCenter::extras", true)
-            control_c.height = dpi(715)
-            readwrite.write("cc_state", "open")
-        else
-            awesome.emit_signal("controlCenter::extras", false)
-            control_c.height = dpi(580)
-            readwrite.write("cc_state", "closed")
-        end
-        slide_right.target = s.geometry.height - (control_c.height + beautiful.useless_gap * 2)
-    end
+    ---------------------
 
 
 
     -- Initial setup
+    ----------------
     control_c:setup {
         {
             {
                 {
-                    profile,
-                    nil,
-                    sessions,
-                    layout = wibox.layout.align.horizontal
+                    battery,
+                    disk,
+                    spacing = dpi(28),
+                    layout = wibox.layout.fixed.horizontal
                 },
-                sliders,
-                song,
-                services,
-                layout = wibox.layout.fixed.vertical,
-                spacing = dpi(24)
+                {
+                    profile,
+                    controls,
+                    spacing = dpi(28),
+                    layout = wibox.layout.fixed.horizontal
+                },
+                {
+                    sliders,
+                    spacing = dpi(28),
+                    layout = wibox.layout.fixed.horizontal
+                },
+                music,
+                spacing = dpi(28),
+                layout = wibox.layout.fixed.vertical
             },
-            widget = wibox.container.margin,
-            margins = dpi(20)
+            spacing = dpi(28),
+            layout = wibox.layout.fixed.horizontal
         },
-        {
-            statusline,
-            margins = {left = dpi(20), right = dpi(20), bottom = dpi(0)},
-            widget = wibox.container.margin,
-        },
-        layout = wibox.layout.fixed.vertical,
+        margins = dpi(28),
+        widget = wibox.container.margin
+
     }
 
 
 
-    -- reload cc state on reload or startup
-    ---------------------------------------
-    local output = readwrite.readall("cc_state")
-
-    if output:match("open") then
-        awesome.emit_signal("controlCenter::extras", true)
-        control_c.height = dpi(715)
-    else
-        awesome.emit_signal("controlCenter::extras", false)
-        control_c.height = dpi(580)
-    end
-    --------------------------------------------------------
-        
-
 end)
+
+
+-- eof
+------

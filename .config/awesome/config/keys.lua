@@ -1,5 +1,6 @@
 -- keybinds haha
--- ~~~~~~~~~~~~~
+----------------
+-- Copyleft © 2022 Saimoomedits
 
 
 -- requirements
@@ -53,7 +54,9 @@ awful.keyboard.append_global_keybindings({
     { description = "open web browser", group = "launcher" }),
 
 	awful.key({ modkey }, "e", function()
-        awful.spawn(misc.rofiCommand)
+        -- awful.spawn(misc.rofiCommand)
+        app_launcher:toggle()
+        awesome.emit_signal("launcher::toggled", true)
 	end,
     { description = "open rofi", group = "launcher" }),
 
@@ -64,6 +67,11 @@ awful.keyboard.append_global_keybindings({
 
 	awful.key({ modkey }, "a", function()
         cc_toggle(screen.primary)
+	end,
+    { description = "toggle control center", group = "launcher" }),
+
+	awful.key({ modkey }, "w", function()
+        term_scratch_pad:toggle()
 	end,
     { description = "toggle control center", group = "launcher" }),
 
@@ -94,25 +102,35 @@ awful.keyboard.append_global_keybindings({
 
 
     awful.key({}, "Print", function() 
+        awful.util.spawn(home_var .. "/.scripts/ss full", false)
+    end,
+    {description = "screenshot", group = "control"}),
+
+    awful.key({ shift }, "Print", function() 
         awful.util.spawn(home_var .. "/.scripts/ss area", false)
     end,
     {description = "screenshot", group = "control"}),
 
 
     awful.key({}, "XF86AudioRaiseVolume",
-            function() awful.spawn("amixer -D pulse set Master 5%+", false) 
+            function() 
+                awful.spawn("amixer -D pulse set Master 5%+", false)
+                awesome.emit_signal("volume::changed", 5)
     end,
     {description = "increase volume", group = "control"}),
 
 
     awful.key({}, "XF86AudioLowerVolume",
-            function() awful.spawn("amixer -D pulse set Master 5%-", false) 
+            function() 
+                awful.spawn("amixer -D pulse set Master 5%-", false)
+                awesome.emit_signal("volume::changed", -5)
     end,
     {description = "decrease volume", group = "control"}),
 
 
     awful.key({}, "XF86AudioMute", function() 
-        awful.spawn("amixer -D pulse set Master 1+ toggle", false) 
+        awful.spawn("amixer -D pulse set Master toggle", false) 
+        updateAllVolumeSignals()
     end,
     {description = "mute volume", group = "control"}),
 
@@ -120,7 +138,7 @@ awful.keyboard.append_global_keybindings({
     awful.key({modkey }, "F2", function() 
         misc.musicMenu()
     end,
-    {description = "music menu", group = "control"}),
+    {description = "screenshot", group = "control"}),
 
 })
 
@@ -169,12 +187,6 @@ awful.keyboard.append_global_keybindings({
         end,
     {description = "focus right", group = "client"}),
 
-
-    awful.key({ modkey }, "Tab",
-        function ()
-            awesome.emit_signal("bling::window_switcher::turn_on")
-        end,
-        {description = "window switcher", group = "client"}),
 
     awful.key({ modkey, ctrl }, "j", function () 
         awful.screen.focus_relative( 1) 
@@ -355,6 +367,15 @@ client.connect_signal("request::default_keybindings", function()
             end,
         {description = "toggle fullscreen", group = "client"}),
 
+		awful.key({ alt }, "Tab", function()
+			awesome.emit_signal("window_switcher::turn_on")
+		end,
+        {description = "switch between windows", group = "client"}),
+
+		awful.key({ modkey }, "Tab", function()
+			awesome.emit_signal("window_switcher::turn_on")
+		end,
+        {description = "switch between windows", group = "client"}),
 
         awful.key({ modkey }, "q",      function (c) c:kill() end,
                 {description = "close", group = "client"}),

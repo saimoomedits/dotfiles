@@ -1,6 +1,7 @@
 -- emits wifi status (with nmcli)
 -- well, it works for me. so yeah
 ---------------------------------
+-- Copyleft © 2022 Saimoomedits
 
 -- ("signal::wifi"), function(net_status(bool))
 

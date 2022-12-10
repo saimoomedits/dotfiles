@@ -1,6 +1,7 @@
 -- misc stuff
--- ~~~~~~~~~~
 -- includes startup apps, theme changing and more
+--------------------------------------------------
+-- Copyleft © 2022 Saimoomedits
 
 -- requirements
 -- ~~~~~~~~~~~~
@@ -33,16 +34,13 @@ for _, prc in ipairs(applications) do
 end
 
 -- only-one-time process (mpdris2)
-awful.spawn.easy_async_with_shell("pidof python3", function (stdout)
-    if not stdout or stdout == "" then
-        awful.spawn.easy_async_with_shell("mpDris2")
-    end
-end)
+-- awful.spawn.easy_async_with_shell("pidof python3", function (stdout)
+--     if not stdout or stdout == "" then
+--         awful.spawn.easy_async_with_shell("mpDris2")
+--     end
+-- end)
 
 
-
--- theme applier
-require(... .. ".scripts.theme-applier")
 
 
 -- launchers

@@ -5,7 +5,6 @@
 -- misc/vars
 -- ~~~~~~~~~
 local directory = home_var .. "/.config/awesome/images/sus/"
-local ui_vars = require("theme.ui_vars")
 
 
 -- init
@@ -18,6 +17,7 @@ return {
     music_icon = directory .. "music.png",
     album_art = directory .. "album-art.png",
     awesome = directory .. "awesome.png",
+    searcher = directory .. "searcher.png",
 
     -- layouts
     layouts = {
@@ -28,5 +28,5 @@ return {
     },
 
     -- wallpapers
-    wall = directory .."walls/" .. ui_vars.color_scheme .. ".png",
+    wall = directory .."wall.png",
 }

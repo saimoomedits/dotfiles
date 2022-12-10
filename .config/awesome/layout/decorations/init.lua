@@ -1,9 +1,11 @@
 -- titlebar
--- ~~~~~~~~
+-----------
+-- Copyleft © 2022 Saimoomedits
+
 
 
 -- requirements
--- ~~~~~~~~~~~~
+---------------
 local awful     = require("awful")
 local beautiful = require("beautiful")
 local dpi           = beautiful.xresources.apply_dpi
@@ -15,8 +17,8 @@ local gears     = require("gears")
 
 
 
--- misc/vars
--- ~~~~~~~~~~
+-- variables
+------------
 
 -- function to create those buttons
 local function create_button(shape, color, command, c)
@@ -24,38 +26,38 @@ local function create_button(shape, color, command, c)
   -- the widget
   local w = wibox.widget{
     widget = wibox.container.background,
-    bg = color or beautiful.accent,
-    shape = shape or helpers.prrect(beautiful.rounded, true, true, false, true),
-    forced_width = dpi(15),
-    forced_height = dpi(15)
+    bg = color .. "99" or beautiful.accent,
+    shape = shape,
+    forced_width = dpi(12),
+    forced_height = dpi(12)
   }
 
 
   -- hover effect
   w:connect_signal('mouse::enter', function ()
-    w.bg = beautiful.accent
+    w.bg = color
   end)
 
   w:connect_signal('mouse::leave', function ()
-    w.bg = beautiful.fg_color .. "4D"
+    w.bg = color .. "99"
   end)
 
   -- press effect
   w:connect_signal('button::press', function ()
-    w.bg = beautiful.fg_color .. "99"
+    w.bg = beautiful.accent
   end)
 
   w:connect_signal('button::release', function ()
-    w.bg = beautiful.accent
+    w.bg = color .. "99"
   end)
                 
 
   -- dynamic color
   local function dyna()
     if client.focus == c then
-      w.bg = beautiful.fg_color .. "4D"
+      w.bg = color .. "99"
     else
-      w.bg = beautiful.fg_color .. "1A"
+      w.bg = color .. "33"
     end
   end
 
@@ -96,8 +98,8 @@ client.connect_signal("request::titlebars", function(c)
 
 
     -- the titlebar
-    awful.titlebar(c, { position = "top", size = dpi(46), font = beautiful.font_var .. "12",
-                        fg = beautiful.fg_color .. "99", bg = beautiful.bg_2 }): setup {
+    awful.titlebar(c, { position = "top", size = dpi(44), font = beautiful.font_var .. "12",
+                        fg = beautiful.fg_color .. "99", bg = beautiful.bg_color }): setup {
 
       layout = wibox.layout.align.horizontal,
       {
@@ -105,30 +107,57 @@ client.connect_signal("request::titlebars", function(c)
           {
             nil,
             {
+                {
+                  {
 
-                create_button(gears.shape.circle, beautiful.fg_color, function ()
-                  c:kill()
-                end, c),
+                    create_button(gears.shape.circle, beautiful.red_color, function ()
+                      c:kill()
+                    end, c),
 
-                create_button(gears.shape.circle, beautiful.fg_color, function ()
-                  c.maximized = not c.maximized c:raise()
-                end, c),
+                    create_button(gears.shape.circle, beautiful.accent, function ()
+                      c.maximized = not c.maximized c:raise()
+                    end, c),
 
-                create_button(gears.shape.circle, beautiful.fg_color, function ()
-                  awful.client.floating.toggle(c)
-                end, c),
+                    create_button(gears.shape.circle, beautiful.green_color, function ()
+                      c.minimize = true
+                    end, c),
 
-                layout  = wibox.layout.fixed.horizontal,
-                spacing = dpi(18)
+                    layout  = wibox.layout.fixed.horizontal,
+                    spacing = dpi(18)
+                  },
+                  margins = dpi(10),
+                  widget = wibox.container.margin
+                },
+                bg = beautiful.bg_3,
+                shape = helpers.rrect(beautiful.rounded - 2),
+                widget = wibox.container.background
             },
                 layout = wibox.layout.align.vertical,
                 expand = "none"
           },
-          margins = {left = dpi(24)},
+          margins = {left = dpi(8)},
           widget = wibox.container.margin
         },
         widget = wibox.container.background,
         buttons = nil,
+      },
+      {
+        widget = wibox.widget.background,
+        buttons = buttons,
+      },
+      {
+        {
+          {
+                awful.titlebar.widget.iconwidget(c),
+                margins = dpi(8),
+                widget = wibox.container.margin
+          },
+              bg = beautiful.bg_3,
+              shape = helpers.rrect(beautiful.rounded - 2),
+              widget = wibox.container.background
+          },
+          widget = wibox.container.margin,
+          margins = {right = dpi(10), top = dpi(5), bottom = dpi(5)}
       },
       {
         wibox.widget.textbox,
@@ -142,6 +171,10 @@ client.connect_signal("request::titlebars", function(c)
 end)
 
 
--- exra
--- ~~~~
-require("layout.decorations.music")
+-- exras
+--------
+-- require("layout.decorations.music")
+
+
+-- eof
+------

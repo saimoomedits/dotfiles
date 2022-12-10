@@ -2,6 +2,7 @@
 -- stolen from javacfe01
 
 local altnotify = require("layout.ding.extra.short")
+local first_time = true
 
 local display_high = true
 local display_low = true
@@ -10,6 +11,11 @@ local display_charge = true
 
 awesome.connect_signal("signal::battery", function(percentage, state)
     local value = percentage
+
+    if first_time then
+        first_time = false
+        return
+    end
 
     -- only display message if its not charging and low
     if value < 16 and display_low and state == 2 then

@@ -104,21 +104,25 @@ pop:setup({
 
 -- volume
 local first_V = true
-awesome.connect_signal("signal::volume", function(value, muted)
+awesome.connect_signal("volume::changed", function(show)
 	if first_V or control_c.visible then
 		first_V = false
 	else
+		update_value_of_volume()
+		awesome.connect_signal("volume::value", function(value)
+		    bar.value = tonumber(value)
+		end)
 		icon.markup = "<span foreground='" .. beautiful.accent .. "'></span>"
-		bar.value = value
+		bar.value = bar.value + show
 
-		if muted or value == 0  then
-			bar.handle_color = beautiful.red_color
-			bar.bar_active_color = beautiful.red_color
-			icon.markup = "<span foreground='" .. beautiful.red_color .. "'></span>"
-		else
-			bar.handle_color = beautiful.accent
-			bar.bar_active_color = beautiful.accent
-		end
+		-- if muted  then
+		-- 	bar.handle_color = beautiful.red_color
+		-- 	bar.bar_active_color = beautiful.red_color
+		-- 	icon.markup = "<span foreground='" .. beautiful.red_color .. "'></span>"
+		-- else
+		-- 	bar.handle_color = beautiful.accent
+		-- 	bar.bar_active_color = beautiful.accent
+		-- end
 
 		toggle_pop()
 	end
@@ -127,9 +131,12 @@ end)
 
 -- brightness
 local first_B = true
+local second_B = true -- brightness sussy baka
 awesome.connect_signal("signal::brightness", function(value)
 	if first_B or control_c.visible then
 		first_B = false
+	elseif second_B then
+		second_B = false
 	else
 		icon.markup = "<span foreground='" .. beautiful.accent .. "'></span>"
 		bar.handle_color = beautiful.accent
