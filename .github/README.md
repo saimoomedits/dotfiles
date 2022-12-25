@@ -27,9 +27,11 @@ You can use this repository as a **[rice](https://thatnixguy.github.io/posts/ric
 
 # Credits
 
+- [manas140](https://github.com/manas140)
 - [Elenapan](https://github.com/elenapan)
 - [Javacafe01](https://github.com/javacafe01)
 - [Kasper24](https://github.com/kasper24)
 - [Andorlando](https://github.com/andOrlando)
 - [manilarome](https://github.com/manilarome)
+
 
