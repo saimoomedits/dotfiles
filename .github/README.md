@@ -287,7 +287,7 @@ Or use them as a daily driver.
 5. Extract Gtk-theme
     ```sh
     mkdir ~/.themes
-    cp ./themes/* ~/.themes
+    cp ./extras/themes/* ~/.themes
     cd ~/.themes
     tar -xf Awesthetic.tar
     tar -xf Cutefish-light-modified.tar
